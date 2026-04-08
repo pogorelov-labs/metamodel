@@ -1549,31 +1549,6 @@ entity_kinds:
   usage_purpose: Формализовать ответственность за поддержание объекта в целевом состоянии.
   status: active
   introduced_in: '1.0'
-- id: event
-  name: Event
-  name_ru: Событие
-  metamodel_level: null
-  category: operational
-  description: Факт наступления значимого изменения состояния в рамках бизнес-процесса, работы системы или жизненного цикла
-    данных, который фиксируется, имеет временную метку и может служить триггером для других процессов, уведомлений или аналитики.
-  scope_notes: Всегда имеет тип события (Business Event, System Event, Data Event), временную метку и источник. Может содержать
-    полезную нагрузку (payload). Регистрируется в логах, мониторинговых системах или хабе/шине событий. Используется для автоматического
-    реагирования (алерты).
-  aliases:
-  - value: событие
-    lang: ru
-    alias_type: synonym
-    status: active
-  - value: бизнес-событие
-    lang: ru
-    alias_type: synonym
-    status: active
-  examples:
-  - Заявка переведена в статус Одобрена
-  - Пайплайн завершился с ошибкой
-  usage_purpose: Фиксировать значимые изменения состояния для триггеров и аналитики.
-  status: active
-  introduced_in: '1.0'
 - id: metric
   name: Metric
   name_ru: Метрика
