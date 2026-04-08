@@ -4,28 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Metamodel Knowledge Dashboard</title>
+<script>
+// Early theme detection — prevent flash
+(function(){var t=localStorage.getItem('atlas-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+</script>
 <style>
+/* ===== LIGHT THEME (default) — RBank corporate palette ===== */
 :root {
-  --bg: #0f1117;
-  --bg2: #161922;
-  --bg3: #1e2130;
-  --border: #2a2d3e;
-  --text: #e1e4ed;
-  --text2: #8b90a5;
-  --accent: #6c5ce7;
-  --accent2: #a29bfe;
-  --green: #00cec9;
-  --orange: #fdcb6e;
-  --pink: #fd79a8;
-  --blue: #74b9ff;
-  --red: #ff7675;
+  --bg: #FCFAFA;
+  --bg2: #F6F4F4;
+  --bg3: #F0ECEC;
+  --border: #D7D2D2;
+  --text: #2B2D33;
+  --text2: #5A5757;
+  --text3: #827F7F;
+  --accent: #FED500;
+  --accent2: #FABE00;
+  --green: #5AA357;
+  --orange: #D27532;
+  --pink: #CD5A50;
+  --blue: #7864D7;
+  --red: #CD5A50;
+  --cyan: #6984B2;
+  --brand-yellow: #FEE600;
   --radius: 12px;
+  --nav-scrolled-bg: rgba(252,250,250,.95);
+  --hero-glow: radial-gradient(ellipse at center, rgba(254,213,0,.1) 0%, rgba(254,230,0,.04) 40%, transparent 70%);
+  --scroll-gradient: linear-gradient(90deg,#FED500,#FEE600,#FEEE4D);
+  --l-strategic-bg: linear-gradient(135deg,rgba(120,100,215,.1),rgba(120,100,215,.02));
+  --l-business-bg: linear-gradient(135deg,rgba(90,163,87,.1),rgba(90,163,87,.02));
+  --l-data-bg: linear-gradient(135deg,rgba(152,107,214,.1),rgba(152,107,214,.02));
+  --l-solution-bg: linear-gradient(135deg,rgba(70,105,200,.1),rgba(70,105,200,.02));
+  --l-component-bg: linear-gradient(135deg,rgba(210,117,50,.1),rgba(210,117,50,.02));
+  --l-infra-bg: linear-gradient(135deg,rgba(205,90,80,.1),rgba(205,90,80,.02));
+  --pill-bg: #FFFCE6;
+  --pill-border: rgba(254,213,0,.4);
+  --wg-header-color: #7864D7;
+  --stat-num-color: #7864D7;
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+  --bg: #0a0c14;
+  --bg2: #111525;
+  --bg3: #1a1f35;
+  --border: #252a42;
+  --text: #e4e7f1;
+  --text2: #7b819a;
+  --text3: #4a5070;
+  --accent: #6c5ce7;
+  --accent2: #a78bfa;
+  --green: #00cec9;
+  --orange: #f59e0b;
+  --pink: #ec4899;
+  --blue: #3b82f6;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+  --brand-yellow: #FEE600;
+  --nav-scrolled-bg: rgba(10,12,20,.92);
+  --hero-glow: radial-gradient(ellipse at center, rgba(108,92,231,.1) 0%, rgba(0,206,201,.04) 40%, transparent 70%);
+  --scroll-gradient: linear-gradient(90deg,var(--accent),var(--green),var(--pink));
+  --l-strategic-bg: linear-gradient(135deg,rgba(108,92,231,.15),rgba(108,92,231,.05));
+  --l-business-bg: linear-gradient(135deg,rgba(0,206,201,.15),rgba(0,206,201,.05));
+  --l-data-bg: linear-gradient(135deg,rgba(167,139,250,.15),rgba(167,139,250,.05));
+  --l-solution-bg: linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.05));
+  --l-component-bg: linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));
+  --l-infra-bg: linear-gradient(135deg,rgba(239,68,68,.15),rgba(239,68,68,.05));
+  --pill-bg: rgba(108,92,231,.12);
+  --pill-border: rgba(108,92,231,.3);
+  --wg-header-color: var(--accent2);
+  --stat-num-color: var(--accent2);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; transition:background .3s, color .3s; }
+
+/* NAV with theme toggle */
+.topnav { position:fixed; top:0; left:0; width:100%; z-index:100; padding:16px 0; transition:background .3s; }
+.topnav.scrolled { background:var(--nav-scrolled-bg); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.topnav .inner { max-width:1400px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+.topnav .logo { font-weight:800; font-size:1.05rem; letter-spacing:1px; color:var(--text); }
+.topnav .logo span { color:var(--accent2); }
+.theme-toggle { background:transparent; border:1px solid var(--border); border-radius:20px; padding:6px 14px; color:var(--text2); font-size:.78rem; cursor:pointer; transition:all .25s; display:flex; align-items:center; gap:8px; font-family:inherit; }
+.theme-toggle:hover { border-color:var(--accent); color:var(--text); }
+.theme-toggle svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 
 /* Scroll Progress Bar */
-.scroll-progress { position:fixed; top:0; left:0; width:0%; height:3px; background:linear-gradient(90deg,var(--accent),var(--green),var(--pink)); z-index:9999; transition:width .05s linear; box-shadow:0 0 8px var(--accent); }
+.scroll-progress { position:fixed; top:0; left:0; width:0%; height:3px; background:var(--scroll-gradient); z-index:9999; transition:width .05s linear; box-shadow:0 0 8px var(--accent); }
 
 /* Section Reveal */
 .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; }
@@ -33,13 +97,15 @@ body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-syste
 .container { max-width:1400px; margin:0 auto; padding:0 24px; }
 
 /* Hero */
-.hero { padding:60px 0 40px; text-align:center; position:relative; overflow:hidden; }
-.hero::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(ellipse at center, rgba(108,92,231,.08) 0%, transparent 60%); pointer-events:none; }
-.hero h1 { font-size:2.8rem; font-weight:800; background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:8px; }
-.hero .sub { font-size:1.1rem; color:var(--text2); max-width:700px; margin:0 auto; }
-.stats-row { display:flex; justify-content:center; gap:40px; margin-top:32px; flex-wrap:wrap; }
+.hero { padding:120px 0 48px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-40%; left:50%; transform:translateX(-50%); width:140%; height:160%; background:var(--hero-glow); pointer-events:none; }
+.hero h1 { font-size:2.8rem; font-weight:800; color:var(--text); margin-bottom:8px; position:relative; }
+.hero h1 .gr { color:var(--blue); }
+[data-theme="dark"] .hero h1 .gr { background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero .sub { font-size:1.1rem; color:var(--text2); max-width:700px; margin:0 auto; position:relative; }
+.stats-row { display:flex; justify-content:center; gap:40px; margin-top:32px; flex-wrap:wrap; position:relative; }
 .stat-box { text-align:center; }
-.stat-num { font-size:2.4rem; font-weight:800; color:var(--green); }
+.stat-num { font-size:2.4rem; font-weight:800; color:var(--stat-num-color); }
 .stat-label { font-size:.85rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
 
 /* Section */
@@ -66,12 +132,12 @@ section { padding:48px 0; }
 .layer-entities { display:none; margin-top:12px; flex-wrap:wrap; gap:6px; }
 .layer.active .layer-entities { display:flex; }
 .entity-tag { background:var(--bg); color:var(--text2); padding:4px 12px; border-radius:20px; font-size:.8rem; border:1px solid var(--border); }
-.l-strategic { background:linear-gradient(135deg, rgba(108,92,231,.15), rgba(108,92,231,.05)); }
-.l-business { background:linear-gradient(135deg, rgba(0,206,201,.15), rgba(0,206,201,.05)); }
-.l-solution { background:linear-gradient(135deg, rgba(116,185,255,.15), rgba(116,185,255,.05)); }
-.l-component { background:linear-gradient(135deg, rgba(253,203,110,.15), rgba(253,203,110,.05)); }
-.l-infra { background:linear-gradient(135deg, rgba(255,118,117,.15), rgba(255,118,117,.05)); }
-.l-data { background:linear-gradient(135deg, rgba(253,121,168,.15), rgba(253,121,168,.05)); border:1px dashed var(--pink); }
+.l-strategic { background:var(--l-strategic-bg); }
+.l-business { background:var(--l-business-bg); }
+.l-solution { background:var(--l-solution-bg); }
+.l-component { background:var(--l-component-bg); }
+.l-infra { background:var(--l-infra-bg); }
+.l-data { background:var(--l-data-bg); border:1px dashed var(--blue); }
 
 /* Journey */
 .journey-track { display:flex; gap:0; align-items:stretch; margin-top:16px; }
@@ -136,7 +202,8 @@ section { padding:48px 0; }
 /* Divider */
 .wg-divider { border:0; border-top:2px dashed var(--border); margin:64px 0 16px; }
 .wg-header { text-align:center; padding:40px 0 32px; }
-.wg-header h2 { font-size:2rem; font-weight:800; background:linear-gradient(135deg,var(--orange),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:8px; }
+.wg-header h2 { font-size:2rem; font-weight:800; color:var(--wg-header-color); margin-bottom:8px; }
+[data-theme="dark"] .wg-header h2 { background:linear-gradient(135deg,var(--orange),var(--pink)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 .wg-header p { color:var(--text2); font-size:.95rem; }
 
 /* WG Stats Row */
@@ -199,6 +266,17 @@ footer { text-align:center; padding:40px 0; color:var(--text2); font-size:.8rem;
 </head>
 <body>
 <div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="topnav" id="topnav">
+  <div class="inner">
+    <div class="logo">ATLAS · <span>Knowledge Dashboard</span></div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <span id="theme-label">Dark</span>
+    </button>
+  </div>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -547,10 +625,10 @@ function renderHeatmap() {
   const max = ENTITY_HEAT[0][1];
   ENTITY_HEAT.forEach(([name,val]) => {
     const intensity = val/max;
-    const h = 260 - intensity*120;
-    const l = 20 + intensity*25;
-    const bg = `hsl(${h},60%,${l}%)`;
-    const fg = intensity > 0.5 ? '#fff' : 'var(--text2)';
+    // RBank yellow with intensity-driven alpha; text stays readable on both themes.
+    const alpha = 0.18 + intensity * 0.72;
+    const bg = `rgba(254, 213, 0, ${alpha.toFixed(2)})`;
+    const fg = intensity > 0.55 ? 'var(--text)' : 'var(--text2)';
     c.innerHTML += `<div class="heat-cell" style="background:${bg};color:${fg}" title="${name}">${name.replace(/_/g,' ')}</div>`;
   });
 }
@@ -693,10 +771,9 @@ function renderHeatmapWg() {
   const max = ENTITY_HEAT_WG[0][1];
   ENTITY_HEAT_WG.slice(3).forEach(([name,val]) => {
     const intensity = val/max;
-    const h = 260 - intensity*120;
-    const l = 20 + intensity*25;
-    const bg = `hsl(${h},60%,${l}%)`;
-    const fg = intensity > 0.5 ? '#fff' : 'var(--text2)';
+    const alpha = 0.18 + intensity * 0.72;
+    const bg = `rgba(254, 213, 0, ${alpha.toFixed(2)})`;
+    const fg = intensity > 0.55 ? 'var(--text)' : 'var(--text2)';
     c.innerHTML += `<div class="heat-cell" style="background:${bg};color:${fg}" title="${val} встреч">${name.replace(/_/g,' ')} (${val})</div>`;
   });
 }
@@ -755,7 +832,7 @@ function renderFreqChart() {
   // Grid lines
   let grid = '';
   for(let v=1; v<=maxVal; v++) {
-    grid += `<line x1="${PAD}" y1="${y(v)}" x2="${W-PAD}" y2="${y(v)}" stroke="rgba(42,45,62,.5)" stroke-dasharray="4"/>`;
+    grid += `<line x1="${PAD}" y1="${y(v)}" x2="${W-PAD}" y2="${y(v)}" stroke="var(--border)" stroke-dasharray="4"/>`;
     grid += `<text x="${PAD-4}" y="${y(v)+4}" fill="var(--text2)" font-size="10" text-anchor="end">${v}</text>`;
   }
 
@@ -832,6 +909,34 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
+// ===== NAV + THEME TOGGLE =====
+
+function initNav() {
+  const nav = document.getElementById('topnav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+}
+
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+  const syncLabel = () => { label.textContent = isDark() ? 'Light' : 'Dark'; };
+  syncLabel();
+  btn.addEventListener('click', () => {
+    if (isDark()) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('atlas-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('atlas-theme', 'dark');
+    }
+    syncLabel();
+  });
+}
+
 // Init
 renderValueProps();
 renderLayers();
@@ -854,6 +959,8 @@ renderFunFacts();
 // Global effects
 initScrollProgress();
 initReveal();
+initNav();
+initThemeToggle();
 </script>
 </body>
 </html>
