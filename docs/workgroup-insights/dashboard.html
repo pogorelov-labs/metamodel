@@ -148,7 +148,7 @@ section { padding:72px 0; }
 .l-solution { background:var(--l-solution-bg); }
 .l-component { background:var(--l-component-bg); }
 .l-infra { background:var(--l-infra-bg); }
-.l-data { background:var(--l-data-bg); border:1px dashed var(--blue); }
+.l-data { background:var(--l-data-bg); }
 
 /* Journey */
 .journey-track { display:flex; gap:0; align-items:stretch; margin-top:16px; }
@@ -570,8 +570,8 @@ const CONTRIBUTORS = [
   ['Pogorelov R.', 40],
   ['Yamaletdinov V.', 28],
   ['Krasova E.', 26],
-  ['Ektov A.', 17],
   ['Kolesnikova A.', 18],
+  ['Ektov A.', 17],
   ['Makhov E.', 15],
   ['Dylko Yu.', 15],
   ['Fadin D.', 14],
@@ -781,9 +781,10 @@ function renderMonthly() {
 function renderPodium() {
   const c = document.getElementById('podium');
   const top3 = ENTITY_HEAT_WG.slice(0,3);
-  const heights = [140, 180, 120];
-  const colors = ['var(--blue)', 'var(--accent2)', 'var(--orange)'];
-  const order = [1, 0, 2]; // silver, gold, bronze visual order
+  // index 0 = 1st place (gold), 1 = 2nd (silver), 2 = 3rd (bronze)
+  const heights = [180, 140, 120];
+  const colors = ['var(--accent2)', 'var(--blue)', 'var(--orange)'];
+  const order = [1, 0, 2]; // visual arrangement: silver | gold | bronze
   order.forEach(i => {
     const [name, val] = top3[i];
     c.innerHTML += `
