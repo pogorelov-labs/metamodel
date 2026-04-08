@@ -19,7 +19,7 @@ _ALLOWED_VALUE_TYPES = {
     "uri",
 }
 _ALLOWED_QUALIFIER_CARDINALITY = {"one", "many", "optional"}
-_ALLOWED_LIFECYCLE_STATUS = {"active", "deprecated", "experimental", "draft"}
+_ALLOWED_LIFECYCLE_STATUS = {"active", "deprecated", "experimental", "draft", "stub"}
 
 
 class OntologyValidationError(ValueError):

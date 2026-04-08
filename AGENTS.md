@@ -10,12 +10,13 @@ Upstream ontology repository for RBank Atlas. Contains canonical YAML definition
 
 | Path | Purpose |
 |------|---------|
-| `model/metamodel.yaml` | Entity kinds, dictionaries, attribute_defs |
-| `model/relation_catalog.yaml` | Relation kinds, qualifiers, traversal rules |
+| `model/metamodel.yaml` | **core ontology**: entity kinds, dictionaries, attribute_defs, base relation_kinds |
+| `model/relation_catalog.yaml` | **profile overlay**: enriched relations with UI, traversal, qualifiers, impact |
 | `model/schema/` | JSON Schema validation contracts |
 | `model/templates/` | Templates for new entity/relation kinds |
 | `model/profiles/` | Projection profiles (e.g. `atlas_mvp`) |
-| `tools/wave1/` | Validation harness, loader, generators |
+| `tools/wave1/` | Validation harness, loader, validators, generators |
+| `tools/migrations/` | One-shot data migration scripts (e.g. MACWO-512 cleanup) |
 | `docs/architecture/` | v2 contracts (entity_kind, relation, qualifier, attribute_def) |
 | `docs/decisions/` | Architecture Decision Records |
 | `generated/` | Immutable release bundles — **do not edit** |
@@ -23,7 +24,7 @@ Upstream ontology repository for RBank Atlas. Contains canonical YAML definition
 ## Commands
 
 ```bash
-make validate    # Full validation: loader + validator + lint + relation catalog
+make validate    # Full validation harness — 5 stages, all must be 0 errors
 make test        # Unit tests (pytest)
 make bundle      # Generate Atlas bundle into generated/
 make diff        # Show bundle diff vs current baseline
@@ -36,14 +37,32 @@ Or directly:
 python -m tools.wave1.harness model/metamodel.yaml \
   --relation-catalog-path model/relation_catalog.yaml
 
+# Inspect individual stages:
+python -m tools.wave1.schema_validator      # JSON Schema on metamodel.yaml
+python -m tools.wave1.contract_validator    # mm/rc two-layer contract
+
 pytest tests/
 ```
+
+## Two-layer mm/rc contract
+
+`metamodel.yaml` and `relation_catalog.yaml` are not independent sources — they form a layered contract that the harness enforces:
+
+1. **Rule 1** — every relation in catalog must have a relation_kind in mm (lookup by id).
+2. **Rule 2** — `from_kind`, `to_kind`, `category`, `direction` must agree across both files.
+3. **Rule 3** — relation_kinds in mm without a catalog overlay are allowed (warning only).
+
+Practical implication: when adding a new relation, **start with metamodel.yaml** (the core declaration), then enrich it in `relation_catalog.yaml`. CI will reject catalog-only relations.
+
+See [`model/README.md`](model/README.md) for the full contract description and field-level split.
 
 ## Conventions
 
 - Model language: Russian field labels, English identifiers (`id`, `from_kind`, etc.)
-- Two canonical YAML files (`metamodel.yaml` + `relation_catalog.yaml`), not file-per-kind
-- All changes must pass `make validate` before merge
+- Two canonical YAML files (`metamodel.yaml` + `relation_catalog.yaml`) — see contract above
+- All changes must pass `make validate` (5 stages, 0 errors) before merge
+- Lifecycle status values: `active`, `draft`, `experimental`, `deprecated`, `stub` (`stub` = declared but unfinished, e.g. zero attributes)
+- Migrations live in `tools/migrations/` as idempotent Python scripts referencing the MACWO id
 - Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 - `generated/` is immutable output — never hand-edit
 

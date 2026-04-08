@@ -142,12 +142,22 @@ make diff        # Покажет "+1 kind"
 
 ## 4. Добавить новый тип связи (relation kind)
 
-Связи определяются в **двух** файлах:
+Связи живут в **двух** слоях, и это намеренно:
 
-| Файл | Что определяет |
-|------|----------------|
-| [`model/metamodel.yaml`](model/metamodel.yaml) → секция `relation_kinds` | Краткое определение (id, from/to, category) |
-| [`model/relation_catalog.yaml`](model/relation_catalog.yaml) → секция `relation_catalog.relations` | Полное определение (traversal, qualifiers, UI labels, profiles) |
+| Файл | Слой | Что определяет |
+|------|------|----------------|
+| [`model/metamodel.yaml`](model/metamodel.yaml) → секция `relation_kinds` | **core ontology** | Краткое определение (id, from/to, category, direction, level, description) |
+| [`model/relation_catalog.yaml`](model/relation_catalog.yaml) → секция `relation_catalog.relations` | **profile overlay** | Полное определение (traversal, qualifiers, UI labels, profiles, impact) |
+
+### Two-layer контракт (Rules 1–3)
+
+CI [`tools.wave1.contract_validator`](tools/wave1/contract_validator.py) автоматически проверяет:
+
+- **Rule 1** — каждый `relations[*].id` в catalog обязан иметь соответствующий `relation_kinds[*].id` в `metamodel.yaml`. Catalog не вводит новые relation'ы — только обогащает декларированные.
+- **Rule 2** — `from_kind`, `to_kind`, `category`, `direction` обязаны совпадать между mm.yaml и rc.yaml для одного и того же id. Расхождение = error.
+- **Rule 3** — relation_kind в `metamodel.yaml` без catalog-overlay допустим (warning, не error). Это «core declaration», ещё не вошедший ни в один профиль.
+
+> **Практическое следствие:** при добавлении новой связи **сначала** добавляйте запись в `metamodel.yaml`, потом обогащение в `relation_catalog.yaml`. Если добавляете только в catalog — контракт не пройдёт CI.
 
 ### Шаг 1: Краткая запись в `metamodel.yaml`
 
