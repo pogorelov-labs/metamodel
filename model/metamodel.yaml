@@ -145,6 +145,27 @@ entity_kinds:
   usage_purpose: Понимать что должен достичь банк.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: goal.owner
+    name: Владелец цели
+    metamodel_level: strategic_view
+    description: Стейкхолдер, отвечающий за достижение цели.
+  - id: goal.status
+    name: Статус
+    metamodel_level: strategic_view
+    description: 'Статус цели: draft | active | achieved | abandoned.'
+  - id: goal.target_date
+    name: Целевая дата
+    metamodel_level: strategic_view
+    description: Дата, к которой цель должна быть достигнута.
+  - id: goal.parent_goal_id
+    name: Родительская цель
+    metamodel_level: strategic_view
+    description: Идентификатор вышестоящей цели в иерархии.
+  - id: goal.kpi
+    name: KPI
+    metamodel_level: strategic_view
+    description: Ключевой показатель, по которому измеряется достижение цели.
 - id: job_family
   name: Job Family
   name_ru: Job Family
@@ -324,6 +345,19 @@ entity_kinds:
   usage_purpose: Понимать кто является целевой аудиторией продукта.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: customer_segment.segment_type
+    name: Тип сегмента
+    metamodel_level: strategic_view
+    description: 'Тип сегмента: retail | sme | corporate | private_banking | public_sector.'
+  - id: customer_segment.size
+    name: Размер сегмента
+    metamodel_level: strategic_view
+    description: Оценка количества клиентов в сегменте.
+  - id: customer_segment.persona_ref
+    name: Ссылка на персону
+    metamodel_level: strategic_view
+    description: Ссылка на каноническую персону сегмента (если ведётся отдельно).
 - id: business_role
   name: Business Role
   name_ru: Бизнес-роль
@@ -346,6 +380,19 @@ entity_kinds:
   usage_purpose: Понимать функциональную ответственность ролей.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: business_role.responsibility
+    name: Зона ответственности
+    metamodel_level: business_details
+    description: За что отвечает роль в бизнес-процессе.
+  - id: business_role.required_skills
+    name: Требуемые навыки
+    metamodel_level: business_details
+    description: Перечень компетенций, необходимых для выполнения роли.
+  - id: business_role.seniority
+    name: Уровень роли
+    metamodel_level: business_details
+    description: 'Уровень роли: junior | middle | senior | lead | head.'
 - id: value
   name: Value Proposition
   name_ru: Ценность
@@ -374,6 +421,19 @@ entity_kinds:
   usage_purpose: Понимать какая ценность создается для клиента и потребляется им в JTBD.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: value.type
+    name: Тип ценности
+    metamodel_level: strategic_view
+    description: 'Тип ценности: monetary | functional | emotional | social | regulatory.'
+  - id: value.target_audience
+    name: Целевая аудитория
+    metamodel_level: strategic_view
+    description: Сегмент клиентов или стейкхолдеров, для которых формируется ценность.
+  - id: value.measurement
+    name: Метрика измерения
+    metamodel_level: strategic_view
+    description: Каким показателем измеряется поставка ценности.
 - id: value_consumer
   name: Value Consumer
   name_ru: Потребитель ценности
@@ -440,6 +500,19 @@ entity_kinds:
   usage_purpose: Понимать точки контакта клиентов с продуктами банка.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: channel.type
+    name: Тип канала
+    metamodel_level: business_details
+    description: 'Тип канала: branch | mobile_app | web | call_center | atm | partner_api.'
+  - id: channel.availability
+    name: Доступность
+    metamodel_level: business_details
+    description: Часы доступности канала и SLA по аптайму.
+  - id: channel.sla_response_time
+    name: SLA по реакции
+    metamodel_level: business_details
+    description: Целевое время реакции канала на обращение клиента.
 - id: value_stream
   name: Value Stream
   name_ru: Поток создания ценности
@@ -576,7 +649,7 @@ entity_kinds:
   - Подбор и найм персонала
   - Ведение бухучета
   usage_purpose: Понимать из каких функциональных компонентов состоит банк, понимать чем заняты бизнес-роли и оргединицы.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: business_process
   name: Business Process
@@ -651,7 +724,7 @@ entity_kinds:
   examples:
   - Учесть комиссию за транзакцию
   usage_purpose: Понимать из каких шагов состоит бизнес-процесс и уровень автоматизации.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: business_action
   name: Business Action
@@ -673,7 +746,7 @@ entity_kinds:
   examples:
   - Выполнение проводки
   usage_purpose: Понимать из каких действий состоит бизнес-операция и отслеживать тайминг.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: business_entity
   name: Business Entity
@@ -923,7 +996,7 @@ entity_kinds:
   - Confluence
   - Kafka
   usage_purpose: Учет зависимостей от продуктов вендора, управление лицензиями, анализ vendor lock-in.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: technology
   name: Technology
@@ -945,7 +1018,7 @@ entity_kinds:
     status: active
   examples: []
   usage_purpose: Унифицировать описание технологического стека, обеспечить анализ рисков и зависимостей.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: source
   name: Source
@@ -968,7 +1041,7 @@ entity_kinds:
     status: active
   examples: []
   usage_purpose: Связать компонент ИС с источником правды, обеспечить автоматическое обнаружение и аудит.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: api
   name: API
@@ -1241,7 +1314,7 @@ entity_kinds:
     status: active
   examples: []
   usage_purpose: Понимать размещение компонентов в окружениях.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: data_product
   name: Data Product
@@ -1438,7 +1511,7 @@ entity_kinds:
     status: active
   examples: []
   usage_purpose: Формализовать обязательства по поставке данных.
-  status: active
+  status: stub
   introduced_in: '1.0'
 - id: data_attribute
   name: Data Attribute
@@ -1577,6 +1650,23 @@ entity_kinds:
   usage_purpose: Формализовать критерии, которым должен соответствовать объект.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: requirement.priority
+    name: Приоритет
+    metamodel_level: business_details
+    description: 'Приоритет требования: must | should | could | wont (MoSCoW).'
+  - id: requirement.status
+    name: Статус
+    metamodel_level: business_details
+    description: 'Статус: draft | approved | implemented | deprecated.'
+  - id: requirement.source
+    name: Источник
+    metamodel_level: business_details
+    description: 'Источник требования: stakeholder, regulator, business case, incident.'
+  - id: requirement.acceptance_criteria
+    name: Критерии приёмки
+    metamodel_level: business_details
+    description: Условия, при которых требование считается выполненным.
 - id: sla
   name: Service Level Agreement
   name_ru: Соглашение об уровне поддержки
@@ -1601,6 +1691,23 @@ entity_kinds:
   usage_purpose: Формализовать ответственность за поддержание объекта в целевом состоянии.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: sla.metric_target
+    name: Целевое значение
+    metamodel_level: solution_details
+    description: Целевое значение метрики, обязательство по поддержанию.
+  - id: sla.response_time
+    name: Время реакции
+    metamodel_level: solution_details
+    description: Максимальное время от регистрации инцидента до начала работ.
+  - id: sla.resolution_time
+    name: Время разрешения
+    metamodel_level: solution_details
+    description: Максимальное время от регистрации инцидента до его разрешения.
+  - id: sla.penalty
+    name: Штраф / последствия
+    metamodel_level: solution_details
+    description: 'Последствия нарушения SLA: финансовые санкции, эскалация, переоформление контракта.'
 - id: metric
   name: Metric
   name_ru: Метрика
@@ -1711,7 +1818,7 @@ entity_kinds:
   examples: []
   usage_purpose: Задача или потребность клиента (Jobs-to-be-Done), которую он стремится решить, обращаясь к продуктам и услугам
     банка.
-  status: active
+  status: stub
   introduced_in: '2.0'
 - id: employee
   name: Employee
@@ -1727,6 +1834,23 @@ entity_kinds:
   usage_purpose: Физическое лицо, состоящее в трудовых отношениях с банком.
   status: draft
   introduced_in: '2.0'
+  attributes:
+  - id: employee.employee_id
+    name: Табельный номер
+    metamodel_level: business_details
+    description: Уникальный идентификатор сотрудника в HR-системе.
+  - id: employee.position
+    name: Должность
+    metamodel_level: business_details
+    description: Формальная должность сотрудника.
+  - id: employee.department
+    name: Подразделение
+    metamodel_level: business_details
+    description: Подразделение, к которому относится сотрудник (organizational_unit).
+  - id: employee.hire_date
+    name: Дата приёма
+    metamodel_level: business_details
+    description: Дата приёма сотрудника в банк.
 - id: team
   name: Team
   name_ru: Команда
@@ -1743,6 +1867,23 @@ entity_kinds:
     или сервиса (agile-подход).
   status: draft
   introduced_in: '2.0'
+  attributes:
+  - id: team.lead
+    name: Руководитель
+    metamodel_level: business_details
+    description: Сотрудник, выполняющий роль лидера команды.
+  - id: team.size
+    name: Размер
+    metamodel_level: business_details
+    description: Текущее количество сотрудников в команде.
+  - id: team.mission
+    name: Миссия
+    metamodel_level: business_details
+    description: Краткая формулировка зоны ответственности команды.
+  - id: team.kind
+    name: Тип команды
+    metamodel_level: business_details
+    description: 'Тип: product | platform | enabling | stream-aligned | complicated-subsystem.'
 - id: data_schema
   name: Data Schema
   name_ru: Схема данных
