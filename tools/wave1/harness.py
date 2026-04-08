@@ -5,6 +5,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Optional, Sequence, Tuple
 
+from .contract_validator import (
+    ContractMessage,
+    ContractResult,
+    validate_contract,
+)
 from .lint import LintMessage, LintResult, lint_ontology
 from .loader import OntologyLoadError, load_ontology
 from .model import NormalizedOntology
@@ -53,6 +58,7 @@ def run_wave1_validation_harness(
     *,
     relation_catalog_path: Path | str | None = None,
     schema_path: Path | str | None = DEFAULT_SCHEMA_PATH,
+    run_contract_validation: bool = True,
 ) -> Wave1HarnessResult:
     """Load ontology from paths and run full Wave 1 validation stack."""
 
@@ -69,8 +75,15 @@ def run_wave1_validation_harness(
         )
         schema_stage = _stage_from_schema_result("schema_validation", schema_result)
 
+    contract_stage: HarnessStageResult | None = None
+    if run_contract_validation and relation_catalog_path is not None:
+        contract_result = validate_contract(ontology_path, relation_catalog_path)
+        contract_stage = _stage_from_contract_result(
+            "contract_validation", contract_result
+        )
+
     return run_wave1_validation_harness_on_model(
-        ontology, schema_stage=schema_stage
+        ontology, schema_stage=schema_stage, contract_stage=contract_stage
     )
 
 
@@ -78,6 +91,7 @@ def run_wave1_validation_harness_on_model(
     ontology: NormalizedOntology,
     *,
     schema_stage: HarnessStageResult | None = None,
+    contract_stage: HarnessStageResult | None = None,
 ) -> Wave1HarnessResult:
     """Run full Wave 1 validation stack on an already normalized ontology."""
 
@@ -92,6 +106,8 @@ def run_wave1_validation_harness_on_model(
     ]
     if schema_stage is not None:
         stages_list.append(schema_stage)
+    if contract_stage is not None:
+        stages_list.append(contract_stage)
     stages = tuple(stages_list)
 
     success = all(stage.error_count == 0 for stage in stages)
@@ -155,6 +171,16 @@ def _stage_from_schema_result(
     )
 
 
+def _stage_from_contract_result(
+    name: str, result: ContractResult
+) -> HarnessStageResult:
+    return HarnessStageResult(
+        name=name,
+        errors=tuple(_format_contract_message(message) for message in result.errors),
+        warnings=tuple(_format_contract_message(message) for message in result.warnings),
+    )
+
+
 def _format_validation_message(message: ValidationMessage) -> str:
     return f"[{message.code}] {message.path}: {message.message}"
 
@@ -164,6 +190,10 @@ def _format_lint_message(message: LintMessage) -> str:
 
 
 def _format_schema_message(message: SchemaValidationMessage) -> str:
+    return f"[{message.code}] {message.path}: {message.message}"
+
+
+def _format_contract_message(message: ContractMessage) -> str:
     return f"[{message.code}] {message.path}: {message.message}"
 
 

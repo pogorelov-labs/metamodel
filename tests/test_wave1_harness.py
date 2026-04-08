@@ -53,6 +53,7 @@ def test_harness_baseline_success_from_paths() -> None:
         "ontology_lint",
         "relation_catalog_validation",
         "schema_validation",
+        "contract_validation",
     ]
 
 

@@ -3014,3 +3014,731 @@ relation_kinds:
   category: association
   direction: directed
   description: Requirement is covered by a service level agreement.
+- id: rel_value_stream_contains_stage
+  name: Value stream contains stage
+  from_kind: value_stream
+  to_kind: value_stream_stage
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: Decomposes value stream into value stream stages.
+- id: rel_stage_belongs_to_value_stream
+  name: Stage belongs to value stream
+  from_kind: value_stream_stage
+  to_kind: value_stream
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: Inverse of value stream stage containment.
+- id: rel_stage_realized_by_process
+  name: Stage realized by process
+  from_kind: value_stream_stage
+  to_kind: business_process
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Connects value stream stage with business process that realizes stage outcomes.
+- id: rel_process_belongs_to_stage
+  name: Process belongs to stage
+  from_kind: business_process
+  to_kind: value_stream_stage
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Inverse of stage realized by process.
+- id: rel_capability_aggregates_processes
+  name: Capability aggregates processes
+  from_kind: business_capability
+  to_kind: business_process
+  metamodel_level: business_details
+  category: aggregation
+  direction: directed
+  description: Links business capability to processes that realize it.
+- id: rel_process_realizes_capability
+  name: Process realizes capability
+  from_kind: business_process
+  to_kind: business_capability
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Inverse of capability aggregates processes.
+- id: rel_operation_belongs_to_process
+  name: Operation belongs to process
+  from_kind: business_operation
+  to_kind: business_process
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: Inverse of process decomposition to operation.
+- id: rel_operation_executes_function
+  name: Operation executes function
+  from_kind: business_operation
+  to_kind: business_function
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Connects executable operation to stable business function.
+- id: rel_function_executed_by_operation
+  name: Function executed by operation
+  from_kind: business_function
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Inverse of operation executes function.
+- id: rel_entity_served_by_process
+  name: Entity served by process
+  from_kind: business_entity
+  to_kind: business_process
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Inverse of process serves entity.
+- id: rel_operation_acts_on_entity
+  name: Operation acts on entity
+  from_kind: business_operation
+  to_kind: business_entity
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Qualified relation describing how operation interacts with business entity.
+- id: rel_entity_acted_on_by_operation
+  name: Entity acted on by operation
+  from_kind: business_entity
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Inverse of operation acts on entity.
+- id: rel_information_flow_carries_entity
+  name: Information flow carries entity
+  from_kind: information_flow
+  to_kind: business_entity
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Qualified relation that specifies which business entity semantics is carried by information flow.
+- id: rel_entity_carried_by_information_flow
+  name: Entity carried by information flow
+  from_kind: business_entity
+  to_kind: information_flow
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Inverse of information flow carries entity.
+- id: rel_process_uses_information_flow
+  name: Process uses information flow
+  from_kind: business_process
+  to_kind: information_flow
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Links process to information flow used or produced in process context.
+- id: rel_information_flow_used_by_process
+  name: Information flow used by process
+  from_kind: information_flow
+  to_kind: business_process
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Inverse of process uses information flow.
+- id: rel_operation_uses_information_flow
+  name: Operation uses information flow
+  from_kind: business_operation
+  to_kind: information_flow
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Qualified relation linking operation to consumed or emitted information flow.
+- id: rel_information_flow_used_by_operation
+  name: Information flow used by operation
+  from_kind: information_flow
+  to_kind: business_operation
+  metamodel_level: solution_details
+  category: flow
+  direction: directed
+  description: Inverse of operation uses information flow.
+- id: rel_process_depends_on_process
+  name: Process depends on process
+  from_kind: business_process
+  to_kind: business_process
+  metamodel_level: business_details
+  category: dependency
+  direction: directed
+  description: Qualified inter-process dependency relation used for path and impact context.
+- id: rel_process_required_by_process
+  name: Process required by process
+  from_kind: business_process
+  to_kind: business_process
+  metamodel_level: business_details
+  category: dependency
+  direction: directed
+  description: Inverse of process depends on process.
+- id: rel_operation_precedes_operation
+  name: Operation precedes operation
+  from_kind: business_operation
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: dependency
+  direction: directed
+  description: Qualified ordering relation for operation sequence and BPMN context.
+- id: rel_operation_follows_operation
+  name: Operation follows operation
+  from_kind: business_operation
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: dependency
+  direction: directed
+  description: Inverse of operation precedes operation.
+- id: rel_it_system_supports_operation
+  name: IT system supports operation
+  from_kind: it_system
+  to_kind: business_operation
+  metamodel_level: solution_details
+  category: support
+  direction: directed
+  description: Inverse of operation supported by system.
+- id: rel_component_supports_operation
+  name: Component supports operation
+  from_kind: component
+  to_kind: business_operation
+  metamodel_level: component_details
+  category: implementation
+  direction: directed
+  description: Inverse of operation supported by component.
+- id: rel_operation_uses_data_product
+  name: Operation uses data product
+  from_kind: business_operation
+  to_kind: data_product
+  metamodel_level: data_details
+  category: flow
+  direction: directed
+  description: Connects business operation with data product used or produced in execution context.
+- id: rel_data_product_used_by_operation
+  name: Data product used by operation
+  from_kind: data_product
+  to_kind: business_operation
+  metamodel_level: data_details
+  category: flow
+  direction: directed
+  description: Inverse of operation uses data product.
+- id: rel_operation_owned_by_org_unit
+  name: Operation owned by organizational unit
+  from_kind: business_operation
+  to_kind: organizational_unit
+  metamodel_level: business_details
+  category: ownership
+  direction: directed
+  description: Assigns accountable organizational unit ownership for business operation.
+- id: rel_org_unit_owns_operation
+  name: Organizational unit owns operation
+  from_kind: organizational_unit
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: ownership
+  direction: directed
+  description: Inverse of operation owned by organizational unit.
+- id: rel_operation_performed_by_org_unit
+  name: Operation performed by organizational unit
+  from_kind: business_operation
+  to_kind: organizational_unit
+  metamodel_level: business_details
+  category: responsibility
+  direction: directed
+  description: Assigns performer organizational unit for operation execution responsibility.
+- id: rel_org_unit_performs_operation
+  name: Organizational unit performs operation
+  from_kind: organizational_unit
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: responsibility
+  direction: directed
+  description: Inverse of operation performed by organizational unit.
+- id: rel_goal_drives_capability
+  name: Goal drives capability
+  from_kind: goal
+  to_kind: business_capability
+  metamodel_level: strategic_view
+  category: realization
+  direction: directed
+  description: Links strategic goal to capabilities that realize it.
+- id: rel_capability_driven_by_goal
+  name: Capability driven by goal
+  from_kind: business_capability
+  to_kind: goal
+  metamodel_level: strategic_view
+  category: realization
+  direction: directed
+  description: 'Inverse: capability is driven by goal.'
+- id: rel_goal_measured_by_metric
+  name: Goal measured by metric
+  from_kind: goal
+  to_kind: metric
+  metamodel_level: data_details
+  category: association
+  direction: directed
+  description: Links goal to metrics that measure its achievement.
+- id: rel_metric_measures_goal
+  name: Metric measures goal
+  from_kind: metric
+  to_kind: goal
+  metamodel_level: data_details
+  category: association
+  direction: directed
+  description: 'Inverse: metric measures goal.'
+- id: rel_value_delivered_through_stream
+  name: Value delivered through stream
+  from_kind: value
+  to_kind: value_stream
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: Links value proposition to the value stream that delivers it.
+- id: rel_stream_delivers_value
+  name: Stream delivers value
+  from_kind: value_stream
+  to_kind: value
+  metamodel_level: business_details
+  category: realization
+  direction: directed
+  description: 'Inverse: value stream delivers value.'
+- id: rel_value_consumed_by
+  name: Value consumed by
+  from_kind: value
+  to_kind: value_consumer
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Inverse: value is consumed by consumer.'
+- id: rel_domain_contains_capability
+  name: Domain contains capability
+  from_kind: business_domain
+  to_kind: business_capability
+  metamodel_level: strategic_view
+  category: composition
+  direction: directed
+  description: Links business domain to the capabilities it encompasses.
+- id: rel_capability_belongs_to_domain
+  name: Capability belongs to domain
+  from_kind: business_capability
+  to_kind: business_domain
+  metamodel_level: strategic_view
+  category: composition
+  direction: directed
+  description: 'Inverse: capability belongs to business domain.'
+- id: rel_role_belongs_to_org_unit
+  name: Role belongs to org unit
+  from_kind: business_role
+  to_kind: organizational_unit
+  metamodel_level: business_details
+  category: ownership
+  direction: directed
+  description: Links business role to its organizational unit.
+- id: rel_role_participates_in_process
+  name: Role participates in process
+  from_kind: business_role
+  to_kind: business_process
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Links business role to processes it participates in.
+- id: rel_process_involves_role
+  name: Process involves role
+  from_kind: business_process
+  to_kind: business_role
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Inverse: process involves business role.'
+- id: rel_action_part_of_operation
+  name: Action part of operation
+  from_kind: business_action
+  to_kind: business_operation
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: Links elementary action to its parent business operation.
+- id: rel_operation_contains_action
+  name: Operation contains action
+  from_kind: business_operation
+  to_kind: business_action
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: 'Inverse: operation contains action.'
+- id: rel_attribute_describes_entity
+  name: Attribute describes entity
+  from_kind: business_attribute
+  to_kind: business_entity
+  metamodel_level: business_details
+  category: composition
+  direction: directed
+  description: Links business attribute to the entity it characterizes.
+- id: rel_product_served_by_process
+  name: Product served by process
+  from_kind: bank_product
+  to_kind: business_process
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Links bank product to the business process that supports it.
+- id: rel_process_serves_product
+  name: Process serves product
+  from_kind: business_process
+  to_kind: bank_product
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Inverse: process serves bank product.'
+- id: rel_segment_consumes_product
+  name: Segment consumes product
+  from_kind: customer_segment
+  to_kind: bank_product
+  metamodel_level: strategic_view
+  category: association
+  direction: directed
+  description: Links customer segment to bank products it uses.
+- id: rel_product_serves_segment
+  name: Product serves segment
+  from_kind: bank_product
+  to_kind: customer_segment
+  metamodel_level: strategic_view
+  category: association
+  direction: directed
+  description: 'Inverse: product serves customer segment.'
+- id: rel_channel_delivers_product
+  name: Channel delivers product
+  from_kind: channel
+  to_kind: bank_product
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: Links channel to bank products delivered through it.
+- id: rel_product_delivered_via_channel
+  name: Product delivered via channel
+  from_kind: bank_product
+  to_kind: channel
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Inverse: product delivered via channel.'
+- id: rel_requirement_constrains_system
+  name: Requirement constrains system
+  from_kind: requirement
+  to_kind: it_system
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Links requirement to IT system it constrains.
+- id: rel_system_constrained_by_requirement
+  name: System constrained by requirement
+  from_kind: it_system
+  to_kind: requirement
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: 'Inverse: system constrained by requirement.'
+- id: rel_sla_applies_to_system
+  name: SLA applies to system
+  from_kind: sla
+  to_kind: it_system
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Links SLA to the IT system it governs.
+- id: rel_system_governed_by_sla
+  name: System governed by SLA
+  from_kind: it_system
+  to_kind: sla
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: 'Inverse: system governed by SLA.'
+- id: rel_incident_affects_system
+  name: Incident affects system
+  from_kind: incident
+  to_kind: it_system
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Links incident to the IT system it impacts.
+- id: rel_system_affected_by_incident
+  name: System affected by incident
+  from_kind: it_system
+  to_kind: incident
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: 'Inverse: system affected by incident.'
+- id: rel_job_family_groups_role
+  name: Job family groups role
+  from_kind: job_family
+  to_kind: business_role
+  metamodel_level: business_details
+  category: aggregation
+  direction: directed
+  description: Links job family to roles it encompasses.
+- id: rel_role_belongs_to_job_family
+  name: Role belongs to job family
+  from_kind: business_role
+  to_kind: job_family
+  metamodel_level: business_details
+  category: aggregation
+  direction: directed
+  description: 'Inverse: role belongs to job family.'
+- id: rel_data_object_part_of_product
+  name: Data object part of product
+  from_kind: data_object
+  to_kind: data_product
+  metamodel_level: data_details
+  category: composition
+  direction: directed
+  description: Links data object to the data product it belongs to.
+- id: rel_data_product_contains_object
+  name: Data product contains object
+  from_kind: data_product
+  to_kind: data_object
+  metamodel_level: data_details
+  category: composition
+  direction: directed
+  description: 'Inverse: data product contains data object.'
+- id: rel_data_attribute_belongs_to_object
+  name: Data attribute belongs to object
+  from_kind: data_attribute
+  to_kind: data_object
+  metamodel_level: data_details
+  category: composition
+  direction: directed
+  description: Links data attribute to its parent data object.
+- id: rel_data_object_has_attribute
+  name: Data object has attribute
+  from_kind: data_object
+  to_kind: data_attribute
+  metamodel_level: data_details
+  category: composition
+  direction: directed
+  description: 'Inverse: data object has data attribute.'
+- id: rel_data_contract_governs_product
+  name: Data contract governs product
+  from_kind: data_contract
+  to_kind: data_product
+  metamodel_level: data_details
+  category: association
+  direction: directed
+  description: Links data contract to the data product it applies to.
+- id: rel_data_product_governed_by_contract
+  name: Data product governed by contract
+  from_kind: data_product
+  to_kind: data_contract
+  metamodel_level: data_details
+  category: association
+  direction: directed
+  description: 'Inverse: data product governed by data contract.'
+- id: rel_delivery_contract_delivers_product
+  name: Delivery contract delivers product
+  from_kind: delivery_contract
+  to_kind: data_product
+  metamodel_level: component_details
+  category: association
+  direction: directed
+  description: Links delivery contract to data product it delivers.
+- id: rel_data_product_delivered_by_contract
+  name: Data product delivered by contract
+  from_kind: data_product
+  to_kind: delivery_contract
+  metamodel_level: component_details
+  category: association
+  direction: directed
+  description: 'Inverse: data product delivered by delivery contract.'
+- id: rel_data_process_produces_product
+  name: Data process produces product
+  from_kind: data_process
+  to_kind: data_product
+  metamodel_level: data_details
+  category: realization
+  direction: directed
+  description: Links data process to the data product it produces.
+- id: rel_data_product_produced_by_process
+  name: Data product produced by process
+  from_kind: data_product
+  to_kind: data_process
+  metamodel_level: data_details
+  category: realization
+  direction: directed
+  description: 'Inverse: data product produced by data process.'
+- id: rel_api_exposed_by_system
+  name: API exposed by system
+  from_kind: api
+  to_kind: it_system
+  metamodel_level: component_details
+  category: implementation
+  direction: directed
+  description: Links API to the IT system that exposes it.
+- id: rel_system_exposes_api
+  name: System exposes API
+  from_kind: it_system
+  to_kind: api
+  metamodel_level: component_details
+  category: implementation
+  direction: directed
+  description: 'Inverse: IT system exposes API.'
+- id: rel_api_method_belongs_to_api
+  name: API method belongs to API
+  from_kind: api_method
+  to_kind: api
+  metamodel_level: component_details
+  category: composition
+  direction: directed
+  description: Links API method to its parent API.
+- id: rel_api_contains_method
+  name: API contains method
+  from_kind: api
+  to_kind: api_method
+  metamodel_level: component_details
+  category: composition
+  direction: directed
+  description: 'Inverse: API contains method.'
+- id: rel_parameter_belongs_to_method
+  name: Parameter belongs to method
+  from_kind: api_method_parameter
+  to_kind: api_method
+  metamodel_level: component_details
+  category: composition
+  direction: directed
+  description: Links API method parameter to its parent method.
+- id: rel_method_has_parameter
+  name: Method has parameter
+  from_kind: api_method
+  to_kind: api_method_parameter
+  metamodel_level: component_details
+  category: composition
+  direction: directed
+  description: 'Inverse: method has parameter.'
+- id: rel_integration_connects_system
+  name: Integration connects system
+  from_kind: integration
+  to_kind: it_system
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Links integration to IT system it connects (source side).
+- id: rel_system_connected_by_integration
+  name: System connected by integration
+  from_kind: it_system
+  to_kind: integration
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: 'Inverse: system connected by integration.'
+- id: rel_logical_resource_used_by_component
+  name: Logical resource used by component
+  from_kind: logical_resource
+  to_kind: component
+  metamodel_level: infrastructure_details
+  category: dependency
+  direction: directed
+  description: Links logical resource to the component that uses it.
+- id: rel_component_uses_logical_resource
+  name: Component uses logical resource
+  from_kind: component
+  to_kind: logical_resource
+  metamodel_level: infrastructure_details
+  category: dependency
+  direction: directed
+  description: 'Inverse: component uses logical resource.'
+- id: rel_technology_used_by_component
+  name: Technology used by component
+  from_kind: technology
+  to_kind: component
+  metamodel_level: component_details
+  category: dependency
+  direction: directed
+  description: Links technology to the component that uses it.
+- id: rel_component_uses_technology
+  name: Component uses technology
+  from_kind: component
+  to_kind: technology
+  metamodel_level: component_details
+  category: dependency
+  direction: directed
+  description: 'Inverse: component uses technology.'
+- id: rel_infra_resource_hosts_instance
+  name: Infra resource hosts instance
+  from_kind: infra_resource
+  to_kind: component_instance
+  metamodel_level: infrastructure_details
+  category: support
+  direction: directed
+  description: Links infrastructure resource to the component instance it hosts.
+- id: rel_instance_hosted_on_infra
+  name: Instance hosted on infra
+  from_kind: component_instance
+  to_kind: infra_resource
+  metamodel_level: infrastructure_details
+  category: support
+  direction: directed
+  description: 'Inverse: component instance hosted on infrastructure resource.'
+- id: rel_instance_of_component
+  name: Instance of component
+  from_kind: component_instance
+  to_kind: component
+  metamodel_level: infrastructure_details
+  category: implementation
+  direction: directed
+  description: Links component instance to its component definition.
+- id: rel_component_has_instance
+  name: Component has instance
+  from_kind: component
+  to_kind: component_instance
+  metamodel_level: infrastructure_details
+  category: implementation
+  direction: directed
+  description: 'Inverse: component has instance.'
+- id: rel_vendor_product_provides_technology
+  name: Vendor product provides technology
+  from_kind: vendor_product
+  to_kind: technology
+  metamodel_level: component_details
+  category: realization
+  direction: directed
+  description: Links vendor product to the technology it provides.
+- id: rel_technology_provided_by_vendor
+  name: Technology provided by vendor
+  from_kind: technology
+  to_kind: vendor_product
+  metamodel_level: component_details
+  category: realization
+  direction: directed
+  description: 'Inverse: technology provided by vendor product.'
+- id: rel_source_feeds_data_process
+  name: Source feeds data process
+  from_kind: source
+  to_kind: data_process
+  metamodel_level: component_details
+  category: flow
+  direction: directed
+  description: Links source to the data process it feeds.
+- id: rel_data_process_fed_by_source
+  name: Data process fed by source
+  from_kind: data_process
+  to_kind: source
+  metamodel_level: component_details
+  category: flow
+  direction: directed
+  description: 'Inverse: data process fed by source.'
+- id: rel_metric_based_on_data_object
+  name: Metric based on data object
+  from_kind: metric
+  to_kind: data_object
+  metamodel_level: data_details
+  category: dependency
+  direction: directed
+  description: Links metric to the data object it is computed from.
+- id: rel_data_object_feeds_metric
+  name: Data object feeds metric
+  from_kind: data_object
+  to_kind: metric
+  metamodel_level: data_details
+  category: dependency
+  direction: directed
+  description: 'Inverse: data object feeds metric.'
