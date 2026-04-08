@@ -48,9 +48,13 @@ entity kind (как one-class-per-file в коде). Мы сознательно
 
 | Файл | Что меняется | Кто меняет | Как часто |
 |------|-------------|------------|-----------|
-| `model/metamodel.yaml` | Entity kinds, атрибуты, словари | Доменные архитекторы | Редко |
-| `model/relation_catalog.yaml` | Связи, квалификаторы, traversal | Graph/platform-архитекторы | Иногда |
+| `model/metamodel.yaml` | Entity kinds, атрибуты, словари, базовые relation_kinds | Доменные архитекторы | Редко |
+| `model/relation_catalog.yaml` | Обогащение relations: traversal, quals, UI, impact | Graph/platform-архитекторы | Иногда |
 | `model/profiles/atlas_mvp.yaml` | Какие kinds/relations видны | Продуктовая команда | На каждый релиз |
+
+> **Two-layer контракт.** mm и rc — это **два слоя одной модели**, а не два независимых источника. Каждая `relation` в catalog обязана иметь соответствующий `relation_kind` в mm с совпадающими `from_kind`, `to_kind`, `category`, `direction`. Контракт проверяется CI через [`tools.wave1.contract_validator`](../../tools/wave1/contract_validator.py); см. [`model/README.md`](../../model/README.md) для полных правил и table of fields.
+>
+> До MACWO-512 (апрель 2026) этот контракт существовал только как намерение в README, и накопился drift: 95 общих id из 240 уникальных, 3 расхождения в категориях. Теперь формализовано и в данных, и в коде.
 
 ---
 
