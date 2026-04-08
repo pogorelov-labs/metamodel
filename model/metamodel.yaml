@@ -1102,11 +1102,11 @@ entity_kinds:
   name_ru: Логический ресурс
   metamodel_level: infrastructure_details
   category: infrastructure
-  description: 'Объект, предоставляющий внешний или внутренний ресурс, необходимый для работы компонентов. Описывает базовые
-    сущности: база данных (название БД), брокеры сообщений (название топиков, очередей), хранилища (бакеты S3, файловые хранилища),
-    k8s (название кластеров, namespace''ов).'
-  scope_notes: Не содержит бизнес-логики, предоставляет возможности или данные. Ссылается на техническую реализацию в Компонент
-    (Component). Регистрируется в CMDB.
+  description: 'Логический инфраструктурный ресурс, который потребляет компонент: база данных, namespace, очередь, топик,
+    бакет, файловое хранилище. Описывает «что предоставляется», а не «на чём это размещено» — последнее моделируется через
+    infra_resource (CI).'
+  scope_notes: Не содержит бизнес-логики, предоставляет возможности или данные. Ссылается на техническую реализацию через
+    component и физическое размещение через infra_resource. Регистрируется в CMDB.
   aliases:
   - value: ресурс
     lang: ru
@@ -1149,9 +1149,9 @@ entity_kinds:
   name_ru: Конфигурационная единица
   metamodel_level: infrastructure_details
   category: infrastructure
-  description: Управляемая единица ИТ-среды или приложения, которая имеет уникальный идентификатор, свойства и связи с другими
-    CI и может быть связана с бизнес-процессами, формируя граф зависимостей для процесса оценки последствий изменения или
-    сбоя одного элемента ИТ-инфраструктуры на связанные с ним элементы ИТ-среды или бизнес-процессы (impact analysis).
+  description: Управляемая физическая или виртуальная единица ИТ-среды (сервер, ВМ, контейнер, под, кластер), имеющая уникальный
+    идентификатор и связи с другими CI. Формирует граф зависимостей для impact analysis. В отличие от logical_resource,
+    описывает компонент инфраструктуры, а не предоставляемый им логический ресурс (БД, очередь, бакет).
   scope_notes: CI служит узлом графа зависимостей (это не только запись в базе). Один CI может быть логическим описанием (например,
     Payment API Cluster). Один кластер может содержать сотни инстансов (один CI управляет масштабом).
   aliases:
@@ -1171,10 +1171,30 @@ entity_kinds:
     lang: neutral
     alias_type: legacy_id
     status: active
-  examples: []
+  examples:
+  - VM payments-prod-01
+  - K8s pod payments-api-7d8f
+  - Bare-metal сервер DC1-rack3-srv12
   usage_purpose: Понимать инфраструктурные зависимости и проводить impact analysis.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: infra_resource.type
+    name: Тип CI
+    metamodel_level: infrastructure_details
+    description: 'Класс инфраструктурного ресурса: server | vm | container | pod | cluster | bare_metal | network_device.'
+  - id: infra_resource.environment
+    name: Окружение
+    metamodel_level: infrastructure_details
+    description: 'Окружение размещения: prod | staging | dev | test | dr.'
+  - id: infra_resource.location
+    name: Локация
+    metamodel_level: infrastructure_details
+    description: ЦОД, регион или зона доступности, где физически размещён ресурс.
+  - id: infra_resource.provider
+    name: Провайдер
+    metamodel_level: infrastructure_details
+    description: Поставщик инфраструктуры (on-prem, имя облачного провайдера, hosting-партнёра).
 - id: component_instance
   name: Component Instance
   name_ru: Экземпляр компонента ИС
