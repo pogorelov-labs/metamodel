@@ -4,46 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Metamodel Knowledge Dashboard</title>
+<script>
+// Early theme detection — prevent flash
+(function(){var t=localStorage.getItem('atlas-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+</script>
 <style>
+/* ===== LIGHT THEME (default) — RBank corporate palette ===== */
 :root {
-  --bg: #0f1117;
-  --bg2: #161922;
-  --bg3: #1e2130;
-  --border: #2a2d3e;
-  --text: #e1e4ed;
-  --text2: #8b90a5;
+  --bg: #FCFAFA;
+  --bg2: #F6F4F4;
+  --bg3: #F0ECEC;
+  --border: #D7D2D2;
+  --text: #2B2D33;
+  --text2: #5A5757;
+  --text3: #827F7F;
+  --accent: #FED500;
+  --accent2: #FABE00;
+  --green: #5AA357;
+  --orange: #D27532;
+  --pink: #CD5A50;
+  --blue: #7864D7;
+  --red: #CD5A50;
+  --cyan: #6984B2;
+  --brand-yellow: #FEE600;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --nav-scrolled-bg: rgba(252,250,250,.95);
+  --hero-glow: radial-gradient(ellipse at center, rgba(254,213,0,.1) 0%, rgba(254,230,0,.04) 40%, transparent 70%);
+  --scroll-gradient: linear-gradient(90deg,#FED500,#FEE600,#FEEE4D);
+  --l-strategic-bg: linear-gradient(135deg,rgba(120,100,215,.1),rgba(120,100,215,.02));
+  --l-business-bg: linear-gradient(135deg,rgba(90,163,87,.1),rgba(90,163,87,.02));
+  --l-data-bg: linear-gradient(135deg,rgba(152,107,214,.1),rgba(152,107,214,.02));
+  --l-solution-bg: linear-gradient(135deg,rgba(70,105,200,.1),rgba(70,105,200,.02));
+  --l-component-bg: linear-gradient(135deg,rgba(210,117,50,.1),rgba(210,117,50,.02));
+  --l-infra-bg: linear-gradient(135deg,rgba(205,90,80,.1),rgba(205,90,80,.02));
+  --pill-bg: #FFFCE6;
+  --pill-border: rgba(254,213,0,.4);
+  --wg-header-color: #7864D7;
+  --stat-num-color: #7864D7;
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+  --bg: #0a0c14;
+  --bg2: #111525;
+  --bg3: #1a1f35;
+  --border: #252a42;
+  --text: #e4e7f1;
+  --text2: #7b819a;
+  --text3: #4a5070;
   --accent: #6c5ce7;
-  --accent2: #a29bfe;
+  --accent2: #a78bfa;
   --green: #00cec9;
-  --orange: #fdcb6e;
-  --pink: #fd79a8;
-  --blue: #74b9ff;
-  --red: #ff7675;
-  --radius: 12px;
+  --orange: #f59e0b;
+  --pink: #ec4899;
+  --blue: #3b82f6;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+  --brand-yellow: #FEE600;
+  --nav-scrolled-bg: rgba(10,12,20,.92);
+  --hero-glow: radial-gradient(ellipse at center, rgba(108,92,231,.1) 0%, rgba(0,206,201,.04) 40%, transparent 70%);
+  --scroll-gradient: linear-gradient(90deg,var(--accent),var(--green),var(--pink));
+  --l-strategic-bg: linear-gradient(135deg,rgba(108,92,231,.15),rgba(108,92,231,.05));
+  --l-business-bg: linear-gradient(135deg,rgba(0,206,201,.15),rgba(0,206,201,.05));
+  --l-data-bg: linear-gradient(135deg,rgba(167,139,250,.15),rgba(167,139,250,.05));
+  --l-solution-bg: linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.05));
+  --l-component-bg: linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));
+  --l-infra-bg: linear-gradient(135deg,rgba(239,68,68,.15),rgba(239,68,68,.05));
+  --pill-bg: rgba(108,92,231,.12);
+  --pill-border: rgba(108,92,231,.3);
+  --wg-header-color: var(--accent2);
+  --stat-num-color: var(--accent2);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.7; transition:background .3s, color .3s; }
+
+/* Icon sizing — Lucide-style inline SVGs */
+.value-card .icon { width:28px; height:28px; margin-bottom:10px; color:var(--accent2); }
+.value-card .icon svg { width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.stream-card .s-icon { width:28px; height:28px; margin:0 auto 6px; color:var(--blue); }
+.stream-card .s-icon svg { width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.wg-header h2 svg.inline-svg { width:22px; height:22px; vertical-align:-3px; margin-right:6px; }
+
+/* NAV with theme toggle */
+.topnav { position:fixed; top:0; left:0; width:100%; z-index:100; padding:16px 0; transition:background .3s; }
+.topnav.scrolled { background:var(--nav-scrolled-bg); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.topnav .inner { max-width:1400px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+.topnav .logo { font-weight:800; font-size:1.05rem; letter-spacing:1px; color:var(--text); }
+.topnav .logo span { color:var(--accent2); }
+.theme-toggle { background:transparent; border:1px solid var(--border); border-radius:20px; padding:6px 14px; color:var(--text2); font-size:.78rem; cursor:pointer; transition:all .25s; display:flex; align-items:center; gap:8px; font-family:inherit; }
+.theme-toggle:hover { border-color:var(--accent); color:var(--text); }
+.theme-toggle svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 
 /* Scroll Progress Bar */
-.scroll-progress { position:fixed; top:0; left:0; width:0%; height:3px; background:linear-gradient(90deg,var(--accent),var(--green),var(--pink)); z-index:9999; transition:width .05s linear; box-shadow:0 0 8px var(--accent); }
+.scroll-progress { position:fixed; top:0; left:0; width:0%; height:3px; background:var(--scroll-gradient); z-index:9999; transition:width .05s linear; box-shadow:0 0 8px var(--accent); }
 
 /* Section Reveal */
 .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
-.container { max-width:1400px; margin:0 auto; padding:0 24px; }
+.container { max-width:1360px; margin:0 auto; padding:0 28px; }
+.divider { height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:0 auto; max-width:600px; }
 
 /* Hero */
-.hero { padding:60px 0 40px; text-align:center; position:relative; overflow:hidden; }
-.hero::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(ellipse at center, rgba(108,92,231,.08) 0%, transparent 60%); pointer-events:none; }
-.hero h1 { font-size:2.8rem; font-weight:800; background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:8px; }
-.hero .sub { font-size:1.1rem; color:var(--text2); max-width:700px; margin:0 auto; }
-.stats-row { display:flex; justify-content:center; gap:40px; margin-top:32px; flex-wrap:wrap; }
+.hero { padding:130px 0 64px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-40%; left:50%; transform:translateX(-50%); width:140%; height:160%; background:var(--hero-glow); pointer-events:none; }
+.hero-badge { display:inline-block; background:var(--pill-bg); border:1px solid var(--pill-border); border-radius:24px; padding:6px 20px; font-size:.78rem; color:var(--text2); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:24px; position:relative; }
+.hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:800; color:var(--text); margin-bottom:12px; position:relative; line-height:1.2; }
+.hero h1 .gr { color:var(--blue); }
+[data-theme="dark"] .hero h1 .gr { background:linear-gradient(135deg,var(--accent2),var(--green)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero .sub { font-size:1.1rem; color:var(--text2); max-width:700px; margin:0 auto; position:relative; }
+.stats-row { display:flex; justify-content:center; gap:40px; margin-top:32px; flex-wrap:wrap; position:relative; }
 .stat-box { text-align:center; }
-.stat-num { font-size:2.4rem; font-weight:800; color:var(--green); }
+.stat-num { font-size:2.4rem; font-weight:800; color:var(--stat-num-color); }
 .stat-label { font-size:.85rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
 
 /* Section */
-section { padding:48px 0; }
+section { padding:72px 0; }
 .section-title { font-size:1.6rem; font-weight:700; margin-bottom:24px; display:flex; align-items:center; gap:10px; }
 .section-title .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
 
@@ -66,12 +143,12 @@ section { padding:48px 0; }
 .layer-entities { display:none; margin-top:12px; flex-wrap:wrap; gap:6px; }
 .layer.active .layer-entities { display:flex; }
 .entity-tag { background:var(--bg); color:var(--text2); padding:4px 12px; border-radius:20px; font-size:.8rem; border:1px solid var(--border); }
-.l-strategic { background:linear-gradient(135deg, rgba(108,92,231,.15), rgba(108,92,231,.05)); }
-.l-business { background:linear-gradient(135deg, rgba(0,206,201,.15), rgba(0,206,201,.05)); }
-.l-solution { background:linear-gradient(135deg, rgba(116,185,255,.15), rgba(116,185,255,.05)); }
-.l-component { background:linear-gradient(135deg, rgba(253,203,110,.15), rgba(253,203,110,.05)); }
-.l-infra { background:linear-gradient(135deg, rgba(255,118,117,.15), rgba(255,118,117,.05)); }
-.l-data { background:linear-gradient(135deg, rgba(253,121,168,.15), rgba(253,121,168,.05)); border:1px dashed var(--pink); }
+.l-strategic { background:var(--l-strategic-bg); }
+.l-business { background:var(--l-business-bg); }
+.l-solution { background:var(--l-solution-bg); }
+.l-component { background:var(--l-component-bg); }
+.l-infra { background:var(--l-infra-bg); }
+.l-data { background:var(--l-data-bg); }
 
 /* Journey */
 .journey-track { display:flex; gap:0; align-items:stretch; margin-top:16px; }
@@ -134,9 +211,10 @@ section { padding:48px 0; }
 .industry-card p { font-size:.8rem; color:var(--text2); }
 
 /* Divider */
-.wg-divider { border:0; border-top:2px dashed var(--border); margin:64px 0 16px; }
+.wg-divider { border:0; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); max-width:600px; margin:64px auto 16px; }
 .wg-header { text-align:center; padding:40px 0 32px; }
-.wg-header h2 { font-size:2rem; font-weight:800; background:linear-gradient(135deg,var(--orange),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:8px; }
+.wg-header h2 { font-size:2rem; font-weight:800; color:var(--wg-header-color); margin-bottom:8px; }
+[data-theme="dark"] .wg-header h2 { background:linear-gradient(135deg,var(--orange),var(--pink)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 .wg-header p { color:var(--text2); font-size:.95rem; }
 
 /* WG Stats Row */
@@ -200,9 +278,21 @@ footer { text-align:center; padding:40px 0; color:var(--text2); font-size:.8rem;
 <body>
 <div class="scroll-progress" id="scroll-progress"></div>
 
+<!-- NAV -->
+<nav class="topnav" id="topnav">
+  <div class="inner">
+    <div class="logo">ATLAS · <span>Knowledge Dashboard</span></div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <span id="theme-label">Dark</span>
+    </button>
+  </div>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
   <div class="container">
+    <div class="hero-badge">Knowledge Dashboard · Working Group Insights</div>
     <h1>Operating Metamodel</h1>
     <p class="sub">Машиночитаемая карта банка: от стратегических целей до инфраструктуры. Язык, на котором организация описывает саму себя.</p>
     <div class="stats-row">
@@ -274,7 +364,7 @@ footer { text-align:center; padding:40px 0; color:var(--text2); font-size:.8rem;
 <!-- ========== WORKING GROUP STATS ========== -->
 <hr class="wg-divider">
 <div class="wg-header">
-  <h2>📊 Рабочая группа в цифрах</h2>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="inline-svg"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Рабочая группа в цифрах</h2>
   <p>Статистика встреч, контрибьюторов и тем за 4 месяца работы</p>
 </div>
 
@@ -332,13 +422,32 @@ footer { text-align:center; padding:40px 0; color:var(--text2); font-size:.8rem;
 <script>
 // ===== DATA =====
 
+// Lucide-style inline SVGs (stroke-based, viewBox 0 0 24 24).
+const ICON = {
+  puzzle: '<path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.23 8.77c.24-.24.581-.353.917-.303.515.077.877.528 1.073 1.01a2.5 2.5 0 1 0 3.259-3.259c-.482-.196-.933-.558-1.01-1.073-.05-.336.062-.676.303-.917l1.525-1.525A2.402 2.402 0 0 1 12 1.998c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/>',
+  zap: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  bot: '<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
+  clipboardCheck: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+  fileText: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+  shieldCheck: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  clipboardList: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
+  database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+  server: '<rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>',
+  gitBranch: '<line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
+  bookOpen: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+  barChart: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+};
+function svgIcon(key) {
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[key]}</svg>`;
+}
+
 const VALUE_PROPS = [
-  { icon:'🧩', title:'Composable Enterprise', desc:'Новые продукты — сборка из существующих capabilities, а не строительство с нуля.' },
-  { icon:'⚡', title:'Impact Analysis за секунды', desc:'Система упала в 2am — мгновенно понять какие клиентские сценарии затронуты.' },
-  { icon:'🤖', title:'AI-агенты с контекстом', desc:'Семантический поиск, Text2SQL, генерация BPMN, «что если» анализ через MCP-интерфейс.' },
-  { icon:'📋', title:'Regulatory Readiness', desc:'Аудит-готовность встроена в архитектуру: сквозная прослеживаемость от целей до данных.' },
-  { icon:'📝', title:'Data Contracts', desc:'SLI/SLO/SLA-фреймворк для данных. Автоматическая пропагация требований по линейджу.' },
-  { icon:'🔬', title:'Сертификация данных', desc:'Уровни зрелости привязаны к типу потребления: регуляторика > аналитика > операционка.' },
+  { icon:'puzzle',         title:'Composable Enterprise',      desc:'Новые продукты — сборка из существующих capabilities, а не строительство с нуля.' },
+  { icon:'zap',            title:'Impact Analysis за секунды', desc:'Система упала в 2am — мгновенно понять какие клиентские сценарии затронуты.' },
+  { icon:'bot',            title:'AI-агенты с контекстом',     desc:'Семантический поиск, Text2SQL, генерация BPMN, «что если» анализ через MCP-интерфейс.' },
+  { icon:'clipboardCheck', title:'Regulatory Readiness',       desc:'Аудит-готовность встроена в архитектуру: сквозная прослеживаемость от целей до данных.' },
+  { icon:'fileText',       title:'Data Contracts',             desc:'SLI/SLO/SLA-фреймворк для данных. Автоматическая пропагация требований по линейджу.' },
+  { icon:'shieldCheck',    title:'Сертификация данных',        desc:'Уровни зрелости привязаны к типу потребления: регуляторика > аналитика > операционка.' },
 ];
 
 const LAYERS = [
@@ -450,19 +559,19 @@ const WG_STATS = [
 ];
 
 const STREAMS = [
-  { icon:'📋', name:'Дата-контракты', desc:'SLI/SLO/SLA, сертификация, lineage enforcement' },
-  { icon:'🏗️', name:'Дата-каталог', desc:'Data product, data object, delivery contract, ownership' },
-  { icon:'💻', name:'IT-слой', desc:'Системы, компоненты, интеграции, ресурсы' },
-  { icon:'⚙️', name:'Бизнес-процессы', desc:'Value streams, capabilities, operations, BPMN-маппинг' },
-  { icon:'📖', name:'Бизнес-глоссарий', desc:'Единый словарь терминов, aliases, мастер-системы' },
+  { icon:'clipboardList', name:'Дата-контракты',   desc:'SLI/SLO/SLA, сертификация, lineage enforcement' },
+  { icon:'database',      name:'Дата-каталог',     desc:'Data product, data object, delivery contract, ownership' },
+  { icon:'server',        name:'IT-слой',          desc:'Системы, компоненты, интеграции, ресурсы' },
+  { icon:'gitBranch',     name:'Бизнес-процессы',  desc:'Value streams, capabilities, operations, BPMN-маппинг' },
+  { icon:'bookOpen',      name:'Бизнес-глоссарий', desc:'Единый словарь терминов, aliases, мастер-системы' },
 ];
 
 const CONTRIBUTORS = [
   ['Pogorelov R.', 40],
   ['Yamaletdinov V.', 28],
   ['Krasova E.', 26],
-  ['Ektov A.', 17],
   ['Kolesnikova A.', 18],
+  ['Ektov A.', 17],
   ['Makhov E.', 15],
   ['Dylko Yu.', 15],
   ['Fadin D.', 14],
@@ -509,7 +618,7 @@ const FUN_FACTS = [
 function renderValueProps() {
   const c = document.getElementById('value-grid');
   VALUE_PROPS.forEach(v => {
-    c.innerHTML += `<div class="value-card"><div class="icon">${v.icon}</div><h3>${v.title}</h3><p>${v.desc}</p></div>`;
+    c.innerHTML += `<div class="value-card"><div class="icon">${svgIcon(v.icon)}</div><h3>${v.title}</h3><p>${v.desc}</p></div>`;
   });
 }
 
@@ -547,10 +656,10 @@ function renderHeatmap() {
   const max = ENTITY_HEAT[0][1];
   ENTITY_HEAT.forEach(([name,val]) => {
     const intensity = val/max;
-    const h = 260 - intensity*120;
-    const l = 20 + intensity*25;
-    const bg = `hsl(${h},60%,${l}%)`;
-    const fg = intensity > 0.5 ? '#fff' : 'var(--text2)';
+    // RBank yellow with intensity-driven alpha; text stays readable on both themes.
+    const alpha = 0.18 + intensity * 0.72;
+    const bg = `rgba(254, 213, 0, ${alpha.toFixed(2)})`;
+    const fg = intensity > 0.55 ? 'var(--text)' : 'var(--text2)';
     c.innerHTML += `<div class="heat-cell" style="background:${bg};color:${fg}" title="${name}">${name.replace(/_/g,' ')}</div>`;
   });
 }
@@ -634,7 +743,7 @@ function renderWgStats() {
 function renderStreams() {
   const c = document.getElementById('streams');
   STREAMS.forEach(s => {
-    c.innerHTML += `<div class="stream-card"><div class="s-icon">${s.icon}</div><h4>${s.name}</h4><p>${s.desc}</p></div>`;
+    c.innerHTML += `<div class="stream-card"><div class="s-icon">${svgIcon(s.icon)}</div><h4>${s.name}</h4><p>${s.desc}</p></div>`;
   });
 }
 
@@ -672,16 +781,15 @@ function renderMonthly() {
 function renderPodium() {
   const c = document.getElementById('podium');
   const top3 = ENTITY_HEAT_WG.slice(0,3);
-  const heights = [140, 180, 120];
-  const colors = ['var(--blue)', 'var(--green)', 'var(--orange)'];
-  const order = [1, 0, 2]; // silver, gold, bronze visual order
+  // index 0 = 1st place (gold), 1 = 2nd (silver), 2 = 3rd (bronze)
+  const heights = [180, 140, 120];
+  const colors = ['var(--accent2)', 'var(--blue)', 'var(--orange)'];
+  const order = [1, 0, 2]; // visual arrangement: silver | gold | bronze
   order.forEach(i => {
     const [name, val] = top3[i];
-    const rank = i + 1;
-    const medals = ['🥇','🥈','🥉'];
     c.innerHTML += `
-      <div class="podium-item" style="background:${colors[i]}15; height:${heights[i]}px; display:flex; flex-direction:column; justify-content:flex-end;">
-        <div class="p-rank">${medals[i]}</div>
+      <div class="podium-item" style="background:color-mix(in srgb, ${colors[i]} 15%, transparent); height:${heights[i]}px; display:flex; flex-direction:column; justify-content:flex-end;">
+        <div class="p-rank" style="color:${colors[i]}">${i+1}</div>
         <div class="p-name" style="font-weight:700">${name.replace(/_/g,' ')}</div>
         <div class="p-val">${val} встреч</div>
       </div>`;
@@ -693,10 +801,9 @@ function renderHeatmapWg() {
   const max = ENTITY_HEAT_WG[0][1];
   ENTITY_HEAT_WG.slice(3).forEach(([name,val]) => {
     const intensity = val/max;
-    const h = 260 - intensity*120;
-    const l = 20 + intensity*25;
-    const bg = `hsl(${h},60%,${l}%)`;
-    const fg = intensity > 0.5 ? '#fff' : 'var(--text2)';
+    const alpha = 0.18 + intensity * 0.72;
+    const bg = `rgba(254, 213, 0, ${alpha.toFixed(2)})`;
+    const fg = intensity > 0.55 ? 'var(--text)' : 'var(--text2)';
     c.innerHTML += `<div class="heat-cell" style="background:${bg};color:${fg}" title="${val} встреч">${name.replace(/_/g,' ')} (${val})</div>`;
   });
 }
@@ -755,7 +862,7 @@ function renderFreqChart() {
   // Grid lines
   let grid = '';
   for(let v=1; v<=maxVal; v++) {
-    grid += `<line x1="${PAD}" y1="${y(v)}" x2="${W-PAD}" y2="${y(v)}" stroke="rgba(42,45,62,.5)" stroke-dasharray="4"/>`;
+    grid += `<line x1="${PAD}" y1="${y(v)}" x2="${W-PAD}" y2="${y(v)}" stroke="var(--border)" stroke-dasharray="4"/>`;
     grid += `<text x="${PAD-4}" y="${y(v)+4}" fill="var(--text2)" font-size="10" text-anchor="end">${v}</text>`;
   }
 
@@ -832,6 +939,34 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
+// ===== NAV + THEME TOGGLE =====
+
+function initNav() {
+  const nav = document.getElementById('topnav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+}
+
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+  const syncLabel = () => { label.textContent = isDark() ? 'Light' : 'Dark'; };
+  syncLabel();
+  btn.addEventListener('click', () => {
+    if (isDark()) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('atlas-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('atlas-theme', 'dark');
+    }
+    syncLabel();
+  });
+}
+
 // Init
 renderValueProps();
 renderLayers();
@@ -854,6 +989,8 @@ renderFunFacts();
 // Global effects
 initScrollProgress();
 initReveal();
+initNav();
+initThemeToggle();
 </script>
 </body>
 </html>
