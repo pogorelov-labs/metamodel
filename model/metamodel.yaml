@@ -866,6 +866,16 @@ entity_kinds:
   usage_purpose: Понимать из чего состоит ИС и как размещается.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: component.type
+    name: Тип компонента
+    metamodel_level: component_details
+    description: 'Тип реализации: микросервис, БД, UI, batch-job и т.д.'
+  - id: component.artifact_ref
+    name: Ссылка на артефакт поставки
+    metamodel_level: component_details
+    description: Ссылка на код, образ или артефакт поставки, реализующий компонент (например, путь в Git, имя docker-образа,
+      координаты артефакта в реестре).
 - id: vendor_product
   name: Vendor Product
   name_ru: Вендорское ПО
@@ -891,27 +901,6 @@ entity_kinds:
   usage_purpose: Учет зависимостей от продуктов вендора, управление лицензиями, анализ vendor lock-in.
   status: active
   introduced_in: '1.0'
-- id: software_component
-  name: Software Component
-  name_ru: Компонент ПО
-  metamodel_level: component_details
-  category: application
-  description: Конкретная реализация компонента в коде или артефакте поставки.
-  scope_notes: ''
-  aliases:
-  - value: артефакт поставки
-    lang: ru
-    alias_type: synonym
-    status: active
-  examples: []
-  usage_purpose: Понимать конкретные артефакты поставки ПО.
-  status: active
-  introduced_in: '0.1'
-  attributes:
-  - id: software_component.type
-    name: Тип компонента
-    metamodel_level: component_details
-    description: Микросервис, БД, UI и т.д.
 - id: technology
   name: Technology
   name_ru: Технология
@@ -2067,14 +2056,6 @@ relation_kinds:
   category: specialization
   direction: directed
   description: Вендорский продукт (ПО) является частным случаем ИТ-системы.
-- id: rel_vendor_product_composed_of_software_components
-  name: Vendor Product состоит из Software Components
-  from_kind: vendor_product
-  to_kind: software_component
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: Вендорский продукт состоит из компонентов ПО.
 - id: rel_component_exposes_api
   name: Component состоит из API
   from_kind: component
@@ -2139,10 +2120,10 @@ relation_kinds:
   category: service
   direction: directed
   description: Физическая инфраструктура размещает логический ресурс.
-- id: rel_infra_resource_serves_software_component
+- id: rel_infra_resource_serves_component
   name: Infrastructure Resource обслуживает Software Component
   from_kind: infra_resource
-  to_kind: software_component
+  to_kind: component
   metamodel_level: infrastructure_details
   category: service
   direction: directed
@@ -2397,12 +2378,12 @@ relation_kinds:
   description: code_repository relates to team
 - id: rel_component_runs_on_logical_resource
   name: Component to Logical Resource
-  from_kind: software_component
+  from_kind: component
   to_kind: logical_resource
   metamodel_level: solution_details
   category: deployment
   direction: directed
-  description: software_component relates to logical_resource
+  description: component relates to logical_resource
 - id: rel_data_product_has_contract
   name: Дата-продукт to Data Contract
   from_kind: data_product
@@ -2462,11 +2443,11 @@ relation_kinds:
 - id: rel_integration_in_component
   name: Integration to Component
   from_kind: integration
-  to_kind: software_component
+  to_kind: component
   metamodel_level: solution_details
   category: implementation
   direction: directed
-  description: integration relates to software_component
+  description: integration relates to component
 - id: rel_job_family_has_bank_product
   name: Job Family to Bank Product
   from_kind: job_family
@@ -2558,7 +2539,7 @@ relation_kinds:
 - id: rel_component_instance_of_component
   name: Component Instance to Software Component
   from_kind: component_instance
-  to_kind: software_component
+  to_kind: component
   metamodel_level: infrastructure_details
   category: instantiation
   direction: directed
@@ -2701,7 +2682,7 @@ relation_kinds:
   description: ИТ-система автоматизирует бизнес-функцию.
 - id: rel_it_system_has_component
   name: Software Component to IT System
-  from_kind: software_component
+  from_kind: component
   to_kind: it_system
   metamodel_level: solution_details
   category: composition
@@ -2875,30 +2856,22 @@ relation_kinds:
   category: service_level
   direction: directed
   description: SLA обеспечивает выполнение условий дата-контракта.
-- id: rel_software_component_aggregates_api
+- id: rel_component_aggregates_api
   name: Software Component to API
-  from_kind: software_component
+  from_kind: component
   to_kind: api
   metamodel_level: component_details
   category: aggregation
   direction: directed
   description: Компонент ИС агрегирует API.
-- id: rel_software_component_contracts_data_object
+- id: rel_component_contracts_data_object
   name: Software Component to Data Object
-  from_kind: software_component
+  from_kind: component
   to_kind: data_object
   metamodel_level: data_details
   category: contract
   direction: directed
   description: Компонент ИС контрактует поставку объекта данных.
-- id: rel_software_component_creates_data_process
-  name: Software Component to Data Process
-  from_kind: software_component
-  to_kind: data_process
-  metamodel_level: data_details
-  category: creation
-  direction: directed
-  description: Компонент ИС создаёт дата-процесс.
 - id: rel_source_serves_api
   name: Source to API
   from_kind: source
@@ -2910,7 +2883,7 @@ relation_kinds:
 - id: rel_source_serves_component
   name: Source to Software Component
   from_kind: source
-  to_kind: software_component
+  to_kind: component
   metamodel_level: component_details
   category: service
   direction: directed
@@ -2926,7 +2899,7 @@ relation_kinds:
 - id: rel_technology_has_component
   name: Technology to Software Component
   from_kind: technology
-  to_kind: software_component
+  to_kind: component
   metamodel_level: component_details
   category: composition
   direction: directed
@@ -2958,7 +2931,7 @@ relation_kinds:
 - id: rel_vendor_product_has_component
   name: Vendor Product to Software Component
   from_kind: vendor_product
-  to_kind: software_component
+  to_kind: component
   metamodel_level: solution_details
   category: composition
   direction: directed
