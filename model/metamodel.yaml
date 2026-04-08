@@ -72,29 +72,53 @@ dictionaries:
     description: Source является частным случаем (специализацией) target.
   entity_categories:
   - id: goal
+    name: Цель
   - id: business_structure
+    name: Бизнес-структура
   - id: offering
+    name: Предложение банка
   - id: value_definition
+    name: Определение ценности
   - id: stakeholder
+    name: Стейкхолдер
   - id: channel
+    name: Канал
   - id: value_delivery
+    name: Доставка ценности
   - id: capability
+    name: Бизнес-способность
   - id: process
+    name: Бизнес-процесс
   - id: business_object
+    name: Бизнес-объект
   - id: application
+    name: Приложение
   - id: vendor_solution
+    name: Вендорское решение
   - id: interface
+    name: Интерфейс
   - id: integration
+    name: Интеграция
   - id: infrastructure
+    name: Инфраструктура
   - id: data
+    name: Данные
   - id: technology
+    name: Технология
   - id: source_tracking
+    name: Источник происхождения
   - id: governance
+    name: Управление и контроль
   - id: operational
+    name: Операционная сущность
   - id: metadata
+    name: Метаданные
   - id: metric
+    name: Метрика
   - id: people
+    name: Люди и роли
   - id: tooling
+    name: Инструментарий
 entity_kinds:
 - id: goal
   name: Goal
@@ -983,12 +1007,15 @@ entity_kinds:
       - json_schema
       - avro
       - protobuf
+    metamodel_level: component_details
   - id: api.schema_url
     name: URL схемы
     description: Ссылка на спецификацию/контракт API.
+    metamodel_level: component_details
   - id: api.schema_version
     name: Версия схемы
     description: Версия контракта API.
+    metamodel_level: component_details
   - id: api.component_id
     name: Компонент
     metamodel_level: solution_details
@@ -1150,8 +1177,8 @@ entity_kinds:
   metamodel_level: infrastructure_details
   category: infrastructure
   description: Управляемая физическая или виртуальная единица ИТ-среды (сервер, ВМ, контейнер, под, кластер), имеющая уникальный
-    идентификатор и связи с другими CI. Формирует граф зависимостей для impact analysis. В отличие от logical_resource,
-    описывает компонент инфраструктуры, а не предоставляемый им логический ресурс (БД, очередь, бакет).
+    идентификатор и связи с другими CI. Формирует граф зависимостей для impact analysis. В отличие от logical_resource, описывает
+    компонент инфраструктуры, а не предоставляемый им логический ресурс (БД, очередь, бакет).
   scope_notes: CI служит узлом графа зависимостей (это не только запись в базе). Один CI может быть логическим описанием (например,
     Payment API Cluster). Один кластер может содержать сотни инстансов (один CI управляет масштабом).
   aliases:
@@ -1249,9 +1276,11 @@ entity_kinds:
   - id: data_product.owner_id
     name: Владелец (DOA)
     description: Ответственный бизнес-владелец дата-продукта.
+    metamodel_level: data_details
   - id: data_product.sensitive_level
     name: Категория чувствительной информации
     description: Классификационный уровень конфиденциальности данных, определяющий правила обработки, хранения и передачи.
+    metamodel_level: data_details
   - id: data_product.owner
     name: Data Owner
     metamodel_level: data_details
@@ -1322,6 +1351,7 @@ entity_kinds:
       - File
       - Report
       - Notebook
+    metamodel_level: data_details
   - id: data_object.schema_format
     name: Формат схемы данных
     description: Формальный язык описания структуры данных.
@@ -1332,9 +1362,11 @@ entity_kinds:
       - protobuf
       - parquet
       - sql_ddl
+    metamodel_level: data_details
   - id: data_object.schema_url
     name: URL схемы данных
     description: Ссылка на формальное описание структуры данных.
+    metamodel_level: data_details
   - id: data_object.description
     name: Описание
     metamodel_level: data_details
@@ -1522,7 +1554,7 @@ entity_kinds:
 - id: requirement
   name: Requirement
   name_ru: Требование
-  metamodel_level: null
+  metamodel_level: business_details
   category: governance
   description: Формализованная и измеримая потребность, условие или критерий, которые должны быть выполнены для объекта (системы,
     данных, процесса, продукта и т.д.) для достижения бизнес-целей, соответствия стандартам качества, нормативным актам или
@@ -1670,8 +1702,8 @@ entity_kinds:
   name_ru: Job (клиентская задача)
   metamodel_level: strategic_view
   category: stakeholder
-  description: Задача или потребность клиента (Jobs-to-be-Done, JTBD), которую он стремится решить, обращаясь к продуктам и
-    услугам банка. Формулируется с точки зрения клиента и служит основой для проектирования value stream'ов.
+  description: Задача или потребность клиента (Jobs-to-be-Done, JTBD), которую он стремится решить, обращаясь к продуктам
+    и услугам банка. Формулируется с точки зрения клиента и служит основой для проектирования value stream'ов.
   scope_notes: '- Формулируется с точки зрения клиента, а не банка.
 
     - Группируется в Job Family.'

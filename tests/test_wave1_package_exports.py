@@ -17,9 +17,13 @@ def test_wave1_package_exports_include_harness_entrypoints() -> None:
     ontology_path = ROOT / "model/metamodel.yaml"
     relation_catalog_path = ROOT / "model/relation_catalog.yaml"
 
+    # Compare path-based vs model-based runs without the schema stage
+    # (the model-based variant cannot recompute it from a normalized
+    # ontology without re-reading the source file).
     by_path = run_wave1_validation_harness(
         ontology_path,
         relation_catalog_path=relation_catalog_path,
+        schema_path=None,
     )
 
     ontology = load_ontology(ontology_path, relation_catalog_path=relation_catalog_path)
@@ -29,3 +33,18 @@ def test_wave1_package_exports_include_harness_entrypoints() -> None:
     report = format_harness_report(by_path)
     assert report.startswith("success=true")
     assert "[ontology_validation]" in report
+
+
+def test_wave1_harness_includes_schema_validation_stage_by_default() -> None:
+    ontology_path = ROOT / "model/metamodel.yaml"
+    relation_catalog_path = ROOT / "model/relation_catalog.yaml"
+
+    result = run_wave1_validation_harness(
+        ontology_path,
+        relation_catalog_path=relation_catalog_path,
+    )
+
+    stage_names = [stage.name for stage in result.stages]
+    assert "schema_validation" in stage_names
+    schema_stage = next(s for s in result.stages if s.name == "schema_validation")
+    assert schema_stage.error_count == 0
