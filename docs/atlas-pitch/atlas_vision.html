@@ -424,8 +424,8 @@ section{padding:72px 0}
     <strong>Atlas</strong> &mdash; операционная метамодель, которая делает банк понятным для людей и AI одновременно.
   </p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num" style="color:var(--blue)">73</div><div class="label">типа сущностей<br>в метамодели</div></div>
-    <div class="hero-stat"><div class="num" style="color:var(--blue)">118</div><div class="label">типов связей<br>между ними</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--blue)">47</div><div class="label">типов сущностей<br>в метамодели</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--blue)">239</div><div class="label">типов связей<br>между ними</div></div>
     <div class="hero-stat"><div class="num" style="color:var(--blue)">6</div><div class="label">слоёв архитектуры<br>от стратегии до инфры</div></div>
     <div class="hero-stat"><div class="num" style="color:var(--blue)">3.4&times;</div><div class="label">рост точности<br>AI с онтологией</div></div>
   </div>
@@ -452,7 +452,7 @@ section{padding:72px 0}
       <div class="scenario-arrow">&rarr;</div>
       <div class="scenario-box atlas">
         <h4>С Atlas</h4>
-        <p>Запрос к графу: <code style="font-size:.8rem;background:var(--bg3);padding:2px 8px;border-radius:4px">impact("НСПК", type="integration") &rarr; it_system &rarr; software_component &rarr; business_process &rarr; bank_product</code>. Мгновенно: список затронутых систем, процессов, продуктов, каналов, ответственных. AI-агент формирует бриф.</p>
+        <p>Запрос к графу: <code style="font-size:.8rem;background:var(--bg3);padding:2px 8px;border-radius:4px">impact("НСПК", type="integration") &rarr; it_system &rarr; component &rarr; business_process &rarr; bank_product</code>. Мгновенно: список затронутых систем, процессов, продуктов, каналов, ответственных. AI-агент формирует бриф.</p>
         <div class="time" style="color:var(--green)">30 секунд</div>
       </div>
     </div>
@@ -507,11 +507,11 @@ section{padding:72px 0}
   <div class="grid g2 reveal">
     <div class="card card-accent">
       <h3>Метамодель = строительный кодекс</h3>
-      <p>73 типа сущностей и 118 типов связей в 6 слоях: от стратегических целей (job, value_stream, business_goal) через бизнес-процессы (process &rarr; operation &rarr; action &rarr; role) до компонентов (software_component, technology, source). YAML-авторинг, Git-версионирование, автовалидация.</p>
+      <p>47 типов сущностей и 239 типов связей в 6 слоях: от стратегических целей (job, value_stream, goal) через бизнес-процессы (process &rarr; operation &rarr; action &rarr; role) до компонентов (component, technology, source). YAML-авторинг, Git-версионирование, автовалидация.</p>
     </div>
     <div class="card card-accent">
       <h3>Граф знаний = подробная карта города</h3>
-      <p>Конкретные экземпляры: job &laquo;Получить кредит&raquo; &rarr; value_stream &laquo;Кредитный конвейер&raquo; &rarr; it_system &rarr; software_component &rarr; data_product &rarr; data_contract &rarr; data_owner. Все 118 типов связей &mdash; типизированные, запрашиваемые, валидируемые.</p>
+      <p>Конкретные экземпляры: job &laquo;Получить кредит&raquo; &rarr; value_stream &laquo;Кредитный конвейер&raquo; &rarr; it_system &rarr; component &rarr; data_product &rarr; data_contract &rarr; data_owner. Все 239 типов связей &mdash; типизированные, запрашиваемые, валидируемые.</p>
     </div>
   </div>
 
@@ -535,50 +535,50 @@ section{padding:72px 0}
 <!-- ==================== METAMODEL ANATOMY ==================== -->
 <section id="s-metamodel">
 <div class="container">
-  <div class="st reveal">Анатомия метамодели: <span class="gr">73 типа сущностей &times; 6 слоёв</span></div>
-  <p class="sd reveal reveal-d1">Каждый слой &mdash; отдельный ракурс на организацию. Связи между слоями (118 типов) &mdash; это то, чего нет ни в одной существующей системе банка.</p>
+  <div class="st reveal">Анатомия метамодели: <span class="gr">47 типов сущностей &times; 6 слоёв</span></div>
+  <p class="sd reveal reveal-d1">Каждый слой &mdash; отдельный ракурс на организацию. Связи между слоями (239 типов) &mdash; это то, чего нет ни в одной существующей системе банка.</p>
 
   <div class="grid g3 reveal">
     <div class="card" style="border-top:3px solid #7864D7">
       <h3 style="color:#7864D7">Strategic View</h3>
       <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">9 сущностей</p>
-      <p style="font-size:.8rem"><code>job_family</code>, <code>job</code>, <code>value</code>, <code>business_capability</code>, <code>business_domain</code>, <code>customer_segment</code>, <code>org_unit</code>, <code>business_goal</code>, <code>business_metric</code></p>
+      <p style="font-size:.8rem"><code>goal</code>, <code>job</code>, <code>job_family</code>, <code>value</code>, <code>bank_product</code>, <code>business_capability</code>, <code>business_domain</code>, <code>customer_segment</code>, <code>organizational_unit</code></p>
       <span class="pill pill-accent">Jobs-to-be-Done + Capabilities</span>
     </div>
     <div class="card" style="border-top:3px solid #5AA357">
       <h3 style="color:#5AA357">Business Details</h3>
-      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">20 сущностей</p>
-      <p style="font-size:.8rem"><code>value_stream</code>, <code>business_process</code>, <code>business_operation</code>, <code>business_action</code>, <code>business_role</code>, <code>business_function</code>, <code>bank_product</code>, <code>channel</code>, <code>employee</code>, <code>team</code>&hellip;</p>
+      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">14 сущностей</p>
+      <p style="font-size:.8rem"><code>value_stream</code>, <code>value_stream_stage</code>, <code>business_process</code>, <code>business_operation</code>, <code>business_action</code>, <code>business_function</code>, <code>business_role</code>, <code>business_entity</code>, <code>employee</code>, <code>team</code>, <code>channel</code>, <code>requirement</code>&hellip;</p>
       <span class="pill pill-green">Process &rarr; Operation &rarr; Action</span>
     </div>
     <div class="card" style="border-top:3px solid #986BD6">
       <h3 style="color:#986BD6">Data Details</h3>
-      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">18 сущностей</p>
-      <p style="font-size:.8rem"><code>data_product</code>, <code>business_entity</code>, <code>data_contract</code>, <code>data_schema</code>, <code>data_table</code>, <code>data_process</code>, <code>feature</code>, <code>tech_metric</code>, <code>data_query</code>, <code>sensitive_level</code>&hellip;</p>
+      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">7 сущностей</p>
+      <p style="font-size:.8rem"><code>data_product</code>, <code>data_object</code>, <code>data_contract</code>, <code>data_attribute</code>, <code>data_schema</code>, <code>data_process</code>, <code>metric</code></p>
       <span class="pill pill-accent">Data Products + Contracts</span>
     </div>
     <div class="card" style="border-top:3px solid #4669C8">
       <h3 style="color:#4669C8">Solution Details</h3>
-      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">13 сущностей</p>
-      <p style="font-size:.8rem"><code>it_system</code>, <code>vendor_product</code>, <code>api</code>, <code>integration</code>, <code>information_flow</code>, <code>ml_model</code>, <code>ai_agent</code>, <code>report</code>, <code>notebook</code>, <code>logical_resource</code>&hellip;</p>
+      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">5 сущностей</p>
+      <p style="font-size:.8rem"><code>it_system</code>, <code>integration</code>, <code>information_flow</code>, <code>sla</code>, <code>incident</code></p>
       <span class="pill pill-orange">IT Systems + Integrations</span>
     </div>
     <div class="card" style="border-top:3px solid #D27532">
       <h3 style="color:#D27532">Component Details</h3>
-      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">11 сущностей</p>
-      <p style="font-size:.8rem"><code>software_component</code>, <code>technology</code>, <code>source</code>, <code>connector</code>, <code>transformation</code>, <code>api_method</code>, <code>code_repository</code>, <code>data_quality_check</code>&hellip;</p>
+      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">9 сущностей</p>
+      <p style="font-size:.8rem"><code>component</code>, <code>vendor_product</code>, <code>api</code>, <code>api_method</code>, <code>api_method_parameter</code>, <code>technology</code>, <code>source</code>, <code>code_repository</code>, <code>delivery_contract</code></p>
       <span class="pill pill-orange">Components + Technologies</span>
     </div>
     <div class="card" style="border-top:3px solid #CD5A50">
       <h3 style="color:#CD5A50">Infrastructure Details</h3>
-      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">2 сущности</p>
-      <p style="font-size:.8rem"><code>infrastructure_resource</code>, <code>component_instance</code></p>
+      <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">3 сущности</p>
+      <p style="font-size:.8rem"><code>logical_resource</code>, <code>infra_resource</code>, <code>component_instance</code></p>
       <span class="pill pill-red">Runtime Instances</span>
     </div>
   </div>
 
   <div class="quote reveal mt-md">
-    Ключевое отличие от справочников: 118 типов связей между слоями. Например, <code>job</code> &rarr; <code>value_stream</code> &rarr; <code>business_process</code> &rarr; <code>it_system</code> &rarr; <code>software_component</code> &rarr; <code>data_product</code> &mdash; полная трассировка от клиентской задачи до конкретных данных.
+    Ключевое отличие от справочников: 239 типов связей между слоями. Например, <code>job</code> &rarr; <code>value_stream</code> &rarr; <code>business_process</code> &rarr; <code>it_system</code> &rarr; <code>component</code> &rarr; <code>data_product</code> &mdash; полная трассировка от клиентской задачи до конкретных данных.
   </div>
 </div>
 </section>
@@ -596,13 +596,13 @@ section{padding:72px 0}
       <div class="lname">Strategic View <span style="font-size:.72rem;color:var(--text3)">(9 сущностей)</span></div>
       <div class="chips">
         <span class="chip chip-on">Ops Process Tool (value streams)</span>
-        <span class="chip chip-on">HR-система (org_unit)</span>
+        <span class="chip chip-on">HR-система (organizational_unit)</span>
         <span class="chip chip-gap">нет сквозных связей с IT</span>
         <span class="chip chip-atlas">Atlas: job &rarr; value_stream &rarr; capability &rarr; goal</span>
       </div>
     </div>
     <div class="spine-row l-biz">
-      <div class="lname">Business Details <span style="font-size:.72rem;color:var(--text3)">(20 сущностей)</span></div>
+      <div class="lname">Business Details <span style="font-size:.72rem;color:var(--text3)">(14 сущностей)</span></div>
       <div class="chips">
         <span class="chip chip-on">Ops Process Tool (бизнес-процессы)</span>
         <span class="chip chip-on">Бизнес-глоссарий</span>
@@ -611,7 +611,7 @@ section{padding:72px 0}
       </div>
     </div>
     <div class="spine-row l-data">
-      <div class="lname">Data Details <span style="font-size:.72rem;color:var(--text3)">(18 сущностей)</span></div>
+      <div class="lname">Data Details <span style="font-size:.72rem;color:var(--text3)">(7 сущностей)</span></div>
       <div class="chips">
         <span class="chip chip-on">DataHub (метаданные, lineage)</span>
         <span class="chip chip-on">Data Owner App (дата-продукты)</span>
@@ -620,25 +620,25 @@ section{padding:72px 0}
       </div>
     </div>
     <div class="spine-row l-sol">
-      <div class="lname">Solution Details <span style="font-size:.72rem;color:var(--text3)">(13 сущностей)</span></div>
+      <div class="lname">Solution Details <span style="font-size:.72rem;color:var(--text3)">(5 сущностей)</span></div>
       <div class="chips">
         <span class="chip chip-on">SimpleOne (ИТ-системы &mdash; мастер)</span>
         <span class="chip chip-on">CAP (операции &harr; компоненты)</span>
         <span class="chip chip-gap">design-time, не runtime</span>
-        <span class="chip chip-atlas">Atlas: it_system &rarr; vendor_product &rarr; software_component &rarr; api</span>
+        <span class="chip chip-atlas">Atlas: it_system &rarr; integration &rarr; component &rarr; api</span>
       </div>
     </div>
     <div class="spine-row l-comp">
-      <div class="lname">Component Details <span style="font-size:.72rem;color:var(--text3)">(11 сущностей)</span></div>
+      <div class="lname">Component Details <span style="font-size:.72rem;color:var(--text3)">(9 сущностей)</span></div>
       <div class="chips">
-        <span class="chip chip-on">MSH (software_component &mdash; мастер)</span>
+        <span class="chip chip-on">MSH (component &mdash; мастер)</span>
         <span class="chip chip-on">Service Mesh</span>
         <span class="chip chip-gap">нет связи с бизнес-функциями</span>
-        <span class="chip chip-atlas">Atlas: software_component &rarr; technology &rarr; source</span>
+        <span class="chip chip-atlas">Atlas: component &rarr; technology &rarr; source</span>
       </div>
     </div>
     <div class="spine-row l-infra">
-      <div class="lname">Infrastructure Details <span style="font-size:.72rem;color:var(--text3)">(2 сущности)</span></div>
+      <div class="lname">Infrastructure Details <span style="font-size:.72rem;color:var(--text3)">(3 сущности)</span></div>
       <div class="chips">
         <span class="chip chip-on">Мониторинг (Grafana)</span>
         <span class="chip chip-on">Cloud Management</span>
@@ -655,7 +655,7 @@ section{padding:72px 0}
     </div>
     <div class="card">
       <h4>Техническая реализация</h4>
-      <p>Коннекторы к SimpleOne, MSH, Ops Process Tool, CAP, DataHub, Data Owner App через API/CDC. 73 entity_kinds + 118 relation_kinds в relation_catalog. MCP-сервер для AI-агентов. OWL/Turtle-экспорт. Всё в Git &mdash; код-ревью, версионирование, CI/CD.</p>
+      <p>Коннекторы к SimpleOne, MSH, Ops Process Tool, CAP, DataHub, Data Owner App через API/CDC. 47 entity_kinds + 239 relation_kinds (core) + 185 enriched в relation_catalog. MCP-сервер для AI-агентов. OWL/Turtle-экспорт. Всё в Git &mdash; код-ревью, версионирование, CI/CD.</p>
     </div>
   </div>
 </div>
@@ -701,7 +701,7 @@ section{padding:72px 0}
     <div class="risk-box solution">
       <h3>Решение: граф знаний как память организации</h3>
       <p>Atlas фиксирует <strong>не код, а контекст</strong>: почему принято решение, какие business_process связаны, где integration-зависимости, кто data_owner.</p>
-      <p class="mt-sm">AI-агент с доступом к графу: принимает job &rarr; находит затронутые it_system и software_component &rarr; генерирует код с учётом data_contract &rarr; создаёт тесты из data_quality_check онтологии &rarr; предлагает деплоймент-план через information_flow. <strong>Каждый шаг валидируется против 118 типов связей метамодели.</strong></p>
+      <p class="mt-sm">AI-агент с доступом к графу: принимает job &rarr; находит затронутые it_system и component &rarr; генерирует код с учётом data_contract &rarr; создаёт тесты из требований и SLA &rarr; предлагает деплоймент-план через information_flow. <strong>Каждый шаг валидируется против 239 типов связей метамодели.</strong></p>
     </div>
   </div>
 </div>

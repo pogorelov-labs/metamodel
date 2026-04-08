@@ -206,8 +206,8 @@ footer { text-align:center; padding:40px 0; color:var(--text2); font-size:.8rem;
     <h1>Operating Metamodel</h1>
     <p class="sub">Машиночитаемая карта банка: от стратегических целей до инфраструктуры. Язык, на котором организация описывает саму себя.</p>
     <div class="stats-row">
-      <div class="stat-box"><div class="stat-num">44</div><div class="stat-label">Entity Kinds</div></div>
-      <div class="stat-box"><div class="stat-num">58</div><div class="stat-label">Relations</div></div>
+      <div class="stat-box"><div class="stat-num">47</div><div class="stat-label">Entity Kinds</div></div>
+      <div class="stat-box"><div class="stat-num">239</div><div class="stat-label">Relation Kinds</div></div>
       <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Layers</div></div>
       <div class="stat-box"><div class="stat-num">10</div><div class="stat-label">Design Decisions</div></div>
       <div class="stat-box"><div class="stat-num">8</div><div class="stat-label">Key Concepts</div></div>
@@ -344,22 +344,22 @@ const VALUE_PROPS = [
 const LAYERS = [
   { id:'strategic', name:'Strategic View', color:'var(--accent)', cls:'l-strategic',
     desc:'Зачем и что в целом: цели, направления, capabilities',
-    entities:['goal','job_family','bank_product','organizational_unit','business_domain','customer_segment','business_role'] },
+    entities:['goal','job','job_family','value','bank_product','business_capability','business_domain','customer_segment','organizational_unit'] },
   { id:'business', name:'Business Details', color:'var(--green)', cls:'l-business',
     desc:'Как бизнес устроен и работает',
-    entities:['value','value_consumer','channel','value_stream','value_stream_stage','business_capability','business_function','business_process','business_operation','business_action','business_entity','business_attribute','information_flow'] },
+    entities:['value_stream','value_stream_stage','business_process','business_function','business_operation','business_action','business_role','business_entity','business_attribute','value_consumer','channel','employee','team','requirement'] },
   { id:'data', name:'Data Details', color:'var(--pink)', cls:'l-data',
     desc:'Какие данные используются и как устроены',
-    entities:['data_product','data_object','data_contract','delivery_contract','data_attribute','data_process','requirement','sla','metric','incident','event'] },
+    entities:['data_product','data_object','data_contract','data_attribute','data_process','data_schema','metric'] },
   { id:'solution', name:'Solution Details', color:'var(--blue)', cls:'l-solution',
     desc:'Какими решениями поддерживается бизнес',
-    entities:['it_system','component','vendor_product','software_component','technology','source','api','api_method','integration'] },
+    entities:['it_system','integration','information_flow','sla','incident'] },
   { id:'component', name:'Component Details', color:'var(--orange)', cls:'l-component',
     desc:'Из чего состоят решения внутри',
-    entities:['api_method_parameter','logical_resource','component_instance'] },
+    entities:['component','api','api_method','api_method_parameter','vendor_product','technology','source','code_repository','delivery_contract'] },
   { id:'infra', name:'Infrastructure Details', color:'var(--red)', cls:'l-infra',
     desc:'На чём всё работает',
-    entities:['infra_resource'] },
+    entities:['logical_resource','infra_resource','component_instance'] },
 ];
 
 const JOURNEY = [
@@ -430,11 +430,11 @@ const TIMELINE = [
 ];
 
 const REPO_STATUS = [
-  { title:'Entity Kinds', val:'44', detail:'6 уровней: Strategic → Infrastructure', color:'var(--green)' },
-  { title:'Relation Kinds', val:'58', detail:'В metamodel.yaml + relation_catalog.yaml', color:'var(--blue)' },
+  { title:'Entity Kinds', val:'47', detail:'6 уровней: Strategic → Infrastructure', color:'var(--green)' },
+  { title:'Relation Kinds', val:'239', detail:'core в metamodel.yaml; 185 обогащены в relation_catalog.yaml (profile overlay)', color:'var(--blue)' },
   { title:'Архитектурные контракты', val:'6', detail:'Entity, Relation, Attribute, Qualifier, Glossary, Catalog', color:'var(--accent)' },
   { title:'Design Decisions', val:'10', detail:'ADR-формат в docs/decisions/', color:'var(--red)' },
-  { title:'Валидация', val:'0 errors', detail:'74 тестов passed, 2 warnings (naming hints)', color:'var(--green)' },
+  { title:'Валидация', val:'0 errors', detail:'76 тестов passed, 5-стадийный harness + mm/rc contract', color:'var(--green)' },
   { title:'Экспорт', val:'3 формата', detail:'JSON Bundle + OWL/Turtle + Mermaid', color:'var(--orange)' },
 ];
 
@@ -500,7 +500,7 @@ const FUN_FACTS = [
   { num:'3', label:'формата экспорта: JSON Bundle, OWL/Turtle, Mermaid', color:'var(--blue)' },
   { num:'12', label:'дней от Figma-диаграмм до работающего Git-репозитория с CI', color:'var(--orange)' },
   { num:'6', label:'слоёв метамодели: от стратегических целей до инфраструктуры', color:'var(--pink)' },
-  { num:'44→∞', label:'entity kinds — модель живёт и растёт с банком', color:'var(--accent2)' },
+  { num:'47→∞', label:'entity kinds — модель живёт и растёт с банком', color:'var(--accent2)' },
   { num:'≤2', label:'warnings в валидаторе — naming hints, не ошибки', color:'var(--green)' },
 ];
 
