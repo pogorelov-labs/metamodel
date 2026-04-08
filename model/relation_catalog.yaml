@@ -340,7 +340,7 @@ relation_catalog:
     description: Links process with business entities it serves.
     from_kind: business_process
     to_kind: business_entity
-    category: association
+    category: service
     direction: directed
     source_cardinality: many
     target_cardinality: many
@@ -1290,7 +1290,7 @@ relation_catalog:
     description: Links value consumer to the value they receive.
     from_kind: value_consumer
     to_kind: value
-    category: association
+    category: consumption
     direction: directed
     source_cardinality: many
     target_cardinality: many
@@ -1440,7 +1440,7 @@ relation_catalog:
     description: 'Inverse: organizational unit has role.'
     from_kind: organizational_unit
     to_kind: business_role
-    category: ownership
+    category: composition
     direction: directed
     source_cardinality: many
     target_cardinality: one
