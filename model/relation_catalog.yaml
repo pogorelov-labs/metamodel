@@ -3960,7 +3960,7 @@ relation_catalog:
     name: Data Process to Tech Metric
     description: Дата-процесс фиксирует значения метрики.
     from_kind: data_process
-    to_kind: tech_metric
+    to_kind: metric
     category: measurement
     direction: directed
     source_cardinality: many

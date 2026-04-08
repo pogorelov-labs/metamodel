@@ -1577,14 +1577,13 @@ entity_kinds:
 - id: metric
   name: Metric
   name_ru: Метрика
-  metamodel_level: null
-  category: operational
-  description: Измеримый показатель состояния объекта(ов) данных или процессов, связанных с ним(и). Метрика служит объективной
-    основой для мониторинга, контроля и управления объектом.
-  scope_notes: 'Индикатор однозначно определен: имеет имя, прямую связь с объектом измерения (дата-объект или дата-процесс),
-    дату/период измерения, собственно значение индикатора, единицы измерения. Вычисляется на регулярной основе. Может быть
-    интерпретирован: значение индикатора несет понятную смысловую нагрузку. Фиксирует значение по результатам дата-процесса.
-    Управляется через DQS / DOA(Metrics) / Other (e.g. DH). Может быть привязана к требованиям (Agreement/Requirement) и SLA.'
+  metamodel_level: data_details
+  category: metric
+  description: Измеримый показатель состояния бизнес-процессов, дата-объектов, процессов или технических систем. Используется
+    как объективная основа мониторинга, контроля и управления, а также для привязки к требованиям и SLA.
+  scope_notes: 'Метрика однозначно определена: имя, прямая связь с объектом измерения, период измерения, значение, единица
+    измерения, источник данных. Тип метрики (`metric.type`) определяет, относится ли она к бизнесу, технике, качеству, производительности
+    или SLA. Может быть привязана к требованиям и SLA.'
   aliases:
   - value: показатель
     lang: ru
@@ -1602,9 +1601,28 @@ entity_kinds:
   - Дата поставки
   - Продолжительность работы ETL-дага
   - Статус DQ проверки
-  usage_purpose: Объективно оценивать состояние или эффективность объекта.
+  - Конверсия в воронке продаж
+  - Latency p99 API-вызова
+  usage_purpose: Объективно оценивать состояние и эффективность бизнес-процессов, данных и технических систем.
   status: active
   introduced_in: '1.0'
+  attributes:
+  - id: metric.type
+    name: Тип метрики
+    metamodel_level: data_details
+    description: 'Тип метрики: business | technical | quality | performance | sla.'
+  - id: metric.calculation_logic
+    name: Формула расчёта
+    metamodel_level: data_details
+    description: Описание алгоритма или формулы вычисления значения метрики.
+  - id: metric.measurement_unit
+    name: Единица измерения
+    metamodel_level: data_details
+    description: Единица измерения значения (%, секунды, штуки, рубли и т.д.).
+  - id: metric.data_source
+    name: Источник данных
+    metamodel_level: data_details
+    description: Откуда берутся значения метрики (data_object, data_process, внешний источник).
 - id: incident
   name: Incident
   name_ru: Инцидент
@@ -1652,22 +1670,6 @@ entity_kinds:
     name: Запуск пайплайна
     metamodel_level: solution_details
     description: Запуск, к которому относится инцидент.
-- id: business_metric
-  name: Business Metric
-  name_ru: Бизнес-метрика
-  metamodel_level: strategic_view
-  category: metric
-  description: Количественный показатель, рассчитываемый на основе бизнес-атрибутов, описывающий состояние процессов, продуктов
-    или доменов.
-  scope_notes: '- Имеет чёткую формулу расчёта и агрегирования.
-
-    - Может использоваться в целях, SLA и требованиях контрактов.'
-  aliases: []
-  examples: []
-  usage_purpose: Количественный показатель, рассчитываемый на основе бизнес-атрибутов, описывающий состояние процессов, продуктов
-    или доменов.
-  status: draft
-  introduced_in: '2.0'
 - id: job
   name: Job
   name_ru: Job (клиентская задача)
@@ -1743,37 +1745,6 @@ entity_kinds:
     name: Таблица
     metamodel_level: data_details
     description: Таблица, использующая схему.
-- id: tech_metric
-  name: Technical Metric
-  name_ru: Техническая метрика
-  metamodel_level: data_details
-  category: metric
-  description: Технический, SLA или quality-показатель, используемый для оценки качества данных, производительности процессов
-    или соблюдения контрактных обязательств.
-  scope_notes: ''
-  aliases: []
-  examples: []
-  usage_purpose: Технический, SLA или quality-показатель, используемый для оценки качества данных, производительности процессов
-    или соблюдения контрактных обязательств.
-  status: active
-  introduced_in: '2.0'
-  attributes:
-  - id: tech_metric.metric_type
-    name: Тип метрики
-    metamodel_level: data_details
-    description: BUSINESS, TECHNICAL, QUALITY, PERFORMANCE, SLA.
-  - id: tech_metric.calculation_logic
-    name: Формула расчёта
-    metamodel_level: data_details
-    description: Описание алгоритма вычисления.
-  - id: tech_metric.measurement_unit
-    name: Единица измерения
-    metamodel_level: data_details
-    description: '%, секунды, штуки и т.д.'
-  - id: tech_metric.data_source
-    name: Источник данных
-    metamodel_level: data_details
-    description: Откуда берутся значения.
 - id: code_repository
   name: Code Repository
   name_ru: Репозиторий кода
@@ -2579,7 +2550,7 @@ relation_kinds:
 - id: rel_data_process_records_metric
   name: Data Process to Tech Metric
   from_kind: data_process
-  to_kind: tech_metric
+  to_kind: metric
   metamodel_level: data_details
   category: measurement
   direction: directed
