@@ -4574,6 +4574,123 @@ entity_kinds:
     name: Деплой
     metamodel_level: solution_details
     description: Настройки развёртывания.
+- id: event
+  name: Event
+  name_ru: Событие
+  metamodel_level: solution_details
+  category: operational
+  description: Факт наступления значимого изменения состояния в рамках бизнес-процесса, работы системы или жизненного цикла
+    данных, который фиксируется, имеет временную метку и может служить триггером для других процессов, уведомлений или аналитики.
+  scope_notes: Всегда имеет тип события, временную метку и источник. Может содержать полезную нагрузку (payload) с деталями.
+    Регистрируется в логах, мониторинговых системах или хабе/шине событий. Может быть связано с Incident, Дата Продуктом,
+    Бизнес-процессом, Пайплайном.
+  aliases:
+  - value: event
+    lang: en
+    alias_type: synonym
+    status: active
+  - value: событие
+    lang: ru
+    alias_type: synonym
+    status: active
+  examples:
+  - Заявка переведена в статус Одобрена (бизнес-событие)
+  - Пайплайн завершился с ошибкой (системное событие)
+  - Нарушено требование SLA по актуальности данных (событие качества данных)
+  - Пользователь получил доступ к конфиденциальным данным (событие безопасности)
+  usage_purpose: Фиксировать значимые изменения состояния и связывать их с реакциями, уведомлениями и аналитикой.
+  status: active
+  introduced_in: '2.1'
+  attributes:
+  - id: event.event_type
+    name: Event Type
+    name_ru: Тип события
+    description: 'Тип события: business, system, data, security.'
+    data_type: enum
+    enum_values:
+    - business
+    - system
+    - data
+    - security
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    display_order: 10
+  - id: event.occurred_at
+    name: Occurred At
+    name_ru: Время наступления
+    description: Временная метка события (UTC, ISO 8601).
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: solution_details
+    display_mode: datetime
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - '2026-04-09T10:30:00Z'
+    display_order: 20
+  - id: event.source
+    name: Source
+    name_ru: Источник
+    description: Система или компонент, зафиксировавший событие.
+    data_type: string
+    cardinality: one
+    required: true
+    category: technical
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - payment-service
+    - ETL-airflow
+    - CRM
+    display_order: 30
+  - id: event.payload
+    name: Payload
+    name_ru: Полезная нагрузка
+    description: 'Детали события в формате JSON: идентификатор объекта, старый/новый статус, значения метрик.'
+    data_type: text
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: solution_details
+    display_mode: json
+    display_group: details
+    status: active
+    introduced_in: '2.1'
+    display_order: 40
+  - id: event.severity
+    name: Severity
+    name_ru: Серьёзность
+    description: 'Опциональная оценка серьёзности события: info, warning, error, critical.'
+    data_type: enum
+    enum_values:
+    - info
+    - warning
+    - error
+    - critical
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: details
+    status: active
+    introduced_in: '2.1'
+    display_order: 50
 relation_kinds:
 - id: rel_job_family_aggregates_product
   name: Job Family агрегирует Bank Product
@@ -6567,3 +6684,35 @@ relation_kinds:
   category: governance
   direction: directed
   description: 'Подразделение — владелец бизнес-способности (PDF 1.0 #17).'
+- id: rel_event_emitted_by_business_process
+  name: Event emitted by business process
+  from_kind: event
+  to_kind: business_process
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Событие порождено бизнес-процессом.
+- id: rel_event_emitted_by_it_system
+  name: Event emitted by IT system
+  from_kind: event
+  to_kind: it_system
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Событие порождено ИТ-системой.
+- id: rel_event_emitted_by_data_product
+  name: Event emitted by data product
+  from_kind: event
+  to_kind: data_product
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: Событие порождено дата-продуктом (например DQ нарушение).
+- id: rel_incident_triggered_by_event
+  name: Incident triggered by event
+  from_kind: incident
+  to_kind: event
+  metamodel_level: solution_details
+  category: dependency
+  direction: directed
+  description: Инцидент создан в ответ на событие.
