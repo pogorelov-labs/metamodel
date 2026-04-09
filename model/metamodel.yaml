@@ -1945,6 +1945,788 @@ entity_kinds:
     name: Tier
     metamodel_level: solution_details
     description: Критичность системы.
+  - id: it_system.name_short
+    name: Short Name
+    name_ru: Наименование системы
+    description: Короткое наименование системы — слово, словосочетание или аббревиатура. Должно быть кратким, удобно произносимым,
+      не вызывать путаницы с именами существующих систем и общеупотребительными словами.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    source_expectation:
+    - SimpleOne
+    display_order: 10
+  - id: it_system.full_name
+    name: Full Name
+    name_ru: Полное наименование системы
+    description: Полное наименование системы. Должно раскрывать бизнес-смысл. Если система покупная — следует добавить вендорское
+      наименование.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    source_expectation:
+    - SimpleOne
+    display_order: 20
+  - id: it_system.full_name_eng
+    name: Full Name (English)
+    name_ru: Полное наименование системы на английском
+    description: Перевод полного наименования на английский.
+    data_type: string
+    cardinality: one
+    required: false
+    category: identity
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 30
+  - id: it_system.alt_name
+    name: Alternative Name
+    name_ru: Альтернативное наименование системы
+    description: Альтернативное «неофициальное» наименование. Используется только для поиска и не используется в процессах
+      управления системой. Может содержать исторические наименования.
+    data_type: string
+    cardinality: many
+    required: false
+    category: identity
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 40
+  - id: it_system.description_text
+    name: Description
+    name_ru: Описание системы
+    description: Краткое, понятное описание функциональности ПО. Зачем нужна система, какую проблему решает, частью чего является,
+      какую систему заменяет.
+    data_type: text
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: solution_details
+    display_mode: long_text
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 50
+  - id: it_system.description_eng
+    name: Description (English)
+    name_ru: Описание системы на английском
+    description: Перевод описания на английский.
+    data_type: text
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: solution_details
+    display_mode: long_text
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 60
+  - id: it_system.critical_infrastructure_level
+    name: Critical Infrastructure Level
+    name_ru: Категория значимости объекта КИИ
+    description: Категория значимости объектов критической информационной инфраструктуры согласно 187-ФЗ.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - category_1
+    - category_2
+    - category_3
+    - not_applicable
+    source_expectation:
+    - SimpleOne
+    display_order: 70
+  - id: it_system.availability_tier
+    name: Availability Tier
+    name_ru: Уровень доступности системы
+    description: Уровень доступности системы, определяющий требования к RTP, RPO, Availability % и Availability Class.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - tier_0
+    - tier_1
+    - tier_2
+    - tier_3
+    - tier_4
+    source_expectation:
+    - SimpleOne
+    display_order: 80
+  - id: it_system.mb_criticality
+    name: MB Criticality
+    name_ru: Уровень критичности (MB)
+    description: Уровень критичности системы в методологии MB.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - mission_critical
+    - business_critical
+    - operational
+    - supportive
+    source_expectation:
+    - SimpleOne
+    display_order: 90
+  - id: it_system.application_type
+    name: Application Type
+    name_ru: Тип системы
+    description: Тип информационной системы.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - cots
+    - custom
+    - saas
+    - iaas
+    - paas
+    - other
+    source_expectation:
+    - SimpleOne
+    display_order: 100
+  - id: it_system.application_operational_time
+    name: Application Operational Time
+    name_ru: Время работы
+    description: Интервал чч.мм-чч.мм использования приложения в бизнес-процессах.
+    data_type: string
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - 08:00-20:00
+    source_expectation:
+    - SimpleOne
+    display_order: 110
+  - id: it_system.target_state
+    name: Target State
+    name_ru: Целевое состояние
+    description: 'Этап жизненного цикла ПО: plan / build / run / retire / decommissioned.'
+    data_type: enum
+    cardinality: one
+    required: false
+    category: lifecycle
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: criticality
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - plan
+    - build
+    - run
+    - retire
+    - decommissioned
+    source_expectation:
+    - SimpleOne
+    display_order: 120
+  - id: it_system.owner_team_id
+    name: Owner Team
+    name_ru: Команда-владелец системы
+    description: Команда, осуществляющая разработку и развитие системы.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    ref_kind: team
+    source_expectation:
+    - SimpleOne
+    display_order: 130
+  - id: it_system.business_owner_employee_id
+    name: Business Owner
+    name_ru: Бизнес-владелец
+    description: Контактное лицо Бизнеса, ответственное за использование системы. Product Owner команды-владельца или руководитель
+      направления, которое делает систему (B-2).
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 140
+  - id: it_system.business_owner_delegate_id
+    name: Business Owner Delegate
+    name_ru: Заместитель бизнес-владельца
+    description: Ответственный представитель бизнес-владельца.
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 150
+  - id: it_system.it_owner_employee_id
+    name: IT Owner
+    name_ru: ИТ-владелец
+    description: Контактное лицо ИТ, ответственное за развитие и эксплуатацию системы. TechLead команды или сотрудник с ролью
+      ответственного за развитие и поддержку.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 160
+  - id: it_system.enterprise_architect_id
+    name: Enterprise Architect
+    name_ru: Корпоративный архитектор
+    description: Архитектор, ответственный за развитие и интеграцию системы в архитектуру банка.
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 170
+  - id: it_system.legal_entity_org_unit_id
+    name: Legal Entity
+    name_ru: Юридическое лицо, использующее ПО
+    description: Юридическое лицо-владелец. Заполняется только для ПО от юр.лиц. группы, не являющихся РайффайзенБанком.
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: organizational_unit
+    source_expectation:
+    - SimpleOne
+    display_order: 180
+  - id: it_system.rto_bcp
+    name: Recovery Time Objective (BCP & Support)
+    name_ru: Допустимое время простоя
+    description: Допустимое время простоя системы в случае сбоя (RTO).
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: bcp
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: minutes
+    source_expectation:
+    - SimpleOne
+    - AppSec
+    display_order: 190
+  - id: it_system.rpo_bcp
+    name: Recovery Point Objective (BCP & Support)
+    name_ru: Допустимый объём потерь
+    description: Допустимый период возможных потерь данных в случае сбоя (RPO).
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: bcp
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: hours
+    source_expectation:
+    - SimpleOne
+    - AppSec
+    display_order: 200
+  - id: it_system.availability_percent
+    name: Availability (%)
+    name_ru: Доступность системы
+    description: Целевое значение доступности системы за год, выраженное в %.
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: bcp
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 99.9
+    source_expectation:
+    - SimpleOne
+    display_order: 210
+  - id: it_system.availability_class
+    name: Availability Class
+    name_ru: Уровень доступности системы по оценке RBI
+    description: Класс доступности системы согласно политикам и методологии RBI.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: bcp
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - class_1
+    - class_2
+    - class_3
+    - class_4
+    - class_5
+    source_expectation:
+    - SimpleOne
+    display_order: 220
+  - id: it_system.integrity_class
+    name: Integrity Class
+    name_ru: Класс целостности данных
+    description: Класс целостности данных, обрабатываемых системой.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: bcp
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - low
+    - medium
+    - high
+    - critical
+    source_expectation:
+    - SimpleOne
+    display_order: 230
+  - id: it_system.data_classification_level
+    name: Data Classification Level
+    name_ru: Уровень конфиденциальности данных
+    description: Уровень конфиденциальности данных, обрабатываемых в системе или планируемых к обработке после ввода в эксплуатацию.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - public
+    - internal
+    - restricted
+    - confidential
+    - secret
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 240
+  - id: it_system.personal_data
+    name: Personal Data
+    name_ru: Персональные данные
+    description: Обрабатываются ли в системе персональные данные.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 250
+  - id: it_system.bank_secret
+    name: Bank Secret
+    name_ru: Банковская тайна
+    description: Обрабатываются ли в системе сведения, составляющие банковскую тайну.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 260
+  - id: it_system.commercial_secret
+    name: Commercial Secret
+    name_ru: Коммерческая тайна
+    description: Обрабатываются ли в системе сведения, составляющие коммерческую тайну.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 270
+  - id: it_system.insider_information
+    name: Insider Information
+    name_ru: Инсайдерская информация
+    description: Обрабатывается ли в системе инсайдерская информация.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 280
+  - id: it_system.other_confidential_information
+    name: Other Confidential Information
+    name_ru: Иная конфиденциальная информация
+    description: Обрабатывается ли в системе иная конфиденциальная информация.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: data_classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 290
+  - id: it_system.audit_pci_dss
+    name: PCI DSS Audit
+    name_ru: Аудит PCI DSS
+    description: Подпадает ли система под аудит PCI DSS.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 300
+  - id: it_system.applicability_pci_dss
+    name: Applicability of PCI DSS
+    name_ru: Применимость PCI DSS
+    description: ИТ-система обрабатывает любые карточные данные либо непосредственно подключена к системам, которые их обрабатывают.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 310
+  - id: it_system.system_interacts_with_pci_dss
+    name: System Interacts with PCI DSS
+    name_ru: Взаимодействие с контуром PCI DSS
+    description: Присутствует любое взаимодействие с системами, которые находятся в контуре PCI DSS.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 320
+  - id: it_system.card_personalization
+    name: Card Personalization
+    name_ru: Персонализация карт
+    description: Участвует ли система в процессе выпуска именных пластиковых карт Райффайзенбанком.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 330
+  - id: it_system.payment_card_information
+    name: Payment Card Information
+    name_ru: Данные платежных карт
+    description: Обрабатываются ли данные банковских карт (PAN, cardholder name, дата истечения, service code, CAV2/CVC2/CVV2/CID,
+      PIN).
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 340
+  - id: it_system.pci_raiffeisen
+    name: PCI Raiffeisen
+    name_ru: Данные платежных карт Райффайзенбанка
+    description: Обрабатываются ли данные карт, выпущенных Райффайзенбанком. Определяется по первым шести цифрам номера карты
+      (BIN).
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 350
+  - id: it_system.pci_other_bank
+    name: PCI Other Bank
+    name_ru: Данные платежных карт других банков
+    description: Обрабатываются ли данные карт, выпущенных другими банками. Определяется по BIN карты.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: pci
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    sensitivity: confidential
+    display_order: 360
+  - id: it_system.internet_facing
+    name: Internet Facing
+    name_ru: Доступна из сети Интернет
+    description: Доступна ли система из сети Интернет.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: exposure
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 370
+  - id: it_system.infosec_solution
+    name: InfoSec Solution
+    name_ru: Решение по информационной безопасности
+    description: Является ли система решением по информационной безопасности.
+    data_type: boolean
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: solution_details
+    display_mode: badge
+    display_group: exposure
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 380
+  - id: it_system.support_group
+    name: Support Group
+    name_ru: Группа поддержки
+    description: Группа поддержки, на которую назначаются задачи по системе (аварии, инциденты, уведомления).
+    data_type: string
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: plain
+    display_group: support
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - SimpleOne
+    display_order: 390
+  - id: it_system.support_expert_1_id
+    name: Support Expert 1
+    name_ru: Эксперт поддержки
+    description: Руководитель подразделения поддержки или штатный сотрудник, выполняющий ИТ-поддержку. Контактное лицо по
+      техническим вопросам, авариям, проблемам и согласованиям CRQ.
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: support
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 400
+  - id: it_system.support_expert_2_id
+    name: Support Expert 2 (Deputy)
+    name_ru: Заместитель эксперта поддержки
+    description: Представитель ответственного за поддержку. Контактное лицо при недоступности эксперта поддержки.
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: solution_details
+    display_mode: entity_ref
+    display_group: support
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - SimpleOne
+    display_order: 410
 - id: component
   name: Component IT System
   name_ru: Компонент ИС
@@ -4893,3 +5675,51 @@ relation_kinds:
   category: dependency
   direction: directed
   description: 'Процесс использует ИТ-систему (PDF 1.0 #51).'
+- id: rel_it_system_owned_by_team
+  name: IT system owned by team
+  from_kind: it_system
+  to_kind: team
+  metamodel_level: solution_details
+  category: governance
+  direction: directed
+  description: 'Команда — владелец ИТ-системы (PDF 1.0 #10 Owner Team).'
+- id: rel_it_system_business_owned_by_employee
+  name: IT system business-owned by employee
+  from_kind: it_system
+  to_kind: employee
+  metamodel_level: solution_details
+  category: governance
+  direction: directed
+  description: 'Бизнес-владелец ИТ-системы (PDF 1.0 #11 Business owner).'
+- id: rel_it_system_business_owner_delegate_employee
+  name: IT system business owner delegate
+  from_kind: it_system
+  to_kind: employee
+  metamodel_level: solution_details
+  category: governance
+  direction: directed
+  description: 'Заместитель бизнес-владельца ИТ-системы (PDF 1.0 #13).'
+- id: rel_it_system_it_owned_by_employee
+  name: IT system IT-owned by employee
+  from_kind: it_system
+  to_kind: employee
+  metamodel_level: solution_details
+  category: governance
+  direction: directed
+  description: 'ИТ-владелец системы (PDF 1.0 #12 IT owner).'
+- id: rel_it_system_architected_by_employee
+  name: IT system architected by employee
+  from_kind: it_system
+  to_kind: employee
+  metamodel_level: solution_details
+  category: governance
+  direction: directed
+  description: 'Корпоративный архитектор системы (PDF 1.0 #15).'
+- id: rel_it_system_legal_entity_org_unit
+  name: IT system legal entity organizational unit
+  from_kind: it_system
+  to_kind: organizational_unit
+  metamodel_level: solution_details
+  category: association
+  direction: directed
+  description: 'Юридическое лицо-владелец ПО (PDF 1.0 #16 Org_Unit).'
