@@ -2475,22 +2475,6 @@ relation_kinds:
   category: composition
   direction: directed
   description: ИТ-система содержит компоненты (MSH / Other).
-- id: rel_api_has_method
-  name: API to API Method
-  from_kind: api
-  to_kind: api_method
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: api relates to api_method
-- id: rel_api_method_has_parameter
-  name: API Method to Parameter
-  from_kind: api_method
-  to_kind: api_method_parameter
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: api_method relates to api_method_parameter
 - id: rel_bank_product_provides_value
   name: Bank Product to Value
   from_kind: bank_product
@@ -2731,14 +2715,6 @@ relation_kinds:
   category: dependency
   direction: directed
   description: Зависимость между дата-продуктами (агрегация, происхождение).
-- id: rel_data_product_has_data_object
-  name: Data Product to Data Object
-  from_kind: data_product
-  to_kind: data_object
-  metamodel_level: data_details
-  category: composition
-  direction: directed
-  description: Data продукт состоит из объектов данных.
 - id: rel_data_schema_aggregates_attribute
   name: Data Schema to Business Attribute
   from_kind: data_schema
@@ -2819,14 +2795,6 @@ relation_kinds:
   category: automation
   direction: directed
   description: ИТ-система автоматизирует бизнес-функцию.
-- id: rel_it_system_has_component
-  name: Software Component to IT System
-  from_kind: component
-  to_kind: it_system
-  metamodel_level: solution_details
-  category: composition
-  direction: directed
-  description: ИТ-система состоит из компонентов ИС (композиция).
 - id: rel_it_system_serves_information_flow
   name: IT System to Information Flow
   from_kind: it_system
@@ -2875,14 +2843,6 @@ relation_kinds:
   category: service
   direction: directed
   description: Логический ресурс обслуживает экземпляр компонента.
-- id: rel_operation_has_action
-  name: Business Operation to Business Action
-  from_kind: business_operation
-  to_kind: business_action
-  metamodel_level: business_details
-  category: composition
-  direction: directed
-  description: Бизнес-операция состоит из бизнес-действий.
 - id: rel_operation_relates_to_function
   name: Business Operation to Business Function
   from_kind: business_operation
@@ -2971,14 +2931,6 @@ relation_kinds:
   category: hierarchy
   direction: directed
   description: Иерархия или вызов между бизнес-процессами.
-- id: rel_process_serves_business_entity
-  name: Business Process to Business Entity
-  from_kind: business_process
-  to_kind: business_entity
-  metamodel_level: business_details
-  category: service
-  direction: directed
-  description: Бизнес-процесс создаёт или изменяет состояние бизнес-сущности.
 - id: rel_role_responsible_for_function
   name: Business Role to Business Function
   from_kind: business_role
@@ -3107,22 +3059,6 @@ relation_kinds:
   category: interaction
   direction: directed
   description: value_consumer relates to channel
-- id: rel_value_stream_has_stage
-  name: Поток ценности to Стадия
-  from_kind: value_stream
-  to_kind: value_stream_stage
-  metamodel_level: business_details
-  category: composition
-  direction: directed
-  description: value_stream relates to value_stream_stage
-- id: rel_value_stream_stage_implements_process
-  name: Value Stream Stage to Business Process
-  from_kind: value_stream_stage
-  to_kind: business_process
-  metamodel_level: business_details
-  category: realization
-  direction: directed
-  description: value_stream_stage relates to business_process
 - id: rel_value_stream_stage_requires_capability
   name: Value Stream Stage to Business Capability
   from_kind: value_stream_stage
