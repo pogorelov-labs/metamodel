@@ -125,7 +125,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_process_belongs_to_stage
     name: Process belongs to stage
-    description: Inverse of stage realized by process.
+    description: Бизнес-процесс обеспечивает выполнение стадии потока.
     from_kind: business_process
     to_kind: value_stream_stage
     category: realization
@@ -187,7 +187,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_process_realizes_capability
     name: Process realizes capability
-    description: Inverse of capability aggregates processes.
+    description: Бизнес-процесс реализует бизнес-способность.
     from_kind: business_process
     to_kind: business_capability
     category: realization
@@ -467,7 +467,8 @@ relation_catalog:
     - atlas_mvp
   - id: rel_information_flow_carries_entity
     name: Information flow carries entity
-    description: Qualified relation that specifies which business entity semantics is carried by information flow.
+    description: Информационный поток транспортирует данные о сущности. Qualified relation that specifies which business entity
+      semantics is carried.
     from_kind: information_flow
     to_kind: business_entity
     category: flow
@@ -1377,7 +1378,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_capability_belongs_to_domain
     name: Capability belongs to domain
-    description: 'Inverse: capability belongs to business domain.'
+    description: Бизнес-способность является частью бизнес-домена.
     from_kind: business_capability
     to_kind: business_domain
     category: composition
@@ -1558,7 +1559,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_operation_contains_action
     name: Operation contains action
-    description: 'Inverse: operation contains action.'
+    description: Бизнес-операция состоит из элементарных бизнес-действий.
     from_kind: business_operation
     to_kind: business_action
     category: composition
@@ -2458,7 +2459,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_api_contains_method
     name: API contains method
-    description: 'Inverse: API contains method.'
+    description: API раскрывает набор методов.
     from_kind: api
     to_kind: api_method
     category: composition
@@ -2518,7 +2519,7 @@ relation_catalog:
     - atlas_mvp
   - id: rel_method_has_parameter
     name: Method has parameter
-    description: 'Inverse: method has parameter.'
+    description: Метод включает параметры запроса/ответа.
     from_kind: api_method
     to_kind: api_method_parameter
     category: composition
@@ -3055,35 +3056,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_bank_product_targets_segment
-    name: Bank Product to Customer Segment
-    description: bank_product relates to customer_segment
-    from_kind: bank_product
-    to_kind: customer_segment
-    category: customer
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: targets
-    ui_label_in: targeted by
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_code_repository_owned_by_team
     name: Code Repository to Team
     description: code_repository relates to team
@@ -3108,93 +3080,6 @@ relation_catalog:
     ui_label_out: owns
     ui_label_in: owned by
     ui_group: ownership
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_component_runs_on_logical_resource
-    name: Component to Logical Resource
-    description: component relates to logical_resource
-    from_kind: component
-    to_kind: logical_resource
-    category: deployment
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: deployed on
-    ui_label_in: hosts
-    ui_group: technology
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_data_product_has_contract
-    name: Дата-продукт to Data Contract
-    description: data_product relates to data_contract
-    from_kind: data_product
-    to_kind: data_contract
-    category: contract
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: contracts
-    ui_label_in: contracted by
-    ui_group: data
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_data_product_implemented_by_pipeline
-    name: Дата-продукт to Data Pipeline
-    description: data_product relates to data_process
-    from_kind: data_product
-    to_kind: data_process
-    category: implementation
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: implements
-    ui_label_in: implemented by
-    ui_group: technology
     exportable: true
     status: active
     introduced_in: 2.1.0
@@ -3311,35 +3196,6 @@ relation_catalog:
     ui_label_out: impacts
     ui_label_in: impacted by
     ui_group: technology
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_information_flow_for_business_entity
-    name: Information Flow to Business Entity
-    description: information_flow relates to business_entity
-    from_kind: information_flow
-    to_kind: business_entity
-    category: representation
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: represents
-    ui_label_in: represented by
-    ui_group: data
     exportable: true
     status: active
     introduced_in: 2.1.0
@@ -3606,35 +3462,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_capability_required_for_goal
-    name: Business Capability to Goal
-    description: Бизнес-способность необходима для достижения цели.
-    from_kind: business_capability
-    to_kind: goal
-    category: alignment
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: aligned with
-    ui_label_in: aligned with
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_capability_supports_stage
     name: Business Capability to Value Stream Stage
     description: Бизнес-способность используется в стадии потока (поддерживает).
@@ -3688,35 +3515,6 @@ relation_catalog:
     ui_label_out: interacts with
     ui_label_in: interacted by
     ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_component_instance_of_component
-    name: Component Instance to Software Component
-    description: Экземпляр является развёртыванием компонента ИС.
-    from_kind: component_instance
-    to_kind: component
-    category: instantiation
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: instance of
-    ui_label_in: has instance
-    ui_group: technology
     exportable: true
     status: active
     introduced_in: 2.1.0
@@ -4041,35 +3839,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_infra_resource_serves_instance
-    name: Infrastructure Resource to Component Instance
-    description: Инфраструктурный ресурс обслуживает экземпляр компонента.
-    from_kind: infra_resource
-    to_kind: component_instance
-    category: service
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: serves
-    ui_label_in: served by
-    ui_group: technology
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_infra_resource_serves_resource
     name: Infrastructure Resource to Logical Resource
     description: Инфраструктурный ресурс обслуживает логический ресурс.
@@ -4360,64 +4129,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_operation_relates_to_function
-    name: Business Operation to Business Function
-    description: Бизнес-операция относится к бизнес-функции.
-    from_kind: business_operation
-    to_kind: business_function
-    category: association
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: associated with
-    ui_label_in: associated with
-    ui_group: data
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_org_unit_aggregates_role
-    name: Org Unit to Business Role
-    description: Организационная единица агрегирует бизнес-роли.
-    from_kind: organizational_unit
-    to_kind: business_role
-    category: aggregation
-    direction: directed
-    source_cardinality: one
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: aggregates
-    ui_label_in: aggregated by
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_org_unit_associated_with_job_family
     name: Org Unit to Job Family
     description: Организационная единица опционально ассоциирована с Job Family.
@@ -4587,35 +4298,6 @@ relation_catalog:
     ui_label_out: supports
     ui_label_in: supported by
     ui_group: technology
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
-  - id: rel_process_aggregates_operation
-    name: Business Process to Business Operation
-    description: Бизнес-процесс агрегирует бизнес-операции.
-    from_kind: business_process
-    to_kind: business_operation
-    category: aggregation
-    direction: directed
-    source_cardinality: one
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: aggregates
-    ui_label_in: aggregated by
-    ui_group: structure
     exportable: true
     status: active
     introduced_in: 2.1.0
@@ -4882,35 +4564,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_technology_has_component
-    name: Technology to Software Component
-    description: Технология состоит из компонентов ИС.
-    from_kind: technology
-    to_kind: component
-    category: composition
-    direction: directed
-    source_cardinality: one
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: contains
-    ui_label_in: part of
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_technology_has_resource
     name: Technology to Logical Resource
     description: Технология содержит логические ресурсы.
@@ -5027,35 +4680,6 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_vendor_product_has_technology
-    name: Vendor Product to Technology
-    description: Вендорское ПО содержит технологии.
-    from_kind: vendor_product
-    to_kind: technology
-    category: composition
-    direction: directed
-    source_cardinality: one
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: contains
-    ui_label_in: part of
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_value_consumer_in_segment
     name: Value Consumer to Customer Segment
     description: value_consumer relates to customer_segment
@@ -5085,38 +4709,9 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
-  - id: rel_value_consumer_seeks_value
-    name: Value Consumer to Value
-    description: value_consumer relates to value
-    from_kind: value_consumer
-    to_kind: value
-    category: expectation
-    direction: directed
-    source_cardinality: many
-    target_cardinality: many
-    has_inverse: false
-    is_traversable_by_default: true
-    allowed_in_neighbors: true
-    allowed_in_paths: true
-    allowed_in_impact: false
-    default_visibility: visible
-    path_priority: secondary
-    impact_mode: exclude
-    supports_qualifiers: false
-    allowed_qualifiers: []
-    required_qualifiers: []
-    evidence_required: false
-    ui_label_out: expects
-    ui_label_in: expected by
-    ui_group: structure
-    exportable: true
-    status: active
-    introduced_in: 2.1.0
-    applies_to_profiles:
-    - atlas_mvp
   - id: rel_value_consumer_uses_channel
     name: Value Consumer to Channel
-    description: value_consumer relates to channel
+    description: Потребитель взаимодействует с банком через канал.
     from_kind: value_consumer
     to_kind: channel
     category: interaction
