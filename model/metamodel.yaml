@@ -698,6 +698,1016 @@ entity_kinds:
     name: Критичность процесса
     metamodel_level: business_details
     description: Уровень важности или иерархия (Tier).
+  - id: business_process.code
+    name: Code
+    name_ru: Код
+    description: Уникальный идентификатор процесса.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - BP0001094
+    source_expectation:
+    - S1
+    display_order: 10
+  - id: business_process.name
+    name: Name
+    name_ru: Название
+    description: Наименование процесса.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - Верификация клиента
+    display_order: 20
+  - id: business_process.name_eng
+    name: Name (Eng)
+    name_ru: Название (Eng)
+    description: Наименование процесса на английском.
+    data_type: string
+    cardinality: one
+    required: false
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 30
+  - id: business_process.short_description
+    name: Short Description
+    name_ru: Краткое описание
+    description: Цель и основные действия, бизнес-требования, ограничения, политики, регламенты (для ручного труда).
+    data_type: text
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Верификация данных клиента с целью выдачи кредита
+    display_order: 40
+  - id: business_process.board_area
+    name: Board Area
+    name_ru: Board Area
+    description: Управленческий блок (Board Area), к которому относится процесс.
+    data_type: string
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    display_order: 50
+  - id: business_process.status_lifecycle
+    name: Lifecycle Status
+    name_ru: Статус
+    description: 'Жизненный цикл записи процесса: draft / production / archive.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    enum_values:
+    - draft
+    - production
+    - archive
+    example_values:
+    - production
+    display_order: 60
+  - id: business_process.trigger
+    name: Trigger
+    name_ru: Триггер
+    description: События, запускающие бизнес-процесс.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Данные клиента заполнены и отправлены на верификацию
+    display_order: 70
+  - id: business_process.result
+    name: Result
+    name_ru: Результат
+    description: Описание результата на выходе процесса.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Клиент переведён в статус "Проверен"
+    display_order: 80
+  - id: business_process.comments
+    name: Comments
+    name_ru: Комментарии
+    description: Свободные комментарии владельца процесса.
+    data_type: text
+    cardinality: one
+    required: false
+    category: custom
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 90
+  - id: business_process.version
+    name: Version
+    name_ru: Версия
+    description: Версия бизнес-процесса (semver или простая нумерация).
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - '1.0'
+    display_order: 100
+  - id: business_process.created_at
+    name: Created At
+    name_ru: Дата создания
+    description: Дата создания записи процесса.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-12'
+    display_order: 110
+  - id: business_process.updated_at
+    name: Updated At
+    name_ru: Дата редактирования
+    description: Дата последнего изменения записи процесса.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-17'
+    display_order: 120
+  - id: business_process.cbr_techprocess_code
+    name: CBR Techprocess Code
+    name_ru: Код Техпроцесса ЦБ
+    description: Код Техпроцесса ЦБ РФ, реализуемого данным бизнес-процессом.
+    data_type: string
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - ТПрКО9
+    display_order: 130
+  - id: business_process.code_716p
+    name: Code 716-P
+    name_ru: Код 716-П
+    description: Классификатор процесса по положению ЦБ РФ 716-П.
+    data_type: string
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: regulatory
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - 3.9.1.
+    source_expectation:
+    - S1
+    - Archer
+    display_order: 140
+  - id: business_process.risk_classifier_l4
+    name: Risk Classifier (L4)
+    name_ru: Классификатор процесса (риски)
+    description: Значение 4-го уровня классификации процессов ОперРисков, включая все предыдущие уровни.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: regulatory
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - 2. Операции и сделки на финансовом рынке -> 2.2. Операции с производными финансовыми инструментами -> 2.2.1. Операции
+      с производными финансовыми инструментами -> 2.2.2.2. Алгоритмическая торговля производными финансовыми инструментами
+    source_expectation:
+    - S1
+    display_order: 150
+  - id: business_process.criticality_716p
+    name: Criticality (716-P)
+    name_ru: Критичность процесса по 716-П
+    description: 'Критичность процесса согласно 716-П: critically_important / main / other.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: regulatory
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - critically_important
+    - main
+    - other
+    example_values:
+    - main
+    source_expectation:
+    - S1
+    display_order: 160
+  - id: business_process.internal_regulation
+    name: Internal Regulation
+    name_ru: ВНД
+    description: Реквизиты внутренних нормативных документов, регулирующих процесс.
+    data_type: text
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: regulatory
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Приказ №235 "О регламенте проверки клиентов"
+    display_order: 170
+  - id: business_process.npa
+    name: External Regulation (NPA)
+    name_ru: НПА
+    description: Реквизиты нормативно-правовых актов, регулирующих процесс.
+    data_type: text
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: regulatory
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Положение Банка России №745 "О работе с данными клиентов"
+    display_order: 180
+  - id: business_process.ics_prioritization
+    name: ICS Prioritization
+    name_ru: Приоритизация процесса ICS
+    description: 'Приоритизация процесса в рамках методологии ICS: Key / Non-Key.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - key
+    - non_key
+    example_values:
+    - key
+    source_expectation:
+    - S1
+    display_order: 190
+  - id: business_process.ics_classification
+    name: ICS Classification
+    name_ru: Классификация процесса ICS
+    description: 'Классификация процесса в рамках методологии ICS: Key Regulatory / Key Business / Financial Reporting / Other.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - key_regulatory
+    - key_business
+    - financial_reporting
+    - other
+    example_values:
+    - key_business
+    source_expectation:
+    - S1
+    display_order: 200
+  - id: business_process.ib_risks
+    name: InfoSec Risks
+    name_ru: Риски ИБ
+    description: Маппинг на типы рисков информационной безопасности.
+    data_type: string
+    cardinality: many
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - S1
+    display_order: 210
+  - id: business_process.op_risks
+    name: Operational Risks
+    name_ru: Риски Опер
+    description: Маппинг на типы операционных рисков.
+    data_type: string
+    cardinality: many
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - S1
+    display_order: 220
+  - id: business_process.ics_controls
+    name: ICS Controls
+    name_ru: Контроли ICS
+    description: Маппинг на операционные контроли ICS.
+    data_type: string
+    cardinality: many
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Reconciliation of operation parameters in systems Midas, WSS, Bloomberg
+    source_expectation:
+    - S1
+    display_order: 230
+  - id: business_process.archer_id
+    name: Archer ID
+    name_ru: Код (Арчер)
+    description: Уникальный идентификатор процесса в системе Archer.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - RBRU_BP_3100
+    source_expectation:
+    - Archer
+    display_order: 240
+  - id: business_process.archer_name
+    name: Archer Name
+    name_ru: Название (Арчер)
+    description: Название процесса в системе Archer.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Initial placement of bonds
+    source_expectation:
+    - Archer
+    display_order: 250
+  - id: business_process.orm_owner_id
+    name: ORM Owner
+    name_ru: ORM
+    description: ФИО владельца риска (Operational Risk Manager).
+    data_type: id
+    cardinality: one
+    required: false
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - S1
+    display_order: 260
+  - id: business_process.dors_owner_ids
+    name: DORS Owners
+    name_ru: DORS
+    description: ФИО владельцев риска второй линии (Delegated Operational Risk Specialists).
+    data_type: id
+    cardinality: many
+    required: false
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - S1
+    display_order: 270
+  - id: business_process.bcm_criticality
+    name: BCM Criticality
+    name_ru: Критичность (BCM)
+    description: 'Критичность процесса согласно BCM: Mission critical / Business critical / Operational / Supportive / Do
+      not recovery / Not defined.'
+    data_type: enum
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - mission_critical
+    - business_critical
+    - operational
+    - supportive
+    - do_not_recovery
+    - not_defined
+    example_values:
+    - business_critical
+    source_expectation:
+    - BCM
+    display_order: 280
+  - id: business_process.confidentiality_ref
+    name: Confidentiality
+    name_ru: Confidentiality (CIA)
+    description: Обеспечение доступа к конфиденциальным данным процесса только для тех, у кого есть соответствующее разрешение.
+      На будущее.
+    data_type: text
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - S1
+    display_order: 290
+  - id: business_process.integrity_ref
+    name: Integrity
+    name_ru: Integrity (CIA)
+    description: Защита данных процесса от изменений, подделок или уничтожения — намеренно или случайно. На будущее.
+    data_type: text
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - S1
+    display_order: 300
+  - id: business_process.availability_ref
+    name: Availability
+    name_ru: Availability (CIA)
+    description: Гарантия, что процесс доступен и пригоден для исполнения при необходимости. На будущее.
+    data_type: text
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - S1
+    display_order: 310
+  - id: business_process.rto_bp
+    name: Recovery Time Objective (BP)
+    name_ru: RTO BP
+    description: Максимально допустимое время простоя процесса. См. MACWO-533 о согласовании с sla.response_time.
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: minutes
+    example_values:
+    - 5
+    source_expectation:
+    - AppSec
+    display_order: 320
+  - id: business_process.rpo_bp
+    name: Recovery Point Objective (BP)
+    name_ru: RPO BP
+    description: Максимально допустимый период потери данных процесса.
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: hours
+    source_expectation:
+    - AppSec
+    display_order: 330
+  - id: business_process.mtpd_bp
+    name: Maximum Tolerable Period of Disruption
+    name_ru: MTPD BP
+    description: Максимально допустимый период нарушения работы процесса.
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: hours
+    example_values:
+    - 1
+    source_expectation:
+    - AppSec
+    display_order: 340
+  - id: business_process.mbco_bp
+    name: Minimum Business Continuity Objective
+    name_ru: MBCO BP
+    description: Минимальный уровень непрерывности бизнеса, поддерживаемый процессом в условиях деградации. Процент от нормального
+      уровня.
+    data_type: number
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 50
+    source_expectation:
+    - AppSec
+    display_order: 350
+  - id: business_process.customer_segment_impact
+    name: Customer Segment Impact
+    name_ru: Влияние на клиентские сегменты
+    description: Клиентские сегменты, на которые влияет процесс.
+    data_type: enum
+    cardinality: many
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - mass
+    - affluent
+    - private
+    - micro
+    - small
+    - medium
+    - corporate
+    - international
+    example_values:
+    - - mass
+      - affluent
+    source_expectation:
+    - BCM
+    display_order: 360
+  - id: business_process.has_external_counterparty
+    name: Has External Counterparty
+    name_ru: Есть внешний контрагент
+    description: Связан ли процесс с внешним контрагентом.
+    data_type: boolean
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - true
+    source_expectation:
+    - BCM
+    - Risks
+    display_order: 370
+  - id: business_process.counterparty_names
+    name: Counterparty Names
+    name_ru: Наименования контрагентов
+    description: Наименования внешних контрагентов процесса (если есть).
+    data_type: string
+    cardinality: many
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: bcm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - - Компания Х
+    source_expectation:
+    - BCM
+    - Risks
+    display_order: 380
+  - id: business_process.avg_execution_time
+    name: Average Execution Time
+    name_ru: Среднее время выполнения
+    description: Общее среднее (арифметическое) время от старта до завершения процесса по историческим данным.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: days
+    example_values:
+    - 2
+    source_expectation:
+    - Ops
+    display_order: 390
+  - id: business_process.execution_time_variance
+    name: Execution Time Variance
+    name_ru: Дисперсия времени выполнения
+    description: Среднеквадратичное отклонение времени выполнения процесса, делённое на среднее время выполнения процесса.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    source_expectation:
+    - Ops
+    display_order: 400
+  - id: business_process.first_pass_yield
+    name: First Pass Yield
+    name_ru: Процент завершения без ошибок (FPY)
+    description: Процент завершения процесса без ошибок с первой попытки.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 98
+    source_expectation:
+    - Ops
+    display_order: 410
+  - id: business_process.operating_cost
+    name: Operating Cost
+    name_ru: Затраты
+    description: Операционные издержки процесса.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: rub
+    example_values:
+    - 20000
+    source_expectation:
+    - Ops
+    display_order: 420
+  - id: business_process.fai
+    name: Function Automation Index (FAI)
+    name_ru: FAI
+    description: 'Индекс автоматизации процесса: отношение автоматизированных FTE этапов экземпляров процессов к общему количеству
+      FTE этапов.'
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    source_expectation:
+    - Ops
+    display_order: 430
+  - id: business_process.stp
+    name: Straight Through Processing (STP)
+    name_ru: STP
+    description: 'Уровень автоматизации сквозной обработки: отношение количества экземпляров процесса, реализованных полностью
+      автоматически, к общему количеству экземпляров.'
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ops
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    source_expectation:
+    - Ops
+    display_order: 440
+  - id: business_process.inbound_process_codes
+    name: Inbound Process Codes
+    name_ru: Входящие зависимости
+    description: Коды бизнес-процессов, результаты которых поступают на вход данного процесса (от каких процессов зависит
+      данный процесс).
+    data_type: string
+    cardinality: many
+    required: true
+    category: integration
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: dependencies
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - BCM
+    display_order: 450
+  - id: business_process.outbound_process_codes
+    name: Outbound Process Codes
+    name_ru: Исходящие зависимости
+    description: Коды бизнес-процессов, которые получают на вход результаты данного процесса.
+    data_type: string
+    cardinality: many
+    required: true
+    category: integration
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: dependencies
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    source_expectation:
+    - BCM
+    display_order: 460
+  - id: business_process.owner_department
+    name: Owner Department
+    name_ru: Подразделение-владелец
+    description: Подразделение-владелец процесса (линейная структура).
+    data_type: string
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Отдел верификации клиентов
+    display_order: 470
+  - id: business_process.owner_team_id
+    name: Owner Team
+    name_ru: Команда-владелец
+    description: Agile- или функциональная команда, владеющая процессом.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: team
+    display_order: 480
+  - id: business_process.participant_employee_ids
+    name: Participant Employees
+    name_ru: Сотрудники-участники
+    description: ФИО сотрудников-участников процесса.
+    data_type: id
+    cardinality: many
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    display_order: 490
+  - id: business_process.participant_org_unit_ids
+    name: Participant Org Units
+    name_ru: Подразделения-участники
+    description: Подразделения-участники процесса.
+    data_type: id
+    cardinality: many
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: organizational_unit
+    display_order: 500
+  - id: business_process.participant_collective_bodies
+    name: Participant Collective Bodies
+    name_ru: Коллегиальные органы-участники
+    description: Коллегиальные органы, участвующие в процессе. На будущее может быть переведено на urn_ref после создания
+      entity_kind collective_body.
+    data_type: string
+    cardinality: many
+    required: false
+    category: organizational
+    metamodel_level: business_details
+    display_mode: chip_list
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - - Правление
+    source_expectation:
+    - S1
+    display_order: 510
+  - id: business_process.control_owner_employee_id
+    name: Control Owner Employee
+    name_ru: Сотрудник-владелец контроля
+    description: ФИО сотрудника-владельца контроля.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    source_expectation:
+    - S1
+    display_order: 520
+  - id: business_process.control_owner_department
+    name: Control Owner Department
+    name_ru: Подразделение-владелец контроля
+    description: Подразделение-владелец контроля (линейная структура).
+    data_type: string
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - Отдел верификации клиентов
+    source_expectation:
+    - S1
+    display_order: 530
+  - id: business_process.related_it_system_ids
+    name: Related IT Systems
+    name_ru: ИТ-системы
+    description: Связанные ИТ-системы. На уровне связи могут уточняться tier и тип зависимости через qualifier в relation_catalog.
+    data_type: id
+    cardinality: many
+    required: false
+    category: technical
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: landscape
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: it_system
+    source_expectation:
+    - S1
+    - AppSec
+    display_order: 540
 - id: business_operation
   name: Business Operation
   name_ru: Бизнес-операция
@@ -3883,3 +4893,67 @@ relation_kinds:
   category: dependency
   direction: directed
   description: 'Inverse: data object feeds metric.'
+- id: rel_business_process_owned_by_employee
+  name: Business process owned by employee
+  from_kind: business_process
+  to_kind: employee
+  metamodel_level: business_details
+  category: governance
+  direction: directed
+  description: 'Сотрудник — владелец бизнес-процесса (PDF 1.0 #36).'
+- id: rel_business_process_owned_by_team
+  name: Business process owned by team
+  from_kind: business_process
+  to_kind: team
+  metamodel_level: business_details
+  category: governance
+  direction: directed
+  description: 'Agile- или функциональная команда-владелец процесса (PDF 1.0 #38).'
+- id: rel_business_process_has_participant_employee
+  name: Business process has participant employee
+  from_kind: business_process
+  to_kind: employee
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Сотрудник — участник бизнес-процесса (PDF 1.0 #39).'
+- id: rel_business_process_has_participant_org_unit
+  name: Business process has participant organizational unit
+  from_kind: business_process
+  to_kind: organizational_unit
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Организационное подразделение — участник процесса (PDF 1.0 #40).'
+- id: rel_business_process_affects_customer_segment
+  name: Business process affects customer segment
+  from_kind: business_process
+  to_kind: customer_segment
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Процесс влияет на клиентский сегмент (PDF 1.0 #52).'
+- id: rel_business_process_control_owned_by_employee
+  name: Business process control owned by employee
+  from_kind: business_process
+  to_kind: employee
+  metamodel_level: business_details
+  category: governance
+  direction: directed
+  description: 'Сотрудник — владелец контроля бизнес-процесса (PDF 1.0 #48).'
+- id: rel_business_process_risk_owned_by_employee
+  name: Business process risk owned by employee (ORM)
+  from_kind: business_process
+  to_kind: employee
+  metamodel_level: business_details
+  category: governance
+  direction: directed
+  description: 'Operational Risk Manager — владелец рисков процесса (PDF 1.0 #46).'
+- id: rel_business_process_uses_it_system
+  name: Business process uses IT system
+  from_kind: business_process
+  to_kind: it_system
+  metamodel_level: business_details
+  category: dependency
+  direction: directed
+  description: 'Процесс использует ИТ-систему (PDF 1.0 #51).'
