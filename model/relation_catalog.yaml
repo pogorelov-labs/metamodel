@@ -5727,3 +5727,61 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
+  - id: rel_value_stream_targets_job_family
+    name: Value stream targets job family
+    description: Поток ценности ориентирован на Job Family.
+    from_kind: value_stream
+    to_kind: job_family
+    category: association
+    direction: directed
+    source_cardinality: many
+    target_cardinality: one
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: secondary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: targets
+    ui_label_in: served by
+    ui_group: consumer
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
+  - id: rel_value_stream_governed_by_org_unit
+    name: Value stream governed by org unit
+    description: Подразделение-владелец потока ценности.
+    from_kind: value_stream
+    to_kind: organizational_unit
+    category: governance
+    direction: directed
+    source_cardinality: many
+    target_cardinality: one
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: primary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: governed by
+    ui_label_in: governs
+    ui_group: ownership
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
