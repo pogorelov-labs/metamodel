@@ -4691,6 +4691,137 @@ entity_kinds:
     status: active
     introduced_in: '2.1'
     display_order: 50
+- id: sensitivity_level
+  name: Sensitivity Level
+  name_ru: Категория чувствительной информации
+  metamodel_level: data_details
+  category: governance
+  description: Классификационный уровень, который определяет степень конфиденциальности данных и предписывает правила их обработки,
+    хранения и передачи.
+  scope_notes: Определяет обязательные меры защиты в зависимости от уровня. Содержит инструкции по обращению с чувствительной
+    информацией. Используется как ссылка из business_attribute, data_product, data_object для централизованного управления
+    правилами обработки.
+  aliases:
+  - value: sensitivity level
+    lang: en
+    alias_type: synonym
+    status: active
+  - value: уровень чувствительности
+    lang: ru
+    alias_type: synonym
+    status: active
+  - value: data classification
+    lang: en
+    alias_type: synonym
+    status: active
+  examples:
+  - public
+  - internal
+  - restricted
+  - confidential
+  - secret
+  usage_purpose: Единый справочник уровней конфиденциальности для атрибутов, дата-продуктов и data-объектов.
+  status: active
+  introduced_in: '2.1'
+  attributes:
+  - id: sensitivity_level.level_code
+    name: Level Code
+    name_ru: Код уровня
+    description: Короткий идентификатор уровня (public, internal, restricted, confidential, secret).
+    data_type: enum
+    enum_values:
+    - public
+    - internal
+    - restricted
+    - confidential
+    - secret
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: data_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    display_order: 10
+  - id: sensitivity_level.name_ru
+    name: Russian Label
+    name_ru: Локальное название
+    description: Русское название уровня для UI.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: data_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    example_values:
+    - Конфиденциально
+    - Публично
+    display_order: 20
+  - id: sensitivity_level.handling_rules
+    name: Handling Rules
+    name_ru: Правила обращения
+    description: Обязательные меры защиты и инструкции по обращению с данными соответствующего уровня.
+    data_type: text
+    cardinality: one
+    required: true
+    category: security
+    metamodel_level: data_details
+    display_mode: long_text
+    display_group: rules
+    status: active
+    introduced_in: '2.1'
+    display_order: 30
+  - id: sensitivity_level.required_encryption
+    name: Requires Encryption
+    name_ru: Обязательное шифрование
+    description: Требуется ли шифрование при передаче и хранении данных.
+    data_type: boolean
+    cardinality: one
+    required: true
+    category: security
+    metamodel_level: data_details
+    display_mode: badge
+    display_group: rules
+    status: active
+    introduced_in: '2.1'
+    display_order: 40
+  - id: sensitivity_level.retention_policy
+    name: Retention Policy
+    name_ru: Политика хранения
+    description: Срок и условия хранения данных соответствующего уровня.
+    data_type: text
+    cardinality: one
+    required: false
+    category: security
+    metamodel_level: data_details
+    display_mode: long_text
+    display_group: rules
+    status: active
+    introduced_in: '2.1'
+    display_order: 50
+  - id: sensitivity_level.regulatory_basis
+    name: Regulatory Basis
+    name_ru: Регуляторная основа
+    description: Ссылки на регуляторные требования (152-ФЗ, GDPR, PCI DSS).
+    data_type: text
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: data_details
+    display_mode: long_text
+    display_group: rules
+    status: active
+    introduced_in: '2.1'
+    example_values:
+    - 152-ФЗ
+    - GDPR Art. 9
+    - PCI DSS v4.0
+    display_order: 60
 relation_kinds:
 - id: rel_job_family_aggregates_product
   name: Job Family агрегирует Bank Product
@@ -6716,3 +6847,27 @@ relation_kinds:
   category: dependency
   direction: directed
   description: Инцидент создан в ответ на событие.
+- id: rel_sensitivity_level_governs_business_attribute
+  name: Sensitivity level governs business attribute
+  from_kind: sensitivity_level
+  to_kind: business_attribute
+  metamodel_level: data_details
+  category: governance
+  direction: directed
+  description: Уровень чувствительности применяется к бизнес-атрибуту.
+- id: rel_sensitivity_level_governs_data_product
+  name: Sensitivity level governs data product
+  from_kind: sensitivity_level
+  to_kind: data_product
+  metamodel_level: data_details
+  category: governance
+  direction: directed
+  description: Уровень чувствительности применяется к дата-продукту.
+- id: rel_sensitivity_level_governs_data_object
+  name: Sensitivity level governs data object
+  from_kind: sensitivity_level
+  to_kind: data_object
+  metamodel_level: data_details
+  category: governance
+  direction: directed
+  description: Уровень чувствительности применяется к объекту данных.
