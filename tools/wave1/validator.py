@@ -7,7 +7,7 @@ from .model import NormalizedOntology
 from .relation_catalog_validator import validate_relation_catalog
 from .validation_types import ValidationMessage, ValidationResult
 
-_ALLOWED_DIRECTIONS = {"directed", "undirected"}
+_ALLOWED_DIRECTIONS = {"directed", "undirected", "bidirectional"}
 _ALLOWED_VALUE_TYPES = {
     "string",
     "text",
