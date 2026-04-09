@@ -2625,7 +2625,7 @@ relation_kinds:
   to_kind: it_system
   metamodel_level: data_details
   category: association
-  direction: undirected
+  direction: bidirectional
   description: Бизнес-сущность ассоциирована с мастер-системой (учётная ИТ-система).
 - id: rel_business_entity_parent
   name: Business Entity to Business Entity

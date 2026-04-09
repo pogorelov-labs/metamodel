@@ -3554,7 +3554,7 @@ relation_catalog:
     from_kind: business_entity
     to_kind: it_system
     category: association
-    direction: undirected
+    direction: bidirectional
     source_cardinality: many
     target_cardinality: many
     has_inverse: false

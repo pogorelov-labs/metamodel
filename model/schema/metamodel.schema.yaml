@@ -118,7 +118,7 @@ $defs:
         type: string
       direction:
         type: string
-        enum: [directed, undirected]
+        enum: [directed, undirected, bidirectional]
       description:
         type: string
       rules:

@@ -7,7 +7,7 @@ from typing import Iterable, List, Mapping, Optional, Sequence, Tuple
 from .model import NormalizedOntology, RelationCatalogRelation
 from .validation_types import ValidationMessage, ValidationResult
 
-_ALLOWED_DIRECTIONS = {"directed", "undirected"}
+_ALLOWED_DIRECTIONS = {"directed", "undirected", "bidirectional"}
 _ALLOWED_CARDINALITIES = {"one", "many"}
 _ALLOWED_VISIBILITY = {"visible", "collapsed", "hidden"}
 _ALLOWED_PATH_PRIORITY = {"primary", "secondary", "tertiary", "excluded"}
