@@ -549,6 +549,487 @@ entity_kinds:
     name: Ответственный за поток
     metamodel_level: business_details
     description: Роль/должность, ответственная за end-to-end результат.
+  - id: value_stream.code
+    name: Code
+    name_ru: Код
+    description: Уникальный идентификатор потока ценности.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - VS-IP-LOAN-ORIG-001
+    display_order: 10
+  - id: value_stream.name
+    name: Name
+    name_ru: Название
+    description: Наименование объекта.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - Выдача кредита
+    display_order: 20
+  - id: value_stream.short_description
+    name: Short Description
+    name_ru: Краткое описание
+    description: Цель и основные этапы потока создания ценности.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 30
+  - id: value_stream.domain
+    name: Business Domain
+    name_ru: Домен
+    description: Бизнес-домен потока ценности.
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - retail
+    - cib
+    - finance
+    - risk_compliance
+    - operations
+    - hr_tech
+    - infrastructure
+    example_values:
+    - retail
+    display_order: 40
+  - id: value_stream.is_deterministic
+    name: Is Deterministic
+    name_ru: Детерминирован
+    description: Управляется ли поток строгим workflow (детерминирован) или допускает управление со стороны AI (недетерминирован).
+    data_type: boolean
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 50
+  - id: value_stream.status_lifecycle
+    name: Lifecycle Status
+    name_ru: Статус
+    description: 'Жизненный цикл записи: draft / production / archive.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - draft
+    - production
+    - archive
+    example_values:
+    - production
+    display_order: 60
+  - id: value_stream.maturity_level
+    name: Maturity Level
+    name_ru: Уровень зрелости
+    description: Уровень зрелости потока ценности.
+    data_type: enum
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - initial
+    - repeatable
+    - defined
+    - managed
+    - optimized
+    display_order: 70
+  - id: value_stream.criticality
+    name: Criticality
+    name_ru: Критичность
+    description: Уровень критичности потока ценности.
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - mission_critical
+    - business_critical
+    - business_support
+    - office_productivity
+    example_values:
+    - business_critical
+    display_order: 80
+  - id: value_stream.version
+    name: Version
+    name_ru: Версия
+    description: Версия потока создания ценности.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: core
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '1.0'
+    display_order: 90
+  - id: value_stream.job_family_id
+    name: Job Family
+    name_ru: Job Family
+    description: Job Family, в случае если потребитель — конечный клиент.
+    data_type: id
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: consumer
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: job_family
+    display_order: 100
+  - id: value_stream.product_id
+    name: Product
+    name_ru: Продукт
+    description: Связанный банковский продукт, в случае если потребитель — конечный клиент.
+    data_type: id
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: consumer
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: bank_product
+    display_order: 110
+  - id: value_stream.consumer_type
+    name: Consumer Type
+    name_ru: Тип потребителя ценности
+    description: Тип потребителя ценности.
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: consumer
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - end_customer
+    - external_counterparty
+    - internal_stakeholder
+    example_values:
+    - end_customer
+    display_order: 120
+  - id: value_stream.trigger
+    name: Trigger
+    name_ru: Триггер
+    description: Потребность или запрос потребителя, запускающая ПСЦ.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: value
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 130
+  - id: value_stream.delivered_value
+    name: Delivered Value
+    name_ru: Доставляемая ценность
+    description: Доставляемая ценность потребителю.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: value
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 140
+  - id: value_stream.lead_time
+    name: Lead Time
+    name_ru: Время цикла (Lead Time) / Time to Job
+    description: Общее время от старта до завершения. Lead Time = Process Time + Delay Time.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: vsm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: days
+    example_values:
+    - 3
+    display_order: 150
+  - id: value_stream.process_time
+    name: Process Time
+    name_ru: Время обработки (Process Time)
+    description: Время, затрачиваемое на полезную работу.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: vsm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: days
+    example_values:
+    - 0.5
+    display_order: 160
+  - id: value_stream.delay_time
+    name: Delay Time
+    name_ru: Время ожидания (Delay Time)
+    description: Время, затрачиваемое на ожидание или задержки.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: vsm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: days
+    example_values:
+    - 2.5
+    display_order: 170
+  - id: value_stream.value_added_time
+    name: Value-Added Time
+    name_ru: Время создания ценности (Value-Added Time)
+    description: Часть времени обработки, затрачиваемого непосредственно на создание ценности, имеющей значение для потребителя.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: vsm
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: days
+    example_values:
+    - 0.4
+    display_order: 180
+  - id: value_stream.first_pass_yield
+    name: First Pass Yield
+    name_ru: Процент завершения без ошибок (FPY)
+    description: Процент завершения процесса без ошибок с первой попытки.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: metrics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 98
+    display_order: 190
+  - id: value_stream.operating_cost
+    name: Operating Cost
+    name_ru: Затраты
+    description: Операционные издержки потока ценности.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: metrics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: rub
+    example_values:
+    - 20000
+    display_order: 200
+  - id: value_stream.customer_satisfaction
+    name: Customer Satisfaction (NPS/CSI)
+    name_ru: Удовлетворённость потребителя
+    description: NPS или CSI потребителя.
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: metrics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 78
+    display_order: 210
+  - id: value_stream.fai
+    name: Function Automation Index (FAI)
+    name_ru: FAI
+    description: 'Индекс автоматизации потока: отношение автоматизированных FTE этапов к общему количеству FTE этапов.'
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: metrics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 20
+    display_order: 220
+  - id: value_stream.stp
+    name: Straight Through Processing (STP)
+    name_ru: STP
+    description: 'Уровень автоматизации сквозной обработки: отношение количества экземпляров потока, реализованных полностью
+      автоматически, к общему количеству экземпляров.'
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: metrics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: percent
+    example_values:
+    - 50
+    display_order: 230
+  - id: value_stream.risks
+    name: Risks
+    name_ru: Риски
+    description: Ключевые риски потока ценности.
+    data_type: text
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: risks
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 240
+  - id: value_stream.org_unit_id
+    name: Organizational Unit
+    name_ru: Подразделение
+    description: Подразделение владельца потока ценности.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: organizational_unit
+    display_order: 250
+  - id: value_stream.created_at
+    name: Created At
+    name_ru: Дата создания
+    description: Дата создания записи.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: lifecycle
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-12'
+    display_order: 260
+  - id: value_stream.updated_at
+    name: Updated At
+    name_ru: Дата редактирования
+    description: Дата последнего изменения записи.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: lifecycle
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-17'
+    display_order: 270
 - id: value_stream_stage
   name: Value Stream Stage
   name_ru: Стадия потока создания ценности
@@ -5723,3 +6204,19 @@ relation_kinds:
   category: association
   direction: directed
   description: 'Юридическое лицо-владелец ПО (PDF 1.0 #16 Org_Unit).'
+- id: rel_value_stream_targets_job_family
+  name: Value stream targets job family
+  from_kind: value_stream
+  to_kind: job_family
+  metamodel_level: business_details
+  category: association
+  direction: directed
+  description: 'Поток ценности ориентирован на Job Family (PDF 1.0 #5).'
+- id: rel_value_stream_governed_by_org_unit
+  name: Value stream governed by organizational unit
+  from_kind: value_stream
+  to_kind: organizational_unit
+  metamodel_level: business_details
+  category: governance
+  direction: directed
+  description: 'Подразделение-владелец потока ценности (PDF 1.0 #25).'
