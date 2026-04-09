@@ -4871,14 +4871,6 @@ relation_kinds:
   category: dependency
   direction: directed
   description: Способность требуется для достижения цели.
-- id: rel_consumer_contacts_via_channel
-  name: Consumer контактирует через Channel
-  from_kind: value_consumer
-  to_kind: channel
-  metamodel_level: business_details
-  category: interaction
-  direction: directed
-  description: Потребитель взаимодействует с банком через канал.
 - id: rel_consumer_consumes_value
   name: Consumer потребляет Value
   from_kind: value_consumer
@@ -4919,14 +4911,6 @@ relation_kinds:
   category: composition
   direction: directed
   description: Поток реализуется через набор банковских продуктов.
-- id: rel_process_realizes_stage
-  name: Process реализует стадию
-  from_kind: business_process
-  to_kind: value_stream_stage
-  metamodel_level: business_details
-  category: realization
-  direction: directed
-  description: Бизнес-процесс обеспечивает выполнение стадии потока.
 - id: rel_process_serves_entity
   name: Process обслуживает сущность
   from_kind: business_process
@@ -4959,14 +4943,6 @@ relation_kinds:
   category: implementation
   direction: directed
   description: Реализация операции выполняется логическим компонентом приложения.
-- id: rel_process_implements_capability
-  name: Process реализует Capability
-  from_kind: business_process
-  to_kind: business_capability
-  metamodel_level: business_details
-  category: realization
-  direction: directed
-  description: Бизнес-процесс реализует бизнес-способность.
 - id: rel_capability_serves_value_stream
   name: Capability поддерживает Value Stream
   from_kind: business_capability
@@ -4983,14 +4959,6 @@ relation_kinds:
   category: execution
   direction: directed
   description: Подразделение выполняет бизнес-способность.
-- id: rel_info_flow_serves_entity
-  name: Information Flow передаёт сущность
-  from_kind: information_flow
-  to_kind: business_entity
-  metamodel_level: solution_details
-  category: flow
-  direction: directed
-  description: Информационный поток транспортирует данные о сущности.
 - id: rel_it_system_master_for_entity
   name: IT System мастер для сущности
   from_kind: it_system
@@ -4999,14 +4967,6 @@ relation_kinds:
   category: mastership
   direction: directed
   description: ИТ-система является мастер-системой бизнес-сущности.
-- id: rel_it_system_serves_info_flow
-  name: IT System обслуживает информационный поток
-  from_kind: it_system
-  to_kind: information_flow
-  metamodel_level: solution_details
-  category: service
-  direction: directed
-  description: Система выступает источником или потребителем потока.
 - id: rel_it_system_realizes_capability
   name: IT System реализует Capability
   from_kind: it_system
@@ -5055,22 +5015,6 @@ relation_kinds:
   category: composition
   direction: directed
   description: Компонент предоставляет набор API.
-- id: rel_api_composed_of_methods
-  name: API состоит из методов
-  from_kind: api
-  to_kind: api_method
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: API раскрывает набор методов.
-- id: rel_method_composed_of_params
-  name: API Method состоит из параметров
-  from_kind: api_method
-  to_kind: api_method_parameter
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: Метод включает параметры запроса/ответа.
 - id: rel_integration_uses_methods
   name: Integration использует методы API
   from_kind: integration
@@ -5079,14 +5023,6 @@ relation_kinds:
   category: association
   direction: directed
   description: Интеграция опирается на вызовы методов API.
-- id: rel_integration_realizes_info_flow
-  name: Integration реализует Information Flow
-  from_kind: integration
-  to_kind: information_flow
-  metamodel_level: component_details
-  category: realization
-  direction: directed
-  description: Интеграция воплощает информационный поток.
 - id: rel_logical_resource_serves_component
   name: Logical Resource обслуживает Component
   from_kind: logical_resource
@@ -5103,14 +5039,6 @@ relation_kinds:
   category: service
   direction: directed
   description: Ресурс поддерживает интеграцию (например, Topic/Queue).
-- id: rel_infra_resource_serves_logical_resource
-  name: Infrastructure Resource обслуживает Logical Resource
-  from_kind: infra_resource
-  to_kind: logical_resource
-  metamodel_level: infrastructure_details
-  category: service
-  direction: directed
-  description: Физическая инфраструктура размещает логический ресурс.
 - id: rel_infra_resource_serves_component
   name: Infrastructure Resource обслуживает Software Component
   from_kind: infra_resource
@@ -5135,14 +5063,6 @@ relation_kinds:
   category: association
   direction: directed
   description: Продукт принадлежит бизнес-домену.
-- id: rel_capability_part_of_domain
-  name: Capability часть Domain
-  from_kind: business_capability
-  to_kind: business_domain
-  metamodel_level: strategic_view
-  category: composition
-  direction: directed
-  description: Бизнес-способность является частью бизнес-домена.
 - id: rel_stage_realizes_capability
   name: Stage реализует Capability
   from_kind: value_stream_stage
@@ -5151,14 +5071,6 @@ relation_kinds:
   category: realization
   direction: directed
   description: Стадия потока создания ценности реализует бизнес-способность.
-- id: rel_operation_consists_of_actions
-  name: Operation состоит из Actions
-  from_kind: business_operation
-  to_kind: business_action
-  metamodel_level: business_details
-  category: composition
-  direction: directed
-  description: Бизнес-операция состоит из элементарных бизнес-действий.
 - id: rel_action_operates_on_entity
   name: Action работает с Entity
   from_kind: business_action
@@ -5335,14 +5247,6 @@ relation_kinds:
   category: value_delivery
   direction: directed
   description: bank_product relates to value
-- id: rel_bank_product_targets_segment
-  name: Bank Product to Customer Segment
-  from_kind: bank_product
-  to_kind: customer_segment
-  metamodel_level: business_details
-  category: customer
-  direction: directed
-  description: bank_product relates to customer_segment
 - id: rel_code_repository_owned_by_team
   name: Code Repository to Team
   from_kind: code_repository
@@ -5351,30 +5255,6 @@ relation_kinds:
   category: ownership
   direction: directed
   description: code_repository relates to team
-- id: rel_component_runs_on_logical_resource
-  name: Component to Logical Resource
-  from_kind: component
-  to_kind: logical_resource
-  metamodel_level: solution_details
-  category: deployment
-  direction: directed
-  description: component relates to logical_resource
-- id: rel_data_product_has_contract
-  name: Дата-продукт to Data Contract
-  from_kind: data_product
-  to_kind: data_contract
-  metamodel_level: data_details
-  category: contract
-  direction: directed
-  description: data_product relates to data_contract
-- id: rel_data_product_implemented_by_pipeline
-  name: Дата-продукт to Data Pipeline
-  from_kind: data_product
-  to_kind: data_process
-  metamodel_level: solution_details
-  category: implementation
-  direction: directed
-  description: data_product relates to data_process
 - id: rel_data_product_represents_business_entity
   name: Дата-продукт to Бизнес-сущность
   from_kind: data_product
@@ -5407,14 +5287,6 @@ relation_kinds:
   category: impact
   direction: directed
   description: incident relates to data_product
-- id: rel_information_flow_for_business_entity
-  name: Information Flow to Business Entity
-  from_kind: information_flow
-  to_kind: business_entity
-  metamodel_level: data_details
-  category: representation
-  direction: directed
-  description: information_flow relates to business_entity
 - id: rel_integration_in_component
   name: Integration to Component
   from_kind: integration
@@ -5487,14 +5359,6 @@ relation_kinds:
   category: provision
   direction: directed
   description: Бизнес-способность обеспечивает бизнес-функцию.
-- id: rel_capability_required_for_goal
-  name: Business Capability to Goal
-  from_kind: business_capability
-  to_kind: goal
-  metamodel_level: strategic_view
-  category: alignment
-  direction: directed
-  description: Бизнес-способность необходима для достижения цели.
 - id: rel_capability_supports_stage
   name: Business Capability to Value Stream Stage
   from_kind: business_capability
@@ -5511,14 +5375,6 @@ relation_kinds:
   category: interaction
   direction: directed
   description: Канал обеспечивает касание с клиентом для создания ценности.
-- id: rel_component_instance_of_component
-  name: Component Instance to Software Component
-  from_kind: component_instance
-  to_kind: component
-  metamodel_level: infrastructure_details
-  category: instantiation
-  direction: directed
-  description: Экземпляр является развёртыванием компонента ИС.
 - id: rel_data_object_includes_metadata_in_contract
   name: Data Object to Data Contract
   from_kind: data_object
@@ -5607,14 +5463,6 @@ relation_kinds:
   category: hierarchy
   direction: directed
   description: Иерархия целей (цель верхнего уровня → подцель).
-- id: rel_infra_resource_serves_instance
-  name: Infrastructure Resource to Component Instance
-  from_kind: infra_resource
-  to_kind: component_instance
-  metamodel_level: infrastructure_details
-  category: service
-  direction: directed
-  description: Инфраструктурный ресурс обслуживает экземпляр компонента.
 - id: rel_infra_resource_serves_resource
   name: Infrastructure Resource to Logical Resource
   from_kind: infra_resource
@@ -5695,22 +5543,6 @@ relation_kinds:
   category: service
   direction: directed
   description: Логический ресурс обслуживает экземпляр компонента.
-- id: rel_operation_relates_to_function
-  name: Business Operation to Business Function
-  from_kind: business_operation
-  to_kind: business_function
-  metamodel_level: business_details
-  category: association
-  direction: directed
-  description: Бизнес-операция относится к бизнес-функции.
-- id: rel_org_unit_aggregates_role
-  name: Org Unit to Business Role
-  from_kind: organizational_unit
-  to_kind: business_role
-  metamodel_level: business_details
-  category: aggregation
-  direction: directed
-  description: Организационная единица агрегирует бизнес-роли.
 - id: rel_org_unit_associated_with_job_family
   name: Org Unit to Job Family
   from_kind: organizational_unit
@@ -5759,14 +5591,6 @@ relation_kinds:
   category: support
   direction: directed
   description: Организационная единица поддерживает бизнес-способность.
-- id: rel_process_aggregates_operation
-  name: Business Process to Business Operation
-  from_kind: business_process
-  to_kind: business_operation
-  metamodel_level: business_details
-  category: aggregation
-  direction: directed
-  description: Бизнес-процесс агрегирует бизнес-операции.
 - id: rel_process_operationalizes_function
   name: Business Process to Business Function
   from_kind: business_process
@@ -5839,14 +5663,6 @@ relation_kinds:
   category: service
   direction: directed
   description: Источник данных обслуживает схему данных.
-- id: rel_technology_has_component
-  name: Technology to Software Component
-  from_kind: technology
-  to_kind: component
-  metamodel_level: component_details
-  category: composition
-  direction: directed
-  description: Технология состоит из компонентов ИС.
 - id: rel_technology_has_resource
   name: Technology to Logical Resource
   from_kind: technology
@@ -5879,14 +5695,6 @@ relation_kinds:
   category: composition
   direction: directed
   description: Вендорское ПО состоит из компонентов ИС.
-- id: rel_vendor_product_has_technology
-  name: Vendor Product to Technology
-  from_kind: vendor_product
-  to_kind: technology
-  metamodel_level: solution_details
-  category: composition
-  direction: directed
-  description: Вендорское ПО содержит технологии.
 - id: rel_value_consumer_in_segment
   name: Value Consumer to Customer Segment
   from_kind: value_consumer
@@ -5895,14 +5703,6 @@ relation_kinds:
   category: classification
   direction: directed
   description: value_consumer relates to customer_segment
-- id: rel_value_consumer_seeks_value
-  name: Value Consumer to Value
-  from_kind: value_consumer
-  to_kind: value
-  metamodel_level: strategic_view
-  category: expectation
-  direction: directed
-  description: value_consumer relates to value
 - id: rel_value_consumer_uses_channel
   name: Value Consumer to Channel
   from_kind: value_consumer
@@ -5910,7 +5710,7 @@ relation_kinds:
   metamodel_level: business_details
   category: interaction
   direction: directed
-  description: value_consumer relates to channel
+  description: Потребитель взаимодействует с банком через канал.
 - id: rel_value_stream_stage_requires_capability
   name: Value Stream Stage to Business Capability
   from_kind: value_stream_stage
@@ -5974,7 +5774,7 @@ relation_kinds:
   metamodel_level: business_details
   category: realization
   direction: directed
-  description: Inverse of stage realized by process.
+  description: Бизнес-процесс обеспечивает выполнение стадии потока.
 - id: rel_capability_aggregates_processes
   name: Capability aggregates processes
   from_kind: business_capability
@@ -5990,7 +5790,7 @@ relation_kinds:
   metamodel_level: business_details
   category: realization
   direction: directed
-  description: Inverse of capability aggregates processes.
+  description: Бизнес-процесс реализует бизнес-способность.
 - id: rel_operation_belongs_to_process
   name: Operation belongs to process
   from_kind: business_operation
@@ -6046,7 +5846,8 @@ relation_kinds:
   metamodel_level: solution_details
   category: flow
   direction: directed
-  description: Qualified relation that specifies which business entity semantics is carried by information flow.
+  description: Информационный поток транспортирует данные о сущности. Qualified relation that specifies which business entity
+    semantics is carried.
 - id: rel_entity_carried_by_information_flow
   name: Entity carried by information flow
   from_kind: business_entity
@@ -6254,7 +6055,7 @@ relation_kinds:
   metamodel_level: strategic_view
   category: composition
   direction: directed
-  description: 'Inverse: capability belongs to business domain.'
+  description: Бизнес-способность является частью бизнес-домена.
 - id: rel_role_belongs_to_org_unit
   name: Role belongs to org unit
   from_kind: business_role
@@ -6294,7 +6095,7 @@ relation_kinds:
   metamodel_level: business_details
   category: composition
   direction: directed
-  description: 'Inverse: operation contains action.'
+  description: Бизнес-операция состоит из элементарных бизнес-действий.
 - id: rel_attribute_describes_entity
   name: Attribute describes entity
   from_kind: business_attribute
@@ -6526,7 +6327,7 @@ relation_kinds:
   metamodel_level: component_details
   category: composition
   direction: directed
-  description: 'Inverse: API contains method.'
+  description: API раскрывает набор методов.
 - id: rel_parameter_belongs_to_method
   name: Parameter belongs to method
   from_kind: api_method_parameter
@@ -6542,7 +6343,7 @@ relation_kinds:
   metamodel_level: component_details
   category: composition
   direction: directed
-  description: 'Inverse: method has parameter.'
+  description: Метод включает параметры запроса/ответа.
 - id: rel_integration_connects_system
   name: Integration connects system
   from_kind: integration
