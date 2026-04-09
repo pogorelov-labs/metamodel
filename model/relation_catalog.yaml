@@ -5785,3 +5785,61 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
+  - id: rel_business_capability_owned_by_employee
+    name: Business capability owned by employee
+    description: Сотрудник — владелец бизнес-способности.
+    from_kind: business_capability
+    to_kind: employee
+    category: governance
+    direction: directed
+    source_cardinality: many
+    target_cardinality: one
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: primary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: owned by
+    ui_label_in: owns capability
+    ui_group: ownership
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
+  - id: rel_business_capability_governed_by_org_unit
+    name: Business capability governed by org unit
+    description: Подразделение — владелец бизнес-способности.
+    from_kind: business_capability
+    to_kind: organizational_unit
+    category: governance
+    direction: directed
+    source_cardinality: many
+    target_cardinality: one
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: primary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: governed by
+    ui_label_in: governs capability
+    ui_group: ownership
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
