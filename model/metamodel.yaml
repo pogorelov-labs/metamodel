@@ -1101,6 +1101,337 @@ entity_kinds:
     name: Уровень зрелости
     metamodel_level: strategic_view
     description: Классификация зрелости способности (например, initial / managed / optimized).
+  - id: business_capability.code
+    name: Code
+    name_ru: Код
+    description: Локальный уникальный идентификатор RBRU.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - CAP-BS-CR-001
+    display_order: 10
+  - id: business_capability.code_rbi
+    name: Code (RBI)
+    name_ru: Код RBI
+    description: Уникальный идентификатор соответствующей бизнес-способности в системе RBI ADOIT.
+    data_type: string
+    cardinality: one
+    required: false
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - 02.11.03
+    source_expectation:
+    - ADOIT
+    display_order: 20
+  - id: business_capability.name
+    name: Name
+    name_ru: Название
+    description: Локальное наименование бизнес-способности RBRU.
+    data_type: string
+    cardinality: one
+    required: true
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: required_for_mvp
+    example_values:
+    - '[BS-CR] Credit Risk Management'
+    display_order: 30
+  - id: business_capability.name_rbi
+    name: Name (RBI)
+    name_ru: Название RBI
+    description: Наименование соответствующей бизнес-способности в справочнике RBI.
+    data_type: string
+    cardinality: one
+    required: false
+    category: identity
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '[BS-CR] Credit Risk Management'
+    source_expectation:
+    - ADOIT
+    display_order: 40
+  - id: business_capability.cbr_techprocess_code
+    name: CBR Techprocess Code
+    name_ru: Техпроцесс ЦБ
+    description: Код соответствующего техпроцесса ЦБ РФ.
+    data_type: string
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: identity
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - ТПрКО1
+    display_order: 50
+  - id: business_capability.short_description
+    name: Short Description
+    name_ru: Краткое описание
+    description: Назначение и цель бизнес-способности.
+    data_type: text
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    display_order: 60
+  - id: business_capability.hierarchy_level
+    name: Hierarchy Level
+    name_ru: Уровень иерархии
+    description: 'Уровень в иерархии бизнес-способностей: L1 / L2 / L3.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - l1
+    - l2
+    - l3
+    example_values:
+    - l3
+    display_order: 70
+  - id: business_capability.specialization
+    name: Specialization
+    name_ru: Специализация
+    description: 'Тип специализации: Strategic Capability / Operational Capability / Other.'
+    data_type: enum
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - strategic_capability
+    - operational_capability
+    - other
+    example_values:
+    - operational_capability
+    display_order: 80
+  - id: business_capability.domain
+    name: Business Domain
+    name_ru: Домен
+    description: Бизнес-домен.
+    data_type: enum
+    cardinality: one
+    required: true
+    category: business
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: classification
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - retail
+    - cib
+    - finance
+    - risk_management
+    - operations
+    - hr_tech
+    - infrastructure
+    example_values:
+    - risk_management
+    display_order: 90
+  - id: business_capability.status_lifecycle
+    name: Lifecycle Status
+    name_ru: Статус
+    description: 'Жизненный цикл записи: draft / production / archived.'
+    data_type: enum
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: badge
+    display_group: lifecycle
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    enum_values:
+    - draft
+    - production
+    - archived
+    example_values:
+    - production
+    display_order: 100
+  - id: business_capability.opex_cost
+    name: Operating Cost (OPEX)
+    name_ru: Затраты
+    description: Операционные затраты на поддержание (OPEX, FTE).
+    data_type: number
+    cardinality: one
+    required: false
+    category: data
+    metamodel_level: business_details
+    display_mode: plain
+    display_group: economics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    unit: rub_per_year
+    example_values:
+    - 200000000
+    display_order: 110
+  - id: business_capability.kpi_target
+    name: KPI
+    name_ru: KPI
+    description: Описание целевого KPI.
+    data_type: text
+    cardinality: one
+    required: false
+    category: business
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: economics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - NPL < 5%
+    display_order: 120
+  - id: business_capability.regulatory_compliance
+    name: Regulatory Compliance
+    name_ru: Соответствие регуляторным требованиям
+    description: Ссылки на регуляторные требования.
+    data_type: text
+    cardinality: one
+    required: false
+    category: evidence
+    metamodel_level: business_details
+    display_mode: long_text
+    display_group: economics
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - 115-ФЗ
+    display_order: 130
+  - id: business_capability.used_it_system_ids
+    name: Used IT Systems
+    name_ru: Используемые ИТ-системы
+    description: Связанные ИТ-системы, реализующие бизнес-способность.
+    data_type: id
+    cardinality: many
+    required: false
+    category: technical
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: landscape
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: it_system
+    example_values:
+    - - RCRS
+      - CRMfB
+      - Provisions module
+      - SAS Default module
+    display_order: 140
+  - id: business_capability.owner_employee_id
+    name: Owner
+    name_ru: Владелец
+    description: Владелец бизнес-способности.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: employee
+    display_order: 150
+  - id: business_capability.org_unit_id
+    name: Organizational Unit
+    name_ru: Подразделение
+    description: Подразделение владельца бизнес-способности.
+    data_type: id
+    cardinality: one
+    required: true
+    category: organizational
+    metamodel_level: business_details
+    display_mode: entity_ref
+    display_group: ownership
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    ref_kind: organizational_unit
+    display_order: 160
+  - id: business_capability.created_at
+    name: Created At
+    name_ru: Дата создания
+    description: Дата создания записи.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: lifecycle
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-12'
+    display_order: 170
+  - id: business_capability.updated_at
+    name: Updated At
+    name_ru: Дата редактирования
+    description: Дата последнего изменения записи.
+    data_type: string
+    cardinality: one
+    required: true
+    category: lifecycle
+    metamodel_level: business_details
+    display_mode: date
+    display_group: lifecycle
+    status: active
+    introduced_in: '2.1'
+    quality_expectation: recommended
+    example_values:
+    - '2024-11-17'
+    display_order: 180
 - id: business_function
   name: Business Function
   name_ru: Бизнес-функция
@@ -6220,3 +6551,19 @@ relation_kinds:
   category: governance
   direction: directed
   description: 'Подразделение-владелец потока ценности (PDF 1.0 #25).'
+- id: rel_business_capability_owned_by_employee
+  name: Business capability owned by employee
+  from_kind: business_capability
+  to_kind: employee
+  metamodel_level: strategic_view
+  category: governance
+  direction: directed
+  description: 'Сотрудник — владелец бизнес-способности (PDF 1.0 #16).'
+- id: rel_business_capability_governed_by_org_unit
+  name: Business capability governed by organizational unit
+  from_kind: business_capability
+  to_kind: organizational_unit
+  metamodel_level: strategic_view
+  category: governance
+  direction: directed
+  description: 'Подразделение — владелец бизнес-способности (PDF 1.0 #17).'
