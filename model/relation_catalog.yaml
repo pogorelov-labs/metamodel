@@ -5959,3 +5959,90 @@ relation_catalog:
     introduced_in: 2.1.0
     applies_to_profiles:
     - atlas_mvp
+  - id: rel_sensitivity_level_governs_business_attribute
+    name: Sensitivity level governs business attribute
+    description: Уровень чувствительности применяется к бизнес-атрибуту.
+    from_kind: sensitivity_level
+    to_kind: business_attribute
+    category: governance
+    direction: directed
+    source_cardinality: one
+    target_cardinality: many
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: secondary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: governs business attribute
+    ui_label_in: has sensitivity level
+    ui_group: governance
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
+  - id: rel_sensitivity_level_governs_data_product
+    name: Sensitivity level governs data product
+    description: Уровень чувствительности применяется к дата-продукту.
+    from_kind: sensitivity_level
+    to_kind: data_product
+    category: governance
+    direction: directed
+    source_cardinality: one
+    target_cardinality: many
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: secondary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: governs data product
+    ui_label_in: has sensitivity level
+    ui_group: governance
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
+  - id: rel_sensitivity_level_governs_data_object
+    name: Sensitivity level governs data object
+    description: Уровень чувствительности применяется к объекту данных.
+    from_kind: sensitivity_level
+    to_kind: data_object
+    category: governance
+    direction: directed
+    source_cardinality: one
+    target_cardinality: many
+    has_inverse: false
+    is_traversable_by_default: true
+    allowed_in_neighbors: true
+    allowed_in_paths: true
+    allowed_in_impact: true
+    default_visibility: visible
+    path_priority: secondary
+    impact_mode: propagate
+    supports_qualifiers: false
+    allowed_qualifiers: []
+    required_qualifiers: []
+    evidence_required: false
+    ui_label_out: governs data object
+    ui_label_in: has sensitivity level
+    ui_group: governance
+    exportable: true
+    status: active
+    introduced_in: 2.1.0
+    applies_to_profiles:
+    - atlas_mvp
