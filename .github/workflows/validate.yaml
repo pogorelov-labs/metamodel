@@ -12,7 +12,7 @@ env:
 jobs:
   # ── Validation harness (loader + validator + lint + relation_catalog + schema) ──
   validate:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, vps]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,7 +28,7 @@ jobs:
 
   # ── Unit tests ──────────────────────────────────────────────
   test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, vps]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -41,7 +41,7 @@ jobs:
 
   # ── Lint ────────────────────────────────────────────────────
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # fast — keep on GitHub
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -101,7 +101,7 @@ jobs:
 
   # ── Bundle determinism ─────────────────────────────────────
   determinism:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, vps]
     needs: [validate, test]
     steps:
       - uses: actions/checkout@v4
