@@ -106,19 +106,21 @@
 
 #### Required
 - `data_type: enum`  
-  Один из:
+  **Enforced** — whitelist в `tools/wave1/validator.py` (`_ALLOWED_VALUE_TYPES`), нормативный источник истины. Любое значение вне этого набора роняет `make validate`:
   - `string`
   - `text`
   - `integer`
   - `number`
   - `boolean`
-  - `date`
-  - `datetime`
   - `enum`
-  - `url`
-  - `urn_ref`
-  - `external_key`
-  - `json`
+  - `id` — ссылка на другую сущность по id (**текущий** механизм ссылок; 21 использование в модели)
+  - `uri`
+
+  **Planned / reserved** — задокументированы как намерение, но **пока не принимаются валидатором**. Не использовать в authoring, пока не добавлены в whitelist (см. roadmap):
+  - `date`, `datetime` — сегодня моделируются как `string` + `format_hint`
+  - `url` — сегодня как `string` + `display_mode=link`
+  - `urn_ref` (+ `ref_kind`, `display_mode=entity_ref`) — планируемый типизированный upgrade над `id`; см. миграцию `id` → typed-ref в roadmap (MACWO-532)
+  - `external_key`, `json` (+ `json_schema_ref`)
 
 - `cardinality: enum`  
   Один из:
