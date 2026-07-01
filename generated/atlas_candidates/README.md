@@ -44,3 +44,9 @@ mv generated/bank_metamodel_horizontal__2__atlas_mvp \
 
 Оба пути пинят `active_version` и валидируют бандл штатным импортёром Atlas
 (`load_active_metamodel_bundle`).
+
+> **Раскладка в Atlas:** контракт-валидатор Atlas
+> (`scripts/validate_metamodel_bundle.py`) ждёт артефакты в **корне**
+> version-каталога (`versions/<id>/type_catalog.json`, …), а не только во
+> вложенной `artifacts/`. Workflow уплощает их автоматически; при ручном
+> промоушене нужно скопировать `artifacts/*` в корень версии (как в v1..v6).

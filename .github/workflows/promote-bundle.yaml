@@ -77,9 +77,15 @@ jobs:
         if: steps.promoted.outputs.already != 'true'
         run: |
           VERSION="${{ steps.version.outputs.version }}"
+          SRC="metamodel/generated/atlas_candidates/${VERSION}"
           DEST="rbank-atlas/specs/metamodel/versions/${VERSION}"
           mkdir -p "$DEST"
-          cp -r "metamodel/generated/atlas_candidates/${VERSION}/." "$DEST/"
+          cp -r "$SRC/." "$DEST/"
+          # Flatten artifacts to the version-dir root: the Atlas contract
+          # validator (scripts/validate_metamodel_bundle.py) requires them at
+          # the root, matching how v1..v6 were promoted. The nested artifacts/
+          # directory is kept as well.
+          cp "$SRC/artifacts/"* "$DEST/"
 
       - name: Update active_version.json
         if: steps.promoted.outputs.already != 'true'
