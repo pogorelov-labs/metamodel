@@ -58,7 +58,23 @@ jobs:
           echo "Promoting bundle: ${{ steps.version.outputs.version }}"
           ls -la "$BUNDLE_DIR"
 
+      # Idempotency guard: a bundle version may already have been promoted
+      # manually (the historical practice) or by an earlier run. If it is
+      # already present downstream, skip the copy/PR steps instead of opening
+      # a duplicate promotion PR.
+      - name: Skip if already promoted
+        id: promoted
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if [ -d "rbank-atlas/specs/metamodel/versions/${VERSION}" ]; then
+            echo "already=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Bundle ${VERSION} already present in ${ATLAS_REPO} — skipping promotion (idempotent)."
+          else
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Copy bundle to rbank-atlas
+        if: steps.promoted.outputs.already != 'true'
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           DEST="rbank-atlas/specs/metamodel/versions/${VERSION}"
@@ -66,6 +82,7 @@ jobs:
           cp -r "metamodel/generated/atlas_candidates/${VERSION}/." "$DEST/"
 
       - name: Update active_version.json
+        if: steps.promoted.outputs.already != 'true'
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           cd rbank-atlas
@@ -88,6 +105,7 @@ jobs:
           "
 
       - name: Validate bundle loads
+        if: steps.promoted.outputs.already != 'true'
         run: |
           cd rbank-atlas
           pip install -q -e packages/api
@@ -102,6 +120,7 @@ jobs:
           "
 
       - name: Create PR in rbank-atlas
+        if: steps.promoted.outputs.already != 'true'
         env:
           GH_TOKEN: ${{ secrets.ATLAS_REPO_TOKEN }}
         run: |

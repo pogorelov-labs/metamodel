@@ -4,37 +4,43 @@
 
 Идентификаторы бандлов иммутабельны: однажды опубликованный путь бандла не должен повторно использоваться для других артефактов.
 
+**Это единственное отслеживаемое (committed) расположение релизных бандлов.** `make bundle` пишет черновой бандл в корень `generated/<name>/` — эти пути gitignore-нуты (скретч) и не промотируются. Для релиза бандл должен быть перемещён сюда под иммутабельным `__vN`-идентификатором и закоммичен.
+
 ## Текущий кандидат
 
-- Версия: `2`
+- Версия модели: `2`
 - Профиль: `atlas_mvp`
-- Путь бандла: `generated/atlas_candidates/bank_metamodel_horizontal__1__atlas_mvp__v2/`
-- Предыдущий промотированный кандидат сохранён как иммутабельный исторический артефакт: `generated/atlas_candidates/bank_metamodel_horizontal__1__atlas_mvp/`
+- Путь бандла: `generated/atlas_candidates/bank_metamodel_horizontal__2__atlas_mvp__v7/`
+- Счётчик `__vN` — ручной релиз-инкремент; предыдущие кандидаты остаются иммутабельными историческими артефактами.
 
-## Команда генерации
+## Как нарезать новый кандидат
 
 ```bash
-python - <<'PY'
-from pathlib import Path
-from tools.wave1.loader import load_ontology
-from tools.wave1.projection_builder import build_projection_model
-from tools.wave1.atlas_bundle_generator import generate_atlas_bundle
-from tools.wave1.atlas_bundle_model import AtlasBundleOptions
+# 1. Убедиться, что модель зелёная
+make validate            # 0 errors
+make determinism         # детерминированная сборка
 
-root = Path('.')
-ontology = load_ontology(
-    root / 'model/metamodel.yaml',
-    relation_catalog_path=root / 'model/relation_catalog.yaml',
-)
-projection = build_projection_model(ontology, profile='atlas_mvp')
-result = generate_atlas_bundle(
-    projection,
-    root / 'generated/atlas_candidates',
-    options=AtlasBundleOptions(
-        profile='atlas_mvp',
-        bundle_name='bank_metamodel_horizontal__1__atlas_mvp__v2',
-    ),
-)
-print(result.bundle_root)
-PY
+# 2. Нарезать бандл (пишет в корень generated/, скретч)
+make bundle              # → generated/bank_metamodel_horizontal__2__atlas_mvp/
+
+# 3. Переместить под иммутабельным __vN (инкремент от последнего в atlas_candidates/)
+mv generated/bank_metamodel_horizontal__2__atlas_mvp \
+   generated/atlas_candidates/bank_metamodel_horizontal__2__atlas_mvp__v8
+
+# 4. Добавить BUNDLE_RELEASE_NOTES.md (дельта над предыдущим vN) и закоммитить
 ```
+
+## Промоушен в rbank-atlas
+
+Промоушен переносит закоммиченный кандидат в downstream-реестр
+(`rbank-atlas/specs/metamodel/versions/`) и пинит `active_version.json`.
+
+- **Автоматически:** workflow [`.github/workflows/promote-bundle.yaml`](../../.github/workflows/promote-bundle.yaml)
+  срабатывает на push в `main`, затрагивающий `generated/atlas_candidates/**`,
+  берёт последний бандл (`sort -V`) и открывает PR в `rbank-atlas`. Шаг
+  «Skip if already promoted» — идемпотентный страж: если версия уже есть в
+  downstream, промоушен пропускается (без дубль-PR).
+- **Вручную / повторно:** `workflow_dispatch` с явным `bundle_version`.
+
+Оба пути пинят `active_version` и валидируют бандл штатным импортёром Atlas
+(`load_active_metamodel_bundle`).

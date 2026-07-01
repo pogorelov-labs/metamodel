@@ -7,3 +7,10 @@ dist/
 .pytest_cache/
 .claude/lancedb/
 .claude/settings.local.json
+.claude/worktrees/
+
+# Scratch atlas bundles: `make bundle` writes to generated/<name>/ (root).
+# Only generated/atlas_candidates/ holds tracked, promotable releases.
+/generated/*
+!/generated/README.md
+!/generated/atlas_candidates/
