@@ -1,0 +1,2910 @@
+{
+  "counts": {
+    "attribute_count": 310,
+    "kind_count": 49
+  },
+  "kinds": [
+    {
+      "attributes": [
+        {
+          "description": "Компонент, предоставляющий API.",
+          "id": "api.component_id",
+          "metamodel_level": "solution_details",
+          "name": "Компонент"
+        },
+        {
+          "description": "Назначение и контекст.",
+          "id": "api.description",
+          "metamodel_level": "solution_details",
+          "name": "Описание API"
+        },
+        {
+          "description": "Формат описания контракта API.",
+          "enum_values": [
+            "asyncapi",
+            "avro",
+            "graphql",
+            "grpc",
+            "json_schema",
+            "openapi",
+            "protobuf"
+          ],
+          "id": "api.schema_format",
+          "metamodel_level": "component_details",
+          "name": "Формат схемы"
+        },
+        {
+          "description": "Ссылка на спецификацию/контракт API.",
+          "id": "api.schema_url",
+          "metamodel_level": "component_details",
+          "name": "URL схемы"
+        },
+        {
+          "description": "Версия контракта API.",
+          "id": "api.schema_version",
+          "metamodel_level": "component_details",
+          "name": "Версия схемы"
+        }
+      ],
+      "category": "interface",
+      "description": "Набор правил и протоколов, который позволяет различным ИС взаимодействовать друг с другом по сети. Определяет, как один программный компонент может запрашивать услуги или данные у другого. Логический интерфейс/контракт, через который Компонент ИС предоставляет функциональность.",
+      "id": "api",
+      "metamodel_level": "component_details",
+      "name": "API",
+      "name_ru": "API",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Родительское API.",
+          "id": "api_method.api_id",
+          "metamodel_level": "solution_details",
+          "name": "API"
+        },
+        {
+          "description": "URI или маршрут метода.",
+          "id": "api_method.endpoint",
+          "metamodel_level": "component_details",
+          "name": "Endpoint"
+        },
+        {
+          "description": "GET, POST и т.д.",
+          "id": "api_method.http_method",
+          "metamodel_level": "component_details",
+          "name": "HTTP-метод"
+        }
+      ],
+      "category": "interface",
+      "description": "Конкретная операция/endpoint/функциональный вызов в рамках API.",
+      "id": "api_method",
+      "metamodel_level": "component_details",
+      "name": "API Method",
+      "name_ru": "Метод API",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Метод API, которому принадлежит параметр.",
+          "id": "api_method_parameter.api_method_id",
+          "metamodel_level": "component_details",
+          "name": "Метод"
+        },
+        {
+          "description": "Назначение параметра.",
+          "id": "api_method_parameter.description",
+          "metamodel_level": "component_details",
+          "name": "Описание"
+        },
+        {
+          "description": "Query, header, body и т.п.",
+          "id": "api_method_parameter.type",
+          "metamodel_level": "component_details",
+          "name": "Тип"
+        }
+      ],
+      "category": "interface",
+      "description": "Параметр или поле запроса/ответа метода API.",
+      "id": "api_method_parameter",
+      "metamodel_level": "component_details",
+      "name": "API Method Parameter",
+      "name_ru": "Параметр метода API",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Ответственный за развитие и результат продукта.",
+          "id": "bank_product.business_owner_id",
+          "metamodel_level": "business_details",
+          "name": "Бизнес-владелец"
+        },
+        {
+          "description": "Целевая аудитория, потребители ценности продукта.",
+          "id": "bank_product.customer_segment_id",
+          "metamodel_level": "strategic_view",
+          "name": "Клиентский сегмент"
+        },
+        {
+          "description": "Краткое назначение и особенности продукта.",
+          "id": "bank_product.description",
+          "metamodel_level": "business_details",
+          "name": "Описание продукта"
+        },
+        {
+          "description": "Связь с Job Family, отвечающей за продукт.",
+          "id": "bank_product.job_family_id",
+          "metamodel_level": "strategic_view",
+          "name": "Продуктовое семейство"
+        },
+        {
+          "description": "Какую ценность обеспечивает продукт.",
+          "id": "bank_product.value_id",
+          "metamodel_level": "strategic_view",
+          "name": "Ценность"
+        }
+      ],
+      "category": "offering",
+      "description": "Оформленное предложение банка (финансовое или нефинансовое), которое обеспечивает конкретную ценность, удовлетворяет определенную потребность и может быть продано конечному клиенту (внешний продукт) или предоставлено внутреннему стейкхолдеру (внутренний продукт), обслужено и управляемо в рамках бизнес- и операционной модели банка.",
+      "id": "bank_product",
+      "metamodel_level": "strategic_view",
+      "name": "Product",
+      "name_ru": "Продукт",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "process",
+      "description": "Элементарная активность, выполняемая в рамках бизнес-операции.",
+      "id": "business_action",
+      "metamodel_level": "business_details",
+      "name": "Business Action",
+      "name_ru": "Бизнес-действие",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Используется при отсутствии ввода.",
+          "id": "business_attribute.default_value",
+          "metamodel_level": "data_details",
+          "name": "Значение по умолчанию"
+        },
+        {
+          "description": "Образцы данных для контекста.",
+          "id": "business_attribute.example_values",
+          "metamodel_level": "data_details",
+          "name": "Примеры значений"
+        },
+        {
+          "description": "Шаблон значения (regex, дата-формат и т.д.).",
+          "id": "business_attribute.format_pattern",
+          "metamodel_level": "data_details",
+          "name": "Формат"
+        },
+        {
+          "description": "Признак обязательного заполнения.",
+          "id": "business_attribute.is_required",
+          "metamodel_level": "data_details",
+          "name": "Обязательность"
+        },
+        {
+          "description": "Признак персональных/конфиденциальных данных.",
+          "id": "business_attribute.is_sensitive",
+          "metamodel_level": "data_details",
+          "name": "Чувствительный атрибут"
+        },
+        {
+          "description": "Требуется ли уникальность значения.",
+          "id": "business_attribute.is_unique",
+          "metamodel_level": "data_details",
+          "name": "Уникальность"
+        },
+        {
+          "description": "Категория чувствительности, определяющая меры защиты.",
+          "id": "business_attribute.sensitive_level",
+          "metamodel_level": "data_details",
+          "name": "Уровень чувствительности"
+        },
+        {
+          "description": "Набор бизнес-ограничений на значение.",
+          "id": "business_attribute.validation_rules",
+          "metamodel_level": "data_details",
+          "name": "Правила валидации"
+        }
+      ],
+      "category": "business_object",
+      "description": "Характеристика или свойство бизнес-сущности, которое имеет значение для бизнеса и представляет собой элементарную единицу информации (поле, метрику), используемую в процессах, отчетности или для принятия решений.",
+      "id": "business_attribute",
+      "metamodel_level": "business_details",
+      "name": "Business Attribute",
+      "name_ru": "Бизнес-атрибут",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Код соответствующего техпроцесса ЦБ РФ.",
+          "id": "business_capability.cbr_techprocess_code",
+          "metamodel_level": "business_details",
+          "name": "CBR Techprocess Code",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Локальный уникальный идентификатор RBRU.",
+          "id": "business_capability.code",
+          "metamodel_level": "business_details",
+          "name": "Code",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Уникальный идентификатор соответствующей бизнес-способности в системе RBI ADOIT.",
+          "id": "business_capability.code_rbi",
+          "metamodel_level": "business_details",
+          "name": "Code (RBI)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата создания записи.",
+          "id": "business_capability.created_at",
+          "metamodel_level": "business_details",
+          "name": "Created At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Бизнес-домен.",
+          "id": "business_capability.domain",
+          "metamodel_level": "business_details",
+          "name": "Business Domain",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень в иерархии бизнес-способностей: L1 / L2 / L3.",
+          "id": "business_capability.hierarchy_level",
+          "metamodel_level": "business_details",
+          "name": "Hierarchy Level",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Описание целевого KPI.",
+          "id": "business_capability.kpi_target",
+          "metamodel_level": "business_details",
+          "name": "KPI",
+          "required": false
+        },
+        {
+          "description": "Классификация зрелости способности (например, initial / managed / optimized).",
+          "id": "business_capability.maturity_level",
+          "metamodel_level": "strategic_view",
+          "name": "Уровень зрелости"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Локальное наименование бизнес-способности RBRU.",
+          "id": "business_capability.name",
+          "metamodel_level": "business_details",
+          "name": "Name",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Наименование соответствующей бизнес-способности в справочнике RBI.",
+          "id": "business_capability.name_rbi",
+          "metamodel_level": "business_details",
+          "name": "Name (RBI)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Операционные затраты на поддержание (OPEX, FTE).",
+          "id": "business_capability.opex_cost",
+          "metamodel_level": "business_details",
+          "name": "Operating Cost (OPEX)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Подразделение владельца бизнес-способности.",
+          "id": "business_capability.org_unit_id",
+          "metamodel_level": "business_details",
+          "name": "Organizational Unit",
+          "ref_kind": "organizational_unit",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Владелец бизнес-способности.",
+          "id": "business_capability.owner_employee_id",
+          "metamodel_level": "business_details",
+          "name": "Owner",
+          "ref_kind": "employee",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Ссылки на регуляторные требования.",
+          "id": "business_capability.regulatory_compliance",
+          "metamodel_level": "business_details",
+          "name": "Regulatory Compliance",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Назначение и цель бизнес-способности.",
+          "id": "business_capability.short_description",
+          "metamodel_level": "business_details",
+          "name": "Short Description",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Тип специализации: Strategic Capability / Operational Capability / Other.",
+          "id": "business_capability.specialization",
+          "metamodel_level": "business_details",
+          "name": "Specialization",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Жизненный цикл записи: draft / production / archived.",
+          "id": "business_capability.status_lifecycle",
+          "metamodel_level": "business_details",
+          "name": "Lifecycle Status",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата последнего изменения записи.",
+          "id": "business_capability.updated_at",
+          "metamodel_level": "business_details",
+          "name": "Updated At",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "id",
+          "description": "Связанные ИТ-системы, реализующие бизнес-способность.",
+          "id": "business_capability.used_it_system_ids",
+          "metamodel_level": "business_details",
+          "name": "Used IT Systems",
+          "ref_kind": "it_system",
+          "required": false
+        }
+      ],
+      "category": "capability",
+      "description": "Устойчивая, независимая от оргструктуры и повторяемая способность банка выполнять определенный вид деятельности или достигать конкретной бизнес-цели посредством сочетания процессов, людей, технологий и информации.",
+      "id": "business_capability",
+      "metamodel_level": "strategic_view",
+      "name": "Business Capability",
+      "name_ru": "Бизнес-способность",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Классификация важности домена для банка (Tier1/Tier2/Tier3 и т.п.).",
+          "id": "business_domain.criticality",
+          "metamodel_level": "strategic_view",
+          "name": "Критичность домена"
+        },
+        {
+          "description": "Кто отвечает за домен.",
+          "id": "business_domain.owning_org_unit_id",
+          "metamodel_level": "business_details",
+          "name": "Владеющая орг. единица"
+        }
+      ],
+      "category": "business_structure",
+      "description": "Крупная, стратегически значимая область бизнеса, которая объединяет набор связанных бизнес-способностей, продуктов и потоков создания ценности, ориентированных на достижение общих бизнес-целей. Домены представляют собой основные \"столпы\" бизнеса, часто отражающие ключевые направления деятельности или рынки.",
+      "id": "business_domain",
+      "metamodel_level": "strategic_view",
+      "name": "Business Domain",
+      "name_ru": "Бизнес-домен",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Домены, в рамках которых используется сущность.",
+          "id": "business_entity.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        },
+        {
+          "description": "Ответственный за развитие модели сущности.",
+          "id": "business_entity.business_owner_id",
+          "metamodel_level": "business_details",
+          "name": "Бизнес-владелец"
+        },
+        {
+          "description": "Глубина вложенности в дереве сущностей.",
+          "id": "business_entity.hierarchy_level",
+          "metamodel_level": "data_details",
+          "name": "Уровень иерархии"
+        },
+        {
+          "description": "NONE, FULL или PARTIAL.",
+          "id": "business_entity.inheritance_type",
+          "metamodel_level": "data_details",
+          "name": "Тип наследования"
+        },
+        {
+          "description": "Признак шаблонной сущности (Да/Нет).",
+          "id": "business_entity.is_abstract",
+          "metamodel_level": "data_details",
+          "name": "Абстрактная сущность"
+        },
+        {
+          "description": "Идентификатор сущности на уровне бизнес-логики.",
+          "id": "business_entity.key",
+          "metamodel_level": "data_details",
+          "name": "Бизнес-ключ"
+        },
+        {
+          "description": "ACTIVE, DEPRECATED, PLANNED и т.п.",
+          "id": "business_entity.lifecycle_status",
+          "metamodel_level": "data_details",
+          "name": "Статус жизненного цикла"
+        },
+        {
+          "description": "ИТ-система, которая хранит золотую запись сущности.",
+          "id": "business_entity.master_system_id",
+          "metamodel_level": "solution_details",
+          "name": "Master-система"
+        },
+        {
+          "description": "Ссылка для построения иерархий и наследования.",
+          "id": "business_entity.parent_entity_id",
+          "metamodel_level": "data_details",
+          "name": "Родительская сущность"
+        }
+      ],
+      "category": "business_object",
+      "description": "Идентифицируемая сущность или ресурс, который имеет значение для бизнеса, используется или создается в бизнес-деятельности, и служит носителем информации или ценности в бизнес-процессах, потоках создания ценности и бизнес-способностях.",
+      "id": "business_entity",
+      "metamodel_level": "business_details",
+      "name": "Business Entity",
+      "name_ru": "Бизнес-сущность",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "process",
+      "description": "Устойчивая (относительно постоянная) область ответственности организации выполнять определенный набор действий (обычно сгруппированных по требуемым навыкам, ресурсам и компетенциям) для достижения определенных результатов.",
+      "id": "business_function",
+      "metamodel_level": "business_details",
+      "name": "Business Function",
+      "name_ru": "Бизнес-функция",
+      "status": "stub"
+    },
+    {
+      "attributes": [],
+      "category": "process",
+      "description": "Определяет набор логически связанных бизнес-действий, который может выполняться в рамках бизнес-процесса как единое целое (шаг процесса), используя бизнес-сущности и обеспечивая управляемые взаимодействия между различными бизнес-функциями.",
+      "id": "business_operation",
+      "metamodel_level": "business_details",
+      "name": "Business Operation",
+      "name_ru": "Бизнес-операция",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Уникальный идентификатор процесса в системе Archer.",
+          "id": "business_process.archer_id",
+          "metamodel_level": "business_details",
+          "name": "Archer ID",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Название процесса в системе Archer.",
+          "id": "business_process.archer_name",
+          "metamodel_level": "business_details",
+          "name": "Archer Name",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Гарантия, что процесс доступен и пригоден для исполнения при необходимости. На будущее.",
+          "id": "business_process.availability_ref",
+          "metamodel_level": "business_details",
+          "name": "Availability",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Общее среднее (арифметическое) время от старта до завершения процесса по историческим данным.",
+          "id": "business_process.avg_execution_time",
+          "metamodel_level": "business_details",
+          "name": "Average Execution Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Критичность процесса согласно BCM: Mission critical / Business critical / Operational / Supportive / Do not recovery / Not defined.",
+          "id": "business_process.bcm_criticality",
+          "metamodel_level": "business_details",
+          "name": "BCM Criticality",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Управленческий блок (Board Area), к которому относится процесс.",
+          "id": "business_process.board_area",
+          "metamodel_level": "business_details",
+          "name": "Board Area",
+          "required": true
+        },
+        {
+          "description": "Какая бизнес-способность обеспечивает процесс.",
+          "id": "business_process.business_capability_id",
+          "metamodel_level": "strategic_view",
+          "name": "Поддерживающая способность"
+        },
+        {
+          "description": "К какому домену относится процесс.",
+          "id": "business_process.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        },
+        {
+          "description": "Ответственный руководитель.",
+          "id": "business_process.business_owner_id",
+          "metamodel_level": "business_details",
+          "name": "Владелец процесса"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Код Техпроцесса ЦБ РФ, реализуемого данным бизнес-процессом.",
+          "id": "business_process.cbr_techprocess_code",
+          "metamodel_level": "business_details",
+          "name": "CBR Techprocess Code",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Уникальный идентификатор процесса.",
+          "id": "business_process.code",
+          "metamodel_level": "business_details",
+          "name": "Code",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Классификатор процесса по положению ЦБ РФ 716-П.",
+          "id": "business_process.code_716p",
+          "metamodel_level": "business_details",
+          "name": "Code 716-P",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Свободные комментарии владельца процесса.",
+          "id": "business_process.comments",
+          "metamodel_level": "business_details",
+          "name": "Comments",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Обеспечение доступа к конфиденциальным данным процесса только для тех, у кого есть соответствующее разрешение. На будущее.",
+          "id": "business_process.confidentiality_ref",
+          "metamodel_level": "business_details",
+          "name": "Confidentiality",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Подразделение-владелец контроля (линейная структура).",
+          "id": "business_process.control_owner_department",
+          "metamodel_level": "business_details",
+          "name": "Control Owner Department",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "ФИО сотрудника-владельца контроля.",
+          "id": "business_process.control_owner_employee_id",
+          "metamodel_level": "business_details",
+          "name": "Control Owner Employee",
+          "ref_kind": "employee",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Наименования внешних контрагентов процесса (если есть).",
+          "id": "business_process.counterparty_names",
+          "metamodel_level": "business_details",
+          "name": "Counterparty Names",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата создания записи процесса.",
+          "id": "business_process.created_at",
+          "metamodel_level": "business_details",
+          "name": "Created At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Критичность процесса согласно 716-П: critically_important / main / other.",
+          "id": "business_process.criticality_716p",
+          "metamodel_level": "business_details",
+          "name": "Criticality (716-P)",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "enum",
+          "description": "Клиентские сегменты, на которые влияет процесс.",
+          "id": "business_process.customer_segment_impact",
+          "metamodel_level": "business_details",
+          "name": "Customer Segment Impact",
+          "required": false
+        },
+        {
+          "cardinality": "many",
+          "data_type": "id",
+          "description": "ФИО владельцев риска второй линии (Delegated Operational Risk Specialists).",
+          "id": "business_process.dors_owner_ids",
+          "metamodel_level": "business_details",
+          "name": "DORS Owners",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Среднеквадратичное отклонение времени выполнения процесса, делённое на среднее время выполнения процесса.",
+          "id": "business_process.execution_time_variance",
+          "metamodel_level": "business_details",
+          "name": "Execution Time Variance",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Индекс автоматизации процесса: отношение автоматизированных FTE этапов экземпляров процессов к общему количеству FTE этапов.",
+          "id": "business_process.fai",
+          "metamodel_level": "business_details",
+          "name": "Function Automation Index (FAI)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Процент завершения процесса без ошибок с первой попытки.",
+          "id": "business_process.first_pass_yield",
+          "metamodel_level": "business_details",
+          "name": "First Pass Yield",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Связан ли процесс с внешним контрагентом.",
+          "id": "business_process.has_external_counterparty",
+          "metamodel_level": "business_details",
+          "name": "Has External Counterparty",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Маппинг на типы рисков информационной безопасности.",
+          "id": "business_process.ib_risks",
+          "metamodel_level": "business_details",
+          "name": "InfoSec Risks",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Классификация процесса в рамках методологии ICS: Key Regulatory / Key Business / Financial Reporting / Other.",
+          "id": "business_process.ics_classification",
+          "metamodel_level": "business_details",
+          "name": "ICS Classification",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Маппинг на операционные контроли ICS.",
+          "id": "business_process.ics_controls",
+          "metamodel_level": "business_details",
+          "name": "ICS Controls",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Приоритизация процесса в рамках методологии ICS: Key / Non-Key.",
+          "id": "business_process.ics_prioritization",
+          "metamodel_level": "business_details",
+          "name": "ICS Prioritization",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Коды бизнес-процессов, результаты которых поступают на вход данного процесса (от каких процессов зависит данный процесс).",
+          "id": "business_process.inbound_process_codes",
+          "metamodel_level": "business_details",
+          "name": "Inbound Process Codes",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Защита данных процесса от изменений, подделок или уничтожения — намеренно или случайно. На будущее.",
+          "id": "business_process.integrity_ref",
+          "metamodel_level": "business_details",
+          "name": "Integrity",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Реквизиты внутренних нормативных документов, регулирующих процесс.",
+          "id": "business_process.internal_regulation",
+          "metamodel_level": "business_details",
+          "name": "Internal Regulation",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Минимальный уровень непрерывности бизнеса, поддерживаемый процессом в условиях деградации. Процент от нормального уровня.",
+          "id": "business_process.mbco_bp",
+          "metamodel_level": "business_details",
+          "name": "Minimum Business Continuity Objective",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Максимально допустимый период нарушения работы процесса.",
+          "id": "business_process.mtpd_bp",
+          "metamodel_level": "business_details",
+          "name": "Maximum Tolerable Period of Disruption",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Наименование процесса.",
+          "id": "business_process.name",
+          "metamodel_level": "business_details",
+          "name": "Name",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Наименование процесса на английском.",
+          "id": "business_process.name_eng",
+          "metamodel_level": "business_details",
+          "name": "Name (Eng)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Реквизиты нормативно-правовых актов, регулирующих процесс.",
+          "id": "business_process.npa",
+          "metamodel_level": "business_details",
+          "name": "External Regulation (NPA)",
+          "required": false
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Маппинг на типы операционных рисков.",
+          "id": "business_process.op_risks",
+          "metamodel_level": "business_details",
+          "name": "Operational Risks",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Операционные издержки процесса.",
+          "id": "business_process.operating_cost",
+          "metamodel_level": "business_details",
+          "name": "Operating Cost",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "ФИО владельца риска (Operational Risk Manager).",
+          "id": "business_process.orm_owner_id",
+          "metamodel_level": "business_details",
+          "name": "ORM Owner",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Коды бизнес-процессов, которые получают на вход результаты данного процесса.",
+          "id": "business_process.outbound_process_codes",
+          "metamodel_level": "business_details",
+          "name": "Outbound Process Codes",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Подразделение-владелец процесса (линейная структура).",
+          "id": "business_process.owner_department",
+          "metamodel_level": "business_details",
+          "name": "Owner Department",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Agile- или функциональная команда, владеющая процессом.",
+          "id": "business_process.owner_team_id",
+          "metamodel_level": "business_details",
+          "name": "Owner Team",
+          "ref_kind": "team",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Коллегиальные органы, участвующие в процессе. На будущее может быть переведено на urn_ref после создания entity_kind collective_body.",
+          "id": "business_process.participant_collective_bodies",
+          "metamodel_level": "business_details",
+          "name": "Participant Collective Bodies",
+          "required": false
+        },
+        {
+          "cardinality": "many",
+          "data_type": "id",
+          "description": "ФИО сотрудников-участников процесса.",
+          "id": "business_process.participant_employee_ids",
+          "metamodel_level": "business_details",
+          "name": "Participant Employees",
+          "ref_kind": "employee",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "id",
+          "description": "Подразделения-участники процесса.",
+          "id": "business_process.participant_org_unit_ids",
+          "metamodel_level": "business_details",
+          "name": "Participant Org Units",
+          "ref_kind": "organizational_unit",
+          "required": true
+        },
+        {
+          "cardinality": "many",
+          "data_type": "id",
+          "description": "Связанные ИТ-системы. На уровне связи могут уточняться tier и тип зависимости через qualifier в relation_catalog.",
+          "id": "business_process.related_it_system_ids",
+          "metamodel_level": "business_details",
+          "name": "Related IT Systems",
+          "ref_kind": "it_system",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Описание результата на выходе процесса.",
+          "id": "business_process.result",
+          "metamodel_level": "business_details",
+          "name": "Result",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Значение 4-го уровня классификации процессов ОперРисков, включая все предыдущие уровни.",
+          "id": "business_process.risk_classifier_l4",
+          "metamodel_level": "business_details",
+          "name": "Risk Classifier (L4)",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Максимально допустимый период потери данных процесса.",
+          "id": "business_process.rpo_bp",
+          "metamodel_level": "business_details",
+          "name": "Recovery Point Objective (BP)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Максимально допустимое время простоя процесса. См. MACWO-533 о согласовании с sla.response_time.",
+          "id": "business_process.rto_bp",
+          "metamodel_level": "business_details",
+          "name": "Recovery Time Objective (BP)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Цель и основные действия, бизнес-требования, ограничения, политики, регламенты (для ручного труда).",
+          "id": "business_process.short_description",
+          "metamodel_level": "business_details",
+          "name": "Short Description",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Жизненный цикл записи процесса: draft / production / archive.",
+          "id": "business_process.status_lifecycle",
+          "metamodel_level": "business_details",
+          "name": "Lifecycle Status",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Уровень автоматизации сквозной обработки: отношение количества экземпляров процесса, реализованных полностью автоматически, к общему количеству экземпляров.",
+          "id": "business_process.stp",
+          "metamodel_level": "business_details",
+          "name": "Straight Through Processing (STP)",
+          "required": false
+        },
+        {
+          "description": "Уровень важности или иерархия (Tier).",
+          "id": "business_process.tier",
+          "metamodel_level": "business_details",
+          "name": "Критичность процесса"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "События, запускающие бизнес-процесс.",
+          "id": "business_process.trigger",
+          "metamodel_level": "business_details",
+          "name": "Trigger",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата последнего изменения записи процесса.",
+          "id": "business_process.updated_at",
+          "metamodel_level": "business_details",
+          "name": "Updated At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Версия бизнес-процесса (semver или простая нумерация).",
+          "id": "business_process.version",
+          "metamodel_level": "business_details",
+          "name": "Version",
+          "required": true
+        }
+      ],
+      "category": "process",
+      "description": "Упорядоченная последовательность действий, выполняемых внутри банка для достижения определенного бизнес-результата с вовлечением сотрудников и ИТ-систем, и направленная на создание ценности для внешнего или внутреннего стейкхолдера.",
+      "id": "business_process",
+      "metamodel_level": "business_details",
+      "name": "Business Process",
+      "name_ru": "Бизнес-процесс",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Перечень компетенций, необходимых для выполнения роли.",
+          "id": "business_role.required_skills",
+          "metamodel_level": "business_details",
+          "name": "Требуемые навыки"
+        },
+        {
+          "description": "За что отвечает роль в бизнес-процессе.",
+          "id": "business_role.responsibility",
+          "metamodel_level": "business_details",
+          "name": "Зона ответственности"
+        },
+        {
+          "description": "Уровень роли: junior | middle | senior | lead | head.",
+          "id": "business_role.seniority",
+          "metamodel_level": "business_details",
+          "name": "Уровень роли"
+        }
+      ],
+      "category": "people",
+      "description": "Функциональная роль в бизнес-процессе, наделённая определённой ответственностью и полномочиями. Выполняется employee, team или AI-агентом и не привязана жёстко к должности или конкретному сотруднику.",
+      "id": "business_role",
+      "metamodel_level": "business_details",
+      "name": "Business Role",
+      "name_ru": "Бизнес-роль",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Часы доступности канала и SLA по аптайму.",
+          "id": "channel.availability",
+          "metamodel_level": "business_details",
+          "name": "Доступность"
+        },
+        {
+          "description": "Целевое время реакции канала на обращение клиента.",
+          "id": "channel.sla_response_time",
+          "metamodel_level": "business_details",
+          "name": "SLA по реакции"
+        },
+        {
+          "description": "Тип канала: branch | mobile_app | web | call_center | atm | partner_api.",
+          "id": "channel.type",
+          "metamodel_level": "business_details",
+          "name": "Тип канала"
+        }
+      ],
+      "category": "channel",
+      "description": "Точка взаимодействия банка с клиентами, партнерами или внутренними пользователями, через которую предоставляются продукты, услуги и коммуникации, обеспечивая доступ и обмен информацией.",
+      "id": "channel",
+      "metamodel_level": "business_details",
+      "name": "Channel",
+      "name_ru": "Канал",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Параметры сборки.",
+          "id": "code_repository.build_config",
+          "metamodel_level": "component_details",
+          "name": "Сборка"
+        },
+        {
+          "description": "Ссылка на пайплайн сборки/деплоя.",
+          "id": "code_repository.ci_cd_pipeline_url",
+          "metamodel_level": "solution_details",
+          "name": "CI/CD"
+        },
+        {
+          "description": "Основная ветка разработки.",
+          "id": "code_repository.default_branch",
+          "metamodel_level": "component_details",
+          "name": "Базовая ветка"
+        },
+        {
+          "description": "Настройки развёртывания.",
+          "id": "code_repository.deployment_config",
+          "metamodel_level": "solution_details",
+          "name": "Деплой"
+        },
+        {
+          "description": "Ссылка на документацию.",
+          "id": "code_repository.documentation_url",
+          "metamodel_level": "component_details",
+          "name": "Документация"
+        },
+        {
+          "description": "Ответственный разработчик.",
+          "id": "code_repository.last_commit_author",
+          "metamodel_level": "business_details",
+          "name": "Автор коммита"
+        },
+        {
+          "description": "Когда обновлялся репозиторий.",
+          "id": "code_repository.last_commit_date",
+          "metamodel_level": "component_details",
+          "name": "Дата коммита"
+        },
+        {
+          "description": "Хеш последнего коммита.",
+          "id": "code_repository.last_commit_hash",
+          "metamodel_level": "component_details",
+          "name": "Последний коммит"
+        },
+        {
+          "description": "Кто поддерживает репозиторий.",
+          "id": "code_repository.owner_team_id",
+          "metamodel_level": "business_details",
+          "name": "Команда-владелец"
+        },
+        {
+          "description": "GIT, SVN и т.д.",
+          "id": "code_repository.repo_type",
+          "metamodel_level": "component_details",
+          "name": "Тип репозитория"
+        },
+        {
+          "description": "Ссылка на репозиторий.",
+          "id": "code_repository.repo_url",
+          "metamodel_level": "component_details",
+          "name": "URL"
+        }
+      ],
+      "category": "tooling",
+      "description": "Репозиторий исходного кода с метаданными об owner-команде, типе VCS и настройках CI/CD.",
+      "id": "code_repository",
+      "metamodel_level": "component_details",
+      "name": "Code Repository",
+      "name_ru": "Репозиторий кода",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Ссылка на код, образ или артефакт поставки, реализующий компонент (например, путь в Git, имя docker-образа, координаты артефакта в реестре).",
+          "id": "component.artifact_ref",
+          "metamodel_level": "component_details",
+          "name": "Ссылка на артефакт поставки"
+        },
+        {
+          "description": "Тип реализации: микросервис, БД, UI, batch-job и т.д.",
+          "id": "component.type",
+          "metamodel_level": "component_details",
+          "name": "Тип компонента"
+        }
+      ],
+      "category": "application",
+      "description": "Часть ИС/ФП, представляющий собой элемент дистрибутива ПО в составе ИС/ФП, размещенный на инфраструктурном ресурсе. Компонент используется для описания внутренних и внешних взаимодействий, а также для проектирования схемы размещения (деплоймента).",
+      "id": "component",
+      "metamodel_level": "component_details",
+      "name": "Component IT System",
+      "name_ru": "Компонент ИС",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "application",
+      "description": "Запущенный как Конфигурационная Единица и находящийся в определенном окружении (среде) компонент информационной системы.",
+      "id": "component_instance",
+      "metamodel_level": "infrastructure_details",
+      "name": "Component Instance",
+      "name_ru": "Экземпляр компонента ИС",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Ссылка на каноническую персону сегмента (если ведётся отдельно).",
+          "id": "customer_segment.persona_ref",
+          "metamodel_level": "strategic_view",
+          "name": "Ссылка на персону"
+        },
+        {
+          "description": "Тип сегмента: retail | sme | corporate | private_banking | public_sector.",
+          "id": "customer_segment.segment_type",
+          "metamodel_level": "strategic_view",
+          "name": "Тип сегмента"
+        },
+        {
+          "description": "Оценка количества клиентов в сегменте.",
+          "id": "customer_segment.size",
+          "metamodel_level": "strategic_view",
+          "name": "Размер сегмента"
+        }
+      ],
+      "category": "stakeholder",
+      "description": "Группа потребителей ценности (клиентов, партнеров, внутренних стейкхолдеров), объединенных общими характеристиками, потребностями или поведением, в отношении которых банк применяет целенаправленный подход к созданию и доставке ценности.",
+      "id": "customer_segment",
+      "metamodel_level": "strategic_view",
+      "name": "Customer Segment",
+      "name_ru": "Клиентский сегмент",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Какой бизнес-атрибут реализуется.",
+          "id": "data_attribute.business_attribute_id",
+          "metamodel_level": "data_details",
+          "name": "Бизнес-атрибут"
+        },
+        {
+          "description": "Номер столбца.",
+          "id": "data_attribute.column_position",
+          "metamodel_level": "data_details",
+          "name": "Порядок колонки"
+        },
+        {
+          "description": "SQL или иной тип.",
+          "id": "data_attribute.data_type",
+          "metamodel_level": "data_details",
+          "name": "Тип данных"
+        },
+        {
+          "description": "Можно ли хранить NULL.",
+          "id": "data_attribute.is_nullable",
+          "metamodel_level": "data_details",
+          "name": "Допустимость NULL"
+        },
+        {
+          "description": "Признак участия в ключе.",
+          "id": "data_attribute.is_pk",
+          "metamodel_level": "data_details",
+          "name": "Входит в PK"
+        },
+        {
+          "description": "Ограничение длины.",
+          "id": "data_attribute.max_length",
+          "metamodel_level": "data_details",
+          "name": "Максимальная длина"
+        },
+        {
+          "description": "Логическое название.",
+          "id": "data_attribute.name",
+          "metamodel_level": "data_details",
+          "name": "Имя столбца"
+        },
+        {
+          "description": "Категория доступа к колонке.",
+          "id": "data_attribute.security_level_id",
+          "metamodel_level": "business_details",
+          "name": "Уровень безопасности"
+        },
+        {
+          "description": "Имя в физическом хранилище.",
+          "id": "data_attribute.technical_name",
+          "metamodel_level": "data_details",
+          "name": "Техническое имя"
+        }
+      ],
+      "category": "data",
+      "description": "Отдельное поле или столбец в структуре данных (таблице, сообщении), которое имеет техническое имя, описание, тип данных, и другие физические характеристики.",
+      "id": "data_attribute",
+      "metamodel_level": "data_details",
+      "name": "Data Attribute",
+      "name_ru": "Атрибут данных",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Соглашение об уровне сервиса (доступность, актуальность, время реакции).",
+          "id": "data_contract.sla",
+          "metamodel_level": "business_details",
+          "name": "SLA"
+        },
+        {
+          "description": "DRAFT, ACTIVE, DEPRECATED и т.п.",
+          "id": "data_contract.status",
+          "metamodel_level": "data_details",
+          "name": "Статус контракта"
+        },
+        {
+          "description": "Номер ревизии контракта.",
+          "id": "data_contract.version",
+          "metamodel_level": "data_details",
+          "name": "Версия"
+        }
+      ],
+      "category": "data",
+      "description": "Свойство дата-продукта, включающее в себя объект контракта, метрики, целевые значения и многоуровневую модель ответственности (матрицу эскалации) и любую дополнительную документацию. Формальное, подлежащее контролю исполнения соглашение между владельцем/поставщиком и потребителями Дата Продукта, которое устанавливает взаимные обязательства и регламенты взаимодействия, включая требования к качеству, надежности, своевременности, предсказуемости и управляемости данных.",
+      "id": "data_contract",
+      "metamodel_level": "data_details",
+      "name": "Data Contract",
+      "name_ru": "Дата Контракт",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "С какой бизнес-сущностью связан объект.",
+          "id": "data_object.business_entity_id",
+          "metamodel_level": "data_details",
+          "name": "Бизнес-сущность"
+        },
+        {
+          "description": "Краткое назначение объекта.",
+          "id": "data_object.description",
+          "metamodel_level": "data_details",
+          "name": "Описание"
+        },
+        {
+          "description": "Физическое представление объекта данных.",
+          "enum_values": [
+            "Data_Table",
+            "File",
+            "ML_Model",
+            "Notebook",
+            "Report",
+            "Topic"
+          ],
+          "id": "data_object.object_type",
+          "metamodel_level": "data_details",
+          "name": "Тип объекта данных"
+        },
+        {
+          "description": "Ответственный за содержание объекта.",
+          "id": "data_object.owner_id",
+          "metamodel_level": "business_details",
+          "name": "Владелец"
+        },
+        {
+          "description": "Формальный язык описания структуры данных.",
+          "enum_values": [
+            "avro",
+            "json_schema",
+            "parquet",
+            "protobuf",
+            "sql_ddl"
+          ],
+          "id": "data_object.schema_format",
+          "metamodel_level": "data_details",
+          "name": "Формат схемы данных"
+        },
+        {
+          "description": "Ссылка на формальное описание структуры данных.",
+          "id": "data_object.schema_url",
+          "metamodel_level": "data_details",
+          "name": "URL схемы данных"
+        }
+      ],
+      "category": "data",
+      "description": "Атомарная сущность, которая хранит в себе информацию в рамках Дата Продукта или технического решения. Имеющее разное физическое представление.",
+      "id": "data_object",
+      "metamodel_level": "data_details",
+      "name": "Data Object",
+      "name_ru": "Объект данных",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Набор параметров запуска.",
+          "id": "data_process.config_parameters",
+          "metamodel_level": "solution_details",
+          "name": "Конфигурация"
+        },
+        {
+          "description": "Cron/airflow расписание выполнения.",
+          "id": "data_process.schedule",
+          "metamodel_level": "solution_details",
+          "name": "Расписание"
+        },
+        {
+          "description": "ETL, ELT, streaming и т.п.",
+          "id": "data_process.type",
+          "metamodel_level": "solution_details",
+          "name": "Тип пайплайна"
+        }
+      ],
+      "category": "data",
+      "description": "Формализованная, управляемая, повторяемая или непрерывная последовательность вычислительных шагов над дата-объектами, которая может, но не обязана порождать новый дата-объект или изменять существующий дата-объект (один или несколько). Может, но не обязана порождать side-effects: индикаторы, логи, и т.д.",
+      "id": "data_process",
+      "metamodel_level": "data_details",
+      "name": "Data Process",
+      "name_ru": "Дата-процесс",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "К какому домену относится дата-продукт.",
+          "id": "data_product.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        },
+        {
+          "description": "Ссылка на контракт с потребителями.",
+          "id": "data_product.data_contract_id",
+          "metamodel_level": "data_details",
+          "name": "Дата-контракт"
+        },
+        {
+          "description": "Основной объект данных, который реализует продукт.",
+          "id": "data_product.data_object_id",
+          "metamodel_level": "data_details",
+          "name": "Data Object"
+        },
+        {
+          "description": "Орг-единица или роль, отвечающая за данные.",
+          "id": "data_product.data_owner_id",
+          "metamodel_level": "business_details",
+          "name": "Владелец данных"
+        },
+        {
+          "description": "Целевой лаг обновления данных.",
+          "id": "data_product.freshness_sla",
+          "metamodel_level": "data_details",
+          "name": "SLA по актуальности"
+        },
+        {
+          "description": "Например: draft / active / deprecated / retired.",
+          "id": "data_product.lifecycle_status",
+          "metamodel_level": "data_details",
+          "name": "Статус жизненного цикла"
+        },
+        {
+          "description": "Роль/функция, ответственная за качество и эволюцию дата-продукта.",
+          "id": "data_product.owner",
+          "metamodel_level": "data_details",
+          "name": "Data Owner"
+        },
+        {
+          "description": "Ответственный бизнес-владелец дата-продукта.",
+          "id": "data_product.owner_id",
+          "metamodel_level": "data_details",
+          "name": "Владелец (DOA)"
+        },
+        {
+          "description": "Классификационный уровень конфиденциальности данных, определяющий правила обработки, хранения и передачи.",
+          "id": "data_product.sensitive_level",
+          "metamodel_level": "data_details",
+          "name": "Категория чувствительной информации"
+        },
+        {
+          "description": "Критичность поддержки и SLA.",
+          "id": "data_product.tier",
+          "metamodel_level": "business_details",
+          "name": "Tier продукта"
+        }
+      ],
+      "category": "data",
+      "description": "Объединение дата-сущностей и процессов/сущностей, производных от данных. Имеет все свойства продукта: бизнес-цель, пользователи, владелец, жизненный цикл. Автономный, доступный для обнаружения и повторного использования набор дата-объектов, снабженный всеми необходимыми метаданными и механизмами доступа, который создается для решения конкретных бизнес-задач и предоставляет измеримую ценность своим потребителям.",
+      "id": "data_product",
+      "metamodel_level": "data_details",
+      "name": "Data Product",
+      "name_ru": "Дата Продукт",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Таблица, использующая схему.",
+          "id": "data_schema.data_table_id",
+          "metamodel_level": "data_details",
+          "name": "Таблица"
+        },
+        {
+          "description": "Текстовое описание или документ схемы.",
+          "id": "data_schema.definition",
+          "metamodel_level": "data_details",
+          "name": "Определение"
+        },
+        {
+          "description": "Топик, к которому относится схема.",
+          "id": "data_schema.topic_id",
+          "metamodel_level": "data_details",
+          "name": "Топик"
+        },
+        {
+          "description": "Например, relational, avro, json.",
+          "id": "data_schema.type",
+          "metamodel_level": "data_details",
+          "name": "Тип схемы"
+        }
+      ],
+      "category": "metadata",
+      "description": "Формальное описание структуры данных (DDL, Avro, JSON Schema), применимое к таблицам, топикам и иным ресурсам.",
+      "id": "data_schema",
+      "metamodel_level": "data_details",
+      "name": "Data Schema",
+      "name_ru": "Схема данных",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "data",
+      "description": "Обязательство на поставку данных в целевую систему, состоящее из набора атрибутов, их типов и описаний, которые определяют схему и формат. Включает согласованный набор правил изменения схем, соответствие требованиям backward-валидации, согласование изменений и алерты при нарушении схемы.",
+      "id": "delivery_contract",
+      "metamodel_level": "component_details",
+      "name": "Delivery Contract",
+      "name_ru": "Контракт на поставку",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Подразделение, к которому относится сотрудник (organizational_unit).",
+          "id": "employee.department",
+          "metamodel_level": "business_details",
+          "name": "Подразделение"
+        },
+        {
+          "description": "Уникальный идентификатор сотрудника в HR-системе.",
+          "id": "employee.employee_id",
+          "metamodel_level": "business_details",
+          "name": "Табельный номер"
+        },
+        {
+          "description": "Дата приёма сотрудника в банк.",
+          "id": "employee.hire_date",
+          "metamodel_level": "business_details",
+          "name": "Дата приёма"
+        },
+        {
+          "description": "Формальная должность сотрудника.",
+          "id": "employee.position",
+          "metamodel_level": "business_details",
+          "name": "Должность"
+        }
+      ],
+      "category": "people",
+      "description": "Физическое лицо, состоящее в трудовых отношениях с банком.",
+      "id": "employee",
+      "metamodel_level": "business_details",
+      "name": "Employee",
+      "name_ru": "Сотрудник",
+      "status": "draft"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Тип события: business, system, data, security.",
+          "id": "event.event_type",
+          "metamodel_level": "solution_details",
+          "name": "Event Type",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Временная метка события (UTC, ISO 8601).",
+          "id": "event.occurred_at",
+          "metamodel_level": "solution_details",
+          "name": "Occurred At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Детали события в формате JSON: идентификатор объекта, старый/новый статус, значения метрик.",
+          "id": "event.payload",
+          "metamodel_level": "solution_details",
+          "name": "Payload",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Опциональная оценка серьёзности события: info, warning, error, critical.",
+          "id": "event.severity",
+          "metamodel_level": "solution_details",
+          "name": "Severity",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Система или компонент, зафиксировавший событие.",
+          "id": "event.source",
+          "metamodel_level": "solution_details",
+          "name": "Source",
+          "required": true
+        }
+      ],
+      "category": "operational",
+      "description": "Факт наступления значимого изменения состояния в рамках бизнес-процесса, работы системы или жизненного цикла данных, который фиксируется, имеет временную метку и может служить триггером для других процессов, уведомлений или аналитики.",
+      "id": "event",
+      "metamodel_level": "solution_details",
+      "name": "Event",
+      "name_ru": "Событие",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Ключевой показатель, по которому измеряется достижение цели.",
+          "id": "goal.kpi",
+          "metamodel_level": "strategic_view",
+          "name": "KPI"
+        },
+        {
+          "description": "Стейкхолдер, отвечающий за достижение цели.",
+          "id": "goal.owner",
+          "metamodel_level": "strategic_view",
+          "name": "Владелец цели"
+        },
+        {
+          "description": "Идентификатор вышестоящей цели в иерархии.",
+          "id": "goal.parent_goal_id",
+          "metamodel_level": "strategic_view",
+          "name": "Родительская цель"
+        },
+        {
+          "description": "Статус цели: draft | active | achieved | abandoned.",
+          "id": "goal.status",
+          "metamodel_level": "strategic_view",
+          "name": "Статус"
+        },
+        {
+          "description": "Дата, к которой цель должна быть достигнута.",
+          "id": "goal.target_date",
+          "metamodel_level": "strategic_view",
+          "name": "Целевая дата"
+        }
+      ],
+      "category": "goal",
+      "description": "Будущий результат деятельности банка, отвечающий интересам его акционеров.",
+      "id": "goal",
+      "metamodel_level": "strategic_view",
+      "name": "Goal",
+      "name_ru": "Цель",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Какой продукт затронут.",
+          "id": "incident.data_product_id",
+          "metamodel_level": "data_details",
+          "name": "Дата-продукт"
+        },
+        {
+          "description": "Проверка, вызвавшая инцидент.",
+          "id": "incident.dq_check_id",
+          "metamodel_level": "component_details",
+          "name": "DQ-проверка"
+        },
+        {
+          "description": "Запуск, к которому относится инцидент.",
+          "id": "incident.pipeline_run_id",
+          "metamodel_level": "solution_details",
+          "name": "Запуск пайплайна"
+        },
+        {
+          "description": "Классификация влияния.",
+          "id": "incident.severity",
+          "metamodel_level": "solution_details",
+          "name": "Серьёзность"
+        },
+        {
+          "description": "Этап обработки инцидента.",
+          "id": "incident.status",
+          "metamodel_level": "solution_details",
+          "name": "Статус"
+        },
+        {
+          "description": "Краткое описание инцидента.",
+          "id": "incident.title",
+          "metamodel_level": "solution_details",
+          "name": "Название"
+        }
+      ],
+      "category": "operational",
+      "description": "Зарегистрированное событие, которое указывает на нарушение в работе системы, качестве данных или процессе поставки данных, требующее реакции и разрешения.",
+      "id": "incident",
+      "metamodel_level": "solution_details",
+      "name": "Incident",
+      "name_ru": "Инцидент",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Что передаётся в потоке.",
+          "id": "information_flow.business_object_id",
+          "metamodel_level": "data_details",
+          "name": "Бизнес-объект"
+        }
+      ],
+      "category": "integration",
+      "description": "Канал передачи данных бизнес-сущности(ей) или команд от системы-источника к системе-приемнику.",
+      "id": "information_flow",
+      "metamodel_level": "solution_details",
+      "name": "Information Flow",
+      "name_ru": "Информационный поток",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Окружение размещения: prod | staging | dev | test | dr.",
+          "id": "infra_resource.environment",
+          "metamodel_level": "infrastructure_details",
+          "name": "Окружение"
+        },
+        {
+          "description": "ЦОД, регион или зона доступности, где физически размещён ресурс.",
+          "id": "infra_resource.location",
+          "metamodel_level": "infrastructure_details",
+          "name": "Локация"
+        },
+        {
+          "description": "Поставщик инфраструктуры (on-prem, имя облачного провайдера, hosting-партнёра).",
+          "id": "infra_resource.provider",
+          "metamodel_level": "infrastructure_details",
+          "name": "Провайдер"
+        },
+        {
+          "description": "Класс инфраструктурного ресурса: server | vm | container | pod | cluster | bare_metal | network_device.",
+          "id": "infra_resource.type",
+          "metamodel_level": "infrastructure_details",
+          "name": "Тип CI"
+        }
+      ],
+      "category": "infrastructure",
+      "description": "Управляемая физическая или виртуальная единица ИТ-среды (сервер, ВМ, контейнер, под, кластер), имеющая уникальный идентификатор и связи с другими CI. Формирует граф зависимостей для impact analysis. В отличие от logical_resource, описывает компонент инфраструктуры, а не предоставляемый им логический ресурс (БД, очередь, бакет).",
+      "id": "infra_resource",
+      "metamodel_level": "infrastructure_details",
+      "name": "Configuration Item",
+      "name_ru": "Конфигурационная единица",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Компонент, где реализована интеграция.",
+          "id": "integration.component_id",
+          "metamodel_level": "component_details",
+          "name": "Компонент"
+        },
+        {
+          "description": "Важность интеграции.",
+          "id": "integration.tier",
+          "metamodel_level": "solution_details",
+          "name": "Критичность"
+        }
+      ],
+      "category": "integration",
+      "description": "Технические компоненты, реализующие взаимодействие (инфопотоки) между ИС. В описании интеграции могут описываться используемые Ресурсы (Resource).",
+      "id": "integration",
+      "metamodel_level": "solution_details",
+      "name": "Integration",
+      "name_ru": "Интеграция",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "many",
+          "data_type": "string",
+          "description": "Альтернативное «неофициальное» наименование. Используется только для поиска и не используется в процессах управления системой. Может содержать исторические наименования.",
+          "id": "it_system.alt_name",
+          "metamodel_level": "solution_details",
+          "name": "Alternative Name",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "ИТ-система обрабатывает любые карточные данные либо непосредственно подключена к системам, которые их обрабатывают.",
+          "id": "it_system.applicability_pci_dss",
+          "metamodel_level": "solution_details",
+          "name": "Applicability of PCI DSS",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Интервал чч.мм-чч.мм использования приложения в бизнес-процессах.",
+          "id": "it_system.application_operational_time",
+          "metamodel_level": "solution_details",
+          "name": "Application Operational Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Тип информационной системы.",
+          "id": "it_system.application_type",
+          "metamodel_level": "solution_details",
+          "name": "Application Type",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Подпадает ли система под аудит PCI DSS.",
+          "id": "it_system.audit_pci_dss",
+          "metamodel_level": "solution_details",
+          "name": "PCI DSS Audit",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Класс доступности системы согласно политикам и методологии RBI.",
+          "id": "it_system.availability_class",
+          "metamodel_level": "solution_details",
+          "name": "Availability Class",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Целевое значение доступности системы за год, выраженное в %.",
+          "id": "it_system.availability_percent",
+          "metamodel_level": "solution_details",
+          "name": "Availability (%)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень доступности системы, определяющий требования к RTP, RPO, Availability % и Availability Class.",
+          "id": "it_system.availability_tier",
+          "metamodel_level": "solution_details",
+          "name": "Availability Tier",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли в системе сведения, составляющие банковскую тайну.",
+          "id": "it_system.bank_secret",
+          "metamodel_level": "solution_details",
+          "name": "Bank Secret",
+          "required": false
+        },
+        {
+          "description": "Бизнес-способность, которую поддерживает система.",
+          "id": "it_system.business_capability_id",
+          "metamodel_level": "strategic_view",
+          "name": "Способность"
+        },
+        {
+          "description": "Домены, которые покрывает система.",
+          "id": "it_system.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Ответственный представитель бизнес-владельца.",
+          "id": "it_system.business_owner_delegate_id",
+          "metamodel_level": "solution_details",
+          "name": "Business Owner Delegate",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Контактное лицо Бизнеса, ответственное за использование системы. Product Owner команды-владельца или руководитель направления, которое делает систему (B-2).",
+          "id": "it_system.business_owner_employee_id",
+          "metamodel_level": "solution_details",
+          "name": "Business Owner",
+          "ref_kind": "employee",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Участвует ли система в процессе выпуска именных пластиковых карт Райффайзенбанком.",
+          "id": "it_system.card_personalization",
+          "metamodel_level": "solution_details",
+          "name": "Card Personalization",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли в системе сведения, составляющие коммерческую тайну.",
+          "id": "it_system.commercial_secret",
+          "metamodel_level": "solution_details",
+          "name": "Commercial Secret",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Категория значимости объектов критической информационной инфраструктуры согласно 187-ФЗ.",
+          "id": "it_system.critical_infrastructure_level",
+          "metamodel_level": "solution_details",
+          "name": "Critical Infrastructure Level",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень конфиденциальности данных, обрабатываемых в системе или планируемых к обработке после ввода в эксплуатацию.",
+          "id": "it_system.data_classification_level",
+          "metamodel_level": "solution_details",
+          "name": "Data Classification Level",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Перевод описания на английский.",
+          "id": "it_system.description_eng",
+          "metamodel_level": "solution_details",
+          "name": "Description (English)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Краткое, понятное описание функциональности ПО. Зачем нужна система, какую проблему решает, частью чего является, какую систему заменяет.",
+          "id": "it_system.description_text",
+          "metamodel_level": "solution_details",
+          "name": "Description",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Архитектор, ответственный за развитие и интеграцию системы в архитектуру банка.",
+          "id": "it_system.enterprise_architect_id",
+          "metamodel_level": "solution_details",
+          "name": "Enterprise Architect",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Полное наименование системы. Должно раскрывать бизнес-смысл. Если система покупная — следует добавить вендорское наименование.",
+          "id": "it_system.full_name",
+          "metamodel_level": "solution_details",
+          "name": "Full Name",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Перевод полного наименования на английский.",
+          "id": "it_system.full_name_eng",
+          "metamodel_level": "solution_details",
+          "name": "Full Name (English)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Является ли система решением по информационной безопасности.",
+          "id": "it_system.infosec_solution",
+          "metamodel_level": "solution_details",
+          "name": "InfoSec Solution",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатывается ли в системе инсайдерская информация.",
+          "id": "it_system.insider_information",
+          "metamodel_level": "solution_details",
+          "name": "Insider Information",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Класс целостности данных, обрабатываемых системой.",
+          "id": "it_system.integrity_class",
+          "metamodel_level": "solution_details",
+          "name": "Integrity Class",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Доступна ли система из сети Интернет.",
+          "id": "it_system.internet_facing",
+          "metamodel_level": "solution_details",
+          "name": "Internet Facing",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Контактное лицо ИТ, ответственное за развитие и эксплуатацию системы. TechLead команды или сотрудник с ролью ответственного за развитие и поддержку.",
+          "id": "it_system.it_owner_employee_id",
+          "metamodel_level": "solution_details",
+          "name": "IT Owner",
+          "ref_kind": "employee",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Юридическое лицо-владелец. Заполняется только для ПО от юр.лиц. группы, не являющихся РайффайзенБанком.",
+          "id": "it_system.legal_entity_org_unit_id",
+          "metamodel_level": "solution_details",
+          "name": "Legal Entity",
+          "ref_kind": "organizational_unit",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень критичности системы в методологии MB.",
+          "id": "it_system.mb_criticality",
+          "metamodel_level": "solution_details",
+          "name": "MB Criticality",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Короткое наименование системы — слово, словосочетание или аббревиатура. Должно быть кратким, удобно произносимым, не вызывать путаницы с именами существующих систем и общеупотребительными словами.",
+          "id": "it_system.name_short",
+          "metamodel_level": "solution_details",
+          "name": "Short Name",
+          "required": true
+        },
+        {
+          "description": "Подразделение, ответственное за систему.",
+          "id": "it_system.org_unit_id",
+          "metamodel_level": "strategic_view",
+          "name": "Орг. единица"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатывается ли в системе иная конфиденциальная информация.",
+          "id": "it_system.other_confidential_information",
+          "metamodel_level": "solution_details",
+          "name": "Other Confidential Information",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Команда, осуществляющая разработку и развитие системы.",
+          "id": "it_system.owner_team_id",
+          "metamodel_level": "solution_details",
+          "name": "Owner Team",
+          "ref_kind": "team",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли данные банковских карт (PAN, cardholder name, дата истечения, service code, CAV2/CVC2/CVV2/CID, PIN).",
+          "id": "it_system.payment_card_information",
+          "metamodel_level": "solution_details",
+          "name": "Payment Card Information",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли данные карт, выпущенных другими банками. Определяется по BIN карты.",
+          "id": "it_system.pci_other_bank",
+          "metamodel_level": "solution_details",
+          "name": "PCI Other Bank",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли данные карт, выпущенных Райффайзенбанком. Определяется по первым шести цифрам номера карты (BIN).",
+          "id": "it_system.pci_raiffeisen",
+          "metamodel_level": "solution_details",
+          "name": "PCI Raiffeisen",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Обрабатываются ли в системе персональные данные.",
+          "id": "it_system.personal_data",
+          "metamodel_level": "solution_details",
+          "name": "Personal Data",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Допустимый период возможных потерь данных в случае сбоя (RPO).",
+          "id": "it_system.rpo_bcp",
+          "metamodel_level": "solution_details",
+          "name": "Recovery Point Objective (BCP & Support)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Допустимое время простоя системы в случае сбоя (RTO).",
+          "id": "it_system.rto_bcp",
+          "metamodel_level": "solution_details",
+          "name": "Recovery Time Objective (BCP & Support)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Руководитель подразделения поддержки или штатный сотрудник, выполняющий ИТ-поддержку. Контактное лицо по техническим вопросам, авариям, проблемам и согласованиям CRQ.",
+          "id": "it_system.support_expert_1_id",
+          "metamodel_level": "solution_details",
+          "name": "Support Expert 1",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Представитель ответственного за поддержку. Контактное лицо при недоступности эксперта поддержки.",
+          "id": "it_system.support_expert_2_id",
+          "metamodel_level": "solution_details",
+          "name": "Support Expert 2 (Deputy)",
+          "ref_kind": "employee",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Группа поддержки, на которую назначаются задачи по системе (аварии, инциденты, уведомления).",
+          "id": "it_system.support_group",
+          "metamodel_level": "solution_details",
+          "name": "Support Group",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Присутствует любое взаимодействие с системами, которые находятся в контуре PCI DSS.",
+          "id": "it_system.system_interacts_with_pci_dss",
+          "metamodel_level": "solution_details",
+          "name": "System Interacts with PCI DSS",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Этап жизненного цикла ПО: plan / build / run / retire / decommissioned.",
+          "id": "it_system.target_state",
+          "metamodel_level": "solution_details",
+          "name": "Target State",
+          "required": false
+        },
+        {
+          "description": "Критичность системы.",
+          "id": "it_system.tier",
+          "metamodel_level": "solution_details",
+          "name": "Tier"
+        }
+      ],
+      "category": "application",
+      "description": "Набор ПО, реализующий логически связанный набор функциональности для выполнения необходимых бизнес- или технологических задач. Под функциональностью ИС, в ряде случаев, могут пониматься конкретные микросервисы ИС.",
+      "id": "it_system",
+      "metamodel_level": "solution_details",
+      "name": "IT System",
+      "name_ru": "Информационная система",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "stakeholder",
+      "description": "Задача или потребность клиента (Jobs-to-be-Done, JTBD), которую он стремится решить, обращаясь к продуктам и услугам банка. Формулируется с точки зрения клиента и служит основой для проектирования value stream'ов.",
+      "id": "job",
+      "metamodel_level": "strategic_view",
+      "name": "Job",
+      "name_ru": "Job (клиентская задача)",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Домен, в котором оперирует семейство.",
+          "id": "job_family.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        }
+      ],
+      "category": "business_structure",
+      "description": "Группа ролей/должностей, в рамках которой продаются продукты банка.",
+      "id": "job_family",
+      "metamodel_level": "strategic_view",
+      "name": "Job Family",
+      "name_ru": "Job Family",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Система, владеющая ресурсом. Денормализация для быстрого поиска.",
+          "id": "logical_resource.it_system_id",
+          "metamodel_level": "solution_details",
+          "name": "ИТ-система"
+        },
+        {
+          "description": "DB, Namespace, Bucket, Topic или Queue.",
+          "enum_values": [
+            "Bucket",
+            "DB",
+            "Namespace",
+            "Queue",
+            "Topic"
+          ],
+          "id": "logical_resource.resource_kind",
+          "metamodel_level": "infrastructure_details",
+          "name": "Тип ресурса"
+        },
+        {
+          "description": "Примеры: DB, Namespace, Bucket, Topic, Queue, Schema Registry.",
+          "id": "logical_resource.resource_type",
+          "metamodel_level": "solution_details",
+          "name": "Детальный тип"
+        },
+        {
+          "description": "БД, брокер сообщений, файловое хранилище и т.д.",
+          "id": "logical_resource.type",
+          "metamodel_level": "solution_details",
+          "name": "Тип ресурса"
+        }
+      ],
+      "category": "infrastructure",
+      "description": "Логический инфраструктурный ресурс, который потребляет компонент: база данных, namespace, очередь, топик, бакет, файловое хранилище. Описывает «что предоставляется», а не «на чём это размещено» — последнее моделируется через infra_resource (CI).",
+      "id": "logical_resource",
+      "metamodel_level": "infrastructure_details",
+      "name": "Logical Resource",
+      "name_ru": "Логический ресурс",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Описание алгоритма или формулы вычисления значения метрики.",
+          "id": "metric.calculation_logic",
+          "metamodel_level": "data_details",
+          "name": "Формула расчёта"
+        },
+        {
+          "description": "Откуда берутся значения метрики (data_object, data_process, внешний источник).",
+          "id": "metric.data_source",
+          "metamodel_level": "data_details",
+          "name": "Источник данных"
+        },
+        {
+          "description": "Единица измерения значения (%, секунды, штуки, рубли и т.д.).",
+          "id": "metric.measurement_unit",
+          "metamodel_level": "data_details",
+          "name": "Единица измерения"
+        },
+        {
+          "description": "Тип метрики: business | technical | quality | performance | sla.",
+          "id": "metric.type",
+          "metamodel_level": "data_details",
+          "name": "Тип метрики"
+        }
+      ],
+      "category": "metric",
+      "description": "Измеримый показатель состояния бизнес-процессов, дата-объектов, процессов или технических систем. Используется как объективная основа мониторинга, контроля и управления, а также для привязки к требованиям и SLA.",
+      "id": "metric",
+      "metamodel_level": "data_details",
+      "name": "Metric",
+      "name_ru": "Метрика",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Домен, за который отвечает единица.",
+          "id": "organizational_unit.business_domain_id",
+          "metamodel_level": "strategic_view",
+          "name": "Бизнес-домен"
+        },
+        {
+          "description": "Иерархия оргструктуры.",
+          "id": "organizational_unit.parent_org_unit_id",
+          "metamodel_level": "strategic_view",
+          "name": "Родительская единица"
+        },
+        {
+          "description": "Департамент, управление, команда и т.д.",
+          "id": "organizational_unit.type",
+          "metamodel_level": "strategic_view",
+          "name": "Тип"
+        }
+      ],
+      "category": "business_structure",
+      "description": "Формальная структурная часть банка (job family, департамент, отдел, филиал, бизнес- или операционная функция), обладающая определенными ролями, ответственностью и ресурсами для выполнения бизнес-функций.",
+      "id": "organizational_unit",
+      "metamodel_level": "strategic_view",
+      "name": "Organisational Unit",
+      "name_ru": "Организационная единица",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Условия, при которых требование считается выполненным.",
+          "id": "requirement.acceptance_criteria",
+          "metamodel_level": "business_details",
+          "name": "Критерии приёмки"
+        },
+        {
+          "description": "Приоритет требования: must | should | could | wont (MoSCoW).",
+          "id": "requirement.priority",
+          "metamodel_level": "business_details",
+          "name": "Приоритет"
+        },
+        {
+          "description": "Источник требования: stakeholder, regulator, business case, incident.",
+          "id": "requirement.source",
+          "metamodel_level": "business_details",
+          "name": "Источник"
+        },
+        {
+          "description": "Статус: draft | approved | implemented | deprecated.",
+          "id": "requirement.status",
+          "metamodel_level": "business_details",
+          "name": "Статус"
+        }
+      ],
+      "category": "governance",
+      "description": "Формализованная и измеримая потребность, условие или критерий, которые должны быть выполнены для объекта (системы, данных, процесса, продукта и т.д.) для достижения бизнес-целей, соответствия стандартам качества, нормативным актам или техническим спецификациям.",
+      "id": "requirement",
+      "metamodel_level": "business_details",
+      "name": "Requirement",
+      "name_ru": "Требование",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Обязательные меры защиты и инструкции по обращению с данными соответствующего уровня.",
+          "id": "sensitivity_level.handling_rules",
+          "metamodel_level": "data_details",
+          "name": "Handling Rules",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Короткий идентификатор уровня (public, internal, restricted, confidential, secret).",
+          "id": "sensitivity_level.level_code",
+          "metamodel_level": "data_details",
+          "name": "Level Code",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Русское название уровня для UI.",
+          "id": "sensitivity_level.name_ru",
+          "metamodel_level": "data_details",
+          "name": "Russian Label",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Ссылки на регуляторные требования (152-ФЗ, GDPR, PCI DSS).",
+          "id": "sensitivity_level.regulatory_basis",
+          "metamodel_level": "data_details",
+          "name": "Regulatory Basis",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Требуется ли шифрование при передаче и хранении данных.",
+          "id": "sensitivity_level.required_encryption",
+          "metamodel_level": "data_details",
+          "name": "Requires Encryption",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Срок и условия хранения данных соответствующего уровня.",
+          "id": "sensitivity_level.retention_policy",
+          "metamodel_level": "data_details",
+          "name": "Retention Policy",
+          "required": false
+        }
+      ],
+      "category": "governance",
+      "description": "Классификационный уровень, который определяет степень конфиденциальности данных и предписывает правила их обработки, хранения и передачи.",
+      "id": "sensitivity_level",
+      "metamodel_level": "data_details",
+      "name": "Sensitivity Level",
+      "name_ru": "Категория чувствительной информации",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Целевое значение метрики, обязательство по поддержанию.",
+          "id": "sla.metric_target",
+          "metamodel_level": "solution_details",
+          "name": "Целевое значение"
+        },
+        {
+          "description": "Последствия нарушения SLA: финансовые санкции, эскалация, переоформление контракта.",
+          "id": "sla.penalty",
+          "metamodel_level": "solution_details",
+          "name": "Штраф / последствия"
+        },
+        {
+          "description": "Максимальное время от регистрации инцидента до его разрешения.",
+          "id": "sla.resolution_time",
+          "metamodel_level": "solution_details",
+          "name": "Время разрешения"
+        },
+        {
+          "description": "Максимальное время от регистрации инцидента до начала работ.",
+          "id": "sla.response_time",
+          "metamodel_level": "solution_details",
+          "name": "Время реакции"
+        }
+      ],
+      "category": "governance",
+      "description": "Обязательство по реагированию и разрешению инцидентов, связанных с нарушением требования/ий (или соглашения/ий). Формализует ответственность определенной организационной единицы за поддержание объекта в целевом состоянии, соответствующем заданным требованиям (соглашениям).",
+      "id": "sla",
+      "metamodel_level": "solution_details",
+      "name": "Service Level Agreement",
+      "name_ru": "Соглашение об уровне поддержки",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "source_tracking",
+      "description": "Описывает источник, из которого получаются, обновляются или синхронизируются сущности Компонент ИС или Схема данных. Фиксирует, откуда этот Компонент ИС или Схема берется, где находится первичное описание и/или код.",
+      "id": "source",
+      "metamodel_level": "component_details",
+      "name": "Source",
+      "name_ru": "Источник",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Тип: product | platform | enabling | stream-aligned | complicated-subsystem.",
+          "id": "team.kind",
+          "metamodel_level": "business_details",
+          "name": "Тип команды"
+        },
+        {
+          "description": "Сотрудник, выполняющий роль лидера команды.",
+          "id": "team.lead",
+          "metamodel_level": "business_details",
+          "name": "Руководитель"
+        },
+        {
+          "description": "Краткая формулировка зоны ответственности команды.",
+          "id": "team.mission",
+          "metamodel_level": "business_details",
+          "name": "Миссия"
+        },
+        {
+          "description": "Текущее количество сотрудников в команде.",
+          "id": "team.size",
+          "metamodel_level": "business_details",
+          "name": "Размер"
+        }
+      ],
+      "category": "people",
+      "description": "Кросс-функциональное объединение сотрудников, созданное для решения конкретных задач, владения продуктом или сервиса (agile-подход).",
+      "id": "team",
+      "metamodel_level": "business_details",
+      "name": "Team",
+      "name_ru": "Команда",
+      "status": "draft"
+    },
+    {
+      "attributes": [],
+      "category": "technology",
+      "description": "Сущность, описывающая технологию или техническое средство, используемое при реализации Компонента ИС или Ресурса. Описывает с помощью какой технологии реализован и эксплуатируется Компонент ИС или Ресурс.",
+      "id": "technology",
+      "metamodel_level": "component_details",
+      "name": "Technology",
+      "name_ru": "Технология",
+      "status": "stub"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Каким показателем измеряется поставка ценности.",
+          "id": "value.measurement",
+          "metamodel_level": "strategic_view",
+          "name": "Метрика измерения"
+        },
+        {
+          "description": "Сегмент клиентов или стейкхолдеров, для которых формируется ценность.",
+          "id": "value.target_audience",
+          "metamodel_level": "strategic_view",
+          "name": "Целевая аудитория"
+        },
+        {
+          "description": "Тип ценности: monetary | functional | emotional | social | regulatory.",
+          "id": "value.type",
+          "metamodel_level": "strategic_view",
+          "name": "Тип ценности"
+        }
+      ],
+      "category": "value_definition",
+      "description": "Полезный и значимый результат, который банк создает для своих клиентов, акционеров, сотрудников или других стейкхолдеров через свои продукты, услуги, процессы и взаимодействия, способствуя достижению стратегических целей и устойчивому развитию.",
+      "id": "value",
+      "metamodel_level": "strategic_view",
+      "name": "Value Proposition",
+      "name_ru": "Ценность",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Через какой канал потребитель получает ценность.",
+          "id": "value_consumer.channel_id",
+          "metamodel_level": "business_details",
+          "name": "Канал взаимодействия"
+        },
+        {
+          "description": "Привязка к сегменту, который представляет потребитель.",
+          "id": "value_consumer.customer_segment_id",
+          "metamodel_level": "strategic_view",
+          "name": "Клиентский сегмент"
+        },
+        {
+          "description": "Категория получателя ценности (клиент, партнёр, внутренний пользователь).",
+          "id": "value_consumer.type",
+          "metamodel_level": "business_details",
+          "name": "Тип потребителя"
+        },
+        {
+          "description": "Какую ценность потребитель ожидает или получает.",
+          "id": "value_consumer.value_id",
+          "metamodel_level": "strategic_view",
+          "name": "Ценность"
+        }
+      ],
+      "category": "stakeholder",
+      "description": "Лицо, группа лиц или организация (внутренний или внешний стейкхолдер), которая получает, использует или извлекает выгоду из создаваемой банком ценности через продукты, услуги, процессы или взаимодействия.",
+      "id": "value_consumer",
+      "metamodel_level": "business_details",
+      "name": "Value Consumer",
+      "name_ru": "Потребитель ценности",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Уникальный идентификатор потока ценности.",
+          "id": "value_stream.code",
+          "metamodel_level": "business_details",
+          "name": "Code",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Тип потребителя ценности.",
+          "id": "value_stream.consumer_type",
+          "metamodel_level": "business_details",
+          "name": "Consumer Type",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата создания записи.",
+          "id": "value_stream.created_at",
+          "metamodel_level": "business_details",
+          "name": "Created At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень критичности потока ценности.",
+          "id": "value_stream.criticality",
+          "metamodel_level": "business_details",
+          "name": "Criticality",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "NPS или CSI потребителя.",
+          "id": "value_stream.customer_satisfaction",
+          "metamodel_level": "business_details",
+          "name": "Customer Satisfaction (NPS/CSI)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Время, затрачиваемое на ожидание или задержки.",
+          "id": "value_stream.delay_time",
+          "metamodel_level": "business_details",
+          "name": "Delay Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Доставляемая ценность потребителю.",
+          "id": "value_stream.delivered_value",
+          "metamodel_level": "business_details",
+          "name": "Delivered Value",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Бизнес-домен потока ценности.",
+          "id": "value_stream.domain",
+          "metamodel_level": "business_details",
+          "name": "Business Domain",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Индекс автоматизации потока: отношение автоматизированных FTE этапов к общему количеству FTE этапов.",
+          "id": "value_stream.fai",
+          "metamodel_level": "business_details",
+          "name": "Function Automation Index (FAI)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Процент завершения процесса без ошибок с первой попытки.",
+          "id": "value_stream.first_pass_yield",
+          "metamodel_level": "business_details",
+          "name": "First Pass Yield",
+          "required": false
+        },
+        {
+          "description": "Краткое формулирование результата, который должен получить потребитель.",
+          "id": "value_stream.goal",
+          "metamodel_level": "business_details",
+          "name": "Цель потока"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "boolean",
+          "description": "Управляется ли поток строгим workflow (детерминирован) или допускает управление со стороны AI (недетерминирован).",
+          "id": "value_stream.is_deterministic",
+          "metamodel_level": "business_details",
+          "name": "Is Deterministic",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Job Family, в случае если потребитель — конечный клиент.",
+          "id": "value_stream.job_family_id",
+          "metamodel_level": "business_details",
+          "name": "Job Family",
+          "ref_kind": "job_family",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Общее время от старта до завершения. Lead Time = Process Time + Delay Time.",
+          "id": "value_stream.lead_time",
+          "metamodel_level": "business_details",
+          "name": "Lead Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Уровень зрелости потока ценности.",
+          "id": "value_stream.maturity_level",
+          "metamodel_level": "business_details",
+          "name": "Maturity Level",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Наименование объекта.",
+          "id": "value_stream.name",
+          "metamodel_level": "business_details",
+          "name": "Name",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Операционные издержки потока ценности.",
+          "id": "value_stream.operating_cost",
+          "metamodel_level": "business_details",
+          "name": "Operating Cost",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Подразделение владельца потока ценности.",
+          "id": "value_stream.org_unit_id",
+          "metamodel_level": "business_details",
+          "name": "Organizational Unit",
+          "ref_kind": "organizational_unit",
+          "required": true
+        },
+        {
+          "description": "Роль/должность, ответственная за end-to-end результат.",
+          "id": "value_stream.owner",
+          "metamodel_level": "business_details",
+          "name": "Ответственный за поток"
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Время, затрачиваемое на полезную работу.",
+          "id": "value_stream.process_time",
+          "metamodel_level": "business_details",
+          "name": "Process Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "id",
+          "description": "Связанный банковский продукт, в случае если потребитель — конечный клиент.",
+          "id": "value_stream.product_id",
+          "metamodel_level": "business_details",
+          "name": "Product",
+          "ref_kind": "bank_product",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Ключевые риски потока ценности.",
+          "id": "value_stream.risks",
+          "metamodel_level": "business_details",
+          "name": "Risks",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Цель и основные этапы потока создания ценности.",
+          "id": "value_stream.short_description",
+          "metamodel_level": "business_details",
+          "name": "Short Description",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "enum",
+          "description": "Жизненный цикл записи: draft / production / archive.",
+          "id": "value_stream.status_lifecycle",
+          "metamodel_level": "business_details",
+          "name": "Lifecycle Status",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Уровень автоматизации сквозной обработки: отношение количества экземпляров потока, реализованных полностью автоматически, к общему количеству экземпляров.",
+          "id": "value_stream.stp",
+          "metamodel_level": "business_details",
+          "name": "Straight Through Processing (STP)",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "text",
+          "description": "Потребность или запрос потребителя, запускающая ПСЦ.",
+          "id": "value_stream.trigger",
+          "metamodel_level": "business_details",
+          "name": "Trigger",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Дата последнего изменения записи.",
+          "id": "value_stream.updated_at",
+          "metamodel_level": "business_details",
+          "name": "Updated At",
+          "required": true
+        },
+        {
+          "cardinality": "one",
+          "data_type": "number",
+          "description": "Часть времени обработки, затрачиваемого непосредственно на создание ценности, имеющей значение для потребителя.",
+          "id": "value_stream.value_added_time",
+          "metamodel_level": "business_details",
+          "name": "Value-Added Time",
+          "required": false
+        },
+        {
+          "cardinality": "one",
+          "data_type": "string",
+          "description": "Версия потока создания ценности.",
+          "id": "value_stream.version",
+          "metamodel_level": "business_details",
+          "name": "Version",
+          "required": true
+        }
+      ],
+      "category": "value_delivery",
+      "description": "Сквозная последовательность стадий, включающая все этапы, необходимые для предоставления ценности потребителю.",
+      "id": "value_stream",
+      "metamodel_level": "business_details",
+      "name": "Value Stream",
+      "name_ru": "Поток создания ценности",
+      "status": "active"
+    },
+    {
+      "attributes": [
+        {
+          "description": "Какая бизнес-способность обеспечивает выполнение стадии.",
+          "id": "value_stream_stage.business_capability_id",
+          "metamodel_level": "strategic_view",
+          "name": "Опорная способность"
+        },
+        {
+          "description": "Процесс, реализующий стадию потока ценности.",
+          "id": "value_stream_stage.business_process_id",
+          "metamodel_level": "business_details",
+          "name": "Связанный бизнес-процесс"
+        },
+        {
+          "description": "Идентификатор value creation flow, частью которого является стадия.",
+          "id": "value_stream_stage.value_creation_flow_id",
+          "metamodel_level": "business_details",
+          "name": "Поток создания ценности"
+        }
+      ],
+      "category": "value_delivery",
+      "description": "Логически выделенный и управляемый шаг или группа взаимосвязанных действий в потоке создания ценности, который преобразует входящие ресурсы, данные или бизнес-объекты в более ценное состояние, приближая процесс к достижению конечного результата для потребителя ценности.",
+      "id": "value_stream_stage",
+      "metamodel_level": "business_details",
+      "name": "Value Stream Stage",
+      "name_ru": "Стадия потока создания ценности",
+      "status": "active"
+    },
+    {
+      "attributes": [],
+      "category": "vendor_solution",
+      "description": "Конкретный программный продукт вендора, используемый компонентами или ресурсами, и реализующий одну или несколько технологий.",
+      "id": "vendor_product",
+      "metamodel_level": "component_details",
+      "name": "Vendor Product",
+      "name_ru": "Вендорское ПО",
+      "status": "stub"
+    }
+  ],
+  "model": {
+    "bank_code": "BANK",
+    "model_name": "bank_metamodel_horizontal",
+    "model_version": "2",
+    "profile": "atlas_mvp"
+  },
+  "schema_version": "wave1.type_catalog/v1"
+}

@@ -1,0 +1,42 @@
+{
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "artifact_id": "metamodel_snapshot",
+      "description": "Wave 1 atlas metamodel snapshot",
+      "placeholder": false,
+      "relative_path": "artifacts/metamodel_snapshot.json"
+    },
+    {
+      "artifact_id": "type_catalog",
+      "description": "Wave 1 atlas type catalog",
+      "placeholder": false,
+      "relative_path": "artifacts/type_catalog.json"
+    },
+    {
+      "artifact_id": "relation_catalog",
+      "description": "Wave 1 atlas relation catalog",
+      "placeholder": false,
+      "relative_path": "artifacts/relation_catalog.json"
+    },
+    {
+      "artifact_id": "search_aliases",
+      "description": "Wave 1 atlas search aliases",
+      "placeholder": false,
+      "relative_path": "artifacts/search_aliases.json"
+    },
+    {
+      "artifact_id": "compatibility_report",
+      "description": "Wave 1 atlas compatibility report",
+      "placeholder": false,
+      "relative_path": "artifacts/compatibility_report.md"
+    }
+  ],
+  "bank_code": "BANK",
+  "bundle_kind": "atlas_projection_bundle",
+  "generated_at_utc": "1970-01-01T00:00:00Z",
+  "model_name": "bank_metamodel_horizontal",
+  "model_version": "2",
+  "profile": "atlas_mvp",
+  "schema_version": "wave1.atlas.bundle/v1"
+}
