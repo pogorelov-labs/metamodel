@@ -116,7 +116,7 @@ relation_catalog:
     required_qualifiers: []
     evidence_required: false
     ui_label_out: realized by process
-    ui_label_in: realizes stage
+    ui_label_in: belongs to stage
     ui_group: process
     exportable: true
     status: active
