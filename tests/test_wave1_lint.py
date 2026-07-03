@@ -70,3 +70,26 @@ def test_lint_ambiguous_glossary_alias_collision_case() -> None:
 
     assert any(message.code == "alias_collides_with_canonical" for message in result.warnings)
     assert any(message.code == "alias_ambiguous_target" for message in result.warnings)
+
+
+def test_lint_baseline_clean_of_relation_endpoint_and_label_warnings() -> None:
+    """Regression: plural endpoint nouns (e.g. 'processes' for business_process)
+    and mirrored inverse labels must not raise relation warnings on baseline."""
+    ontology = _load_baseline()
+
+    result = lint_ontology(ontology)
+
+    codes = {message.code for message in result.warnings}
+    assert "relation_id_endpoint_mismatch" not in codes
+    assert "inverse_label_mismatch" not in codes
+
+
+def test_singularize_handles_common_plurals() -> None:
+    from tools.wave1.lint import _singularize
+
+    assert _singularize("processes") == "process"
+    assert _singularize("capabilities") == "capability"
+    assert _singularize("products") == "product"
+    assert _singularize("stages") == "stage"
+    assert _singularize("business") is None  # trailing -ss is not a plural
+    assert _singularize("data") is None  # no trailing -s

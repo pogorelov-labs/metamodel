@@ -124,6 +124,34 @@ def _lint_alias_glossary_consistency(ontology: NormalizedOntology, findings: Lis
     _lint_weak_bilingual_alias_coverage(ontology.glossary_aliases, findings)
 
 
+def _singularize(token: str) -> str | None:
+    """Naive English singular of a token, or None if it is not a plural.
+
+    Lets relation ids use natural plural endpoint nouns (e.g. 'processes' for
+    to_kind 'business_process', 'capabilities' for 'business_capability')
+    without tripping the endpoint-token check.
+    """
+    if token.endswith("ies") and len(token) > 4:
+        return token[:-3] + "y"
+    for suffix in ("ses", "xes", "zes", "ches", "shes"):
+        if token.endswith(suffix) and len(token) > len(suffix):
+            return token[:-2]
+    if token.endswith("s") and not token.endswith("ss") and len(token) > 2:
+        return token[:-1]
+    return None
+
+
+def _endpoint_tokens(name: str) -> set:
+    """Tokens of a snake_case id/kind, expanded with naive singular variants."""
+    tokens: set = set()
+    for token in name.split("_"):
+        tokens.add(token)
+        singular = _singularize(token)
+        if singular:
+            tokens.add(singular)
+    return tokens
+
+
 def _lint_relation_consistency(ontology: NormalizedOntology, findings: List[LintMessage]) -> None:
     catalog = ontology.relation_catalog
     if catalog is None:
@@ -153,8 +181,8 @@ def _lint_relation_consistency(ontology: NormalizedOntology, findings: List[Lint
                     )
                 )
 
-        relation_tokens = set(relation.id.split("_"))
-        if from_kind and not set(from_kind.split("_")) & relation_tokens:
+        relation_tokens = _endpoint_tokens(relation.id)
+        if from_kind and not _endpoint_tokens(from_kind) & relation_tokens:
             findings.append(
                 LintMessage(
                     severity="warning",
@@ -163,7 +191,7 @@ def _lint_relation_consistency(ontology: NormalizedOntology, findings: List[Lint
                     message="relation id does not mention source endpoint tokens",
                 )
             )
-        if to_kind and not set(to_kind.split("_")) & relation_tokens:
+        if to_kind and not _endpoint_tokens(to_kind) & relation_tokens:
             findings.append(
                 LintMessage(
                     severity="warning",
