@@ -8,6 +8,10 @@ from .relation_catalog_validator import validate_relation_catalog
 from .validation_types import ValidationMessage, ValidationResult
 
 _ALLOWED_DIRECTIONS = {"directed", "undirected", "bidirectional"}
+# Normative attribute data_type whitelist. Keep in sync with the "Enforced"
+# list in docs/architecture/attribute_def_contract_v2.md §4.3. Types documented
+# there as "Planned / reserved" (date, datetime, url, urn_ref, external_key,
+# json) are intentionally NOT here until generator/runtime support lands.
 _ALLOWED_VALUE_TYPES = {
     "string",
     "text",
