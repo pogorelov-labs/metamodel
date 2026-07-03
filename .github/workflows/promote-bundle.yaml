@@ -18,7 +18,27 @@ env:
   ATLAS_REPO: pogorelov-labs/rbank-atlas
 
 jobs:
+  # Auto-promotion needs a cross-repo token. Without it the rbank-atlas
+  # checkout fails hard on every run; instead detect the missing secret up
+  # front and skip the promote job gracefully (reports as skipped, not failed).
+  check-token:
+    runs-on: ubuntu-latest
+    outputs:
+      has_token: ${{ steps.check.outputs.has_token }}
+    steps:
+      - name: Check ATLAS_REPO_TOKEN is configured
+        id: check
+        run: |
+          if [ -z "${{ secrets.ATLAS_REPO_TOKEN }}" ]; then
+            echo "::warning::ATLAS_REPO_TOKEN is not configured — skipping promotion. Add a token with write access to ${ATLAS_REPO} to enable auto-promotion."
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          fi
+
   promote:
+    needs: check-token
+    if: needs.check-token.outputs.has_token == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout metamodel
