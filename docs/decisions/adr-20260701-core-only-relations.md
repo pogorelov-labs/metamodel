@@ -4,6 +4,15 @@
 - **Date:** 2026-07-01
 - **Scope:** two-layer mm/rc contract, Rule 3
 
+> **Update — 2026-07-14 (MACWO-670):** two of the core-only relations analysed
+> below — `rel_org_unit_creates_product` and `rel_data_product_contains_data_object`
+> — were removed as legacy duplicates of catalog-era relations
+> (`rel_org_unit_creates_bank_product` and `rel_data_product_contains_object`
+> respectively). The census is therefore now **41** core-only relation_kinds
+> (**35** active-to-active, 6 stub/draft-touching); the two ids are kept in the
+> lists below for historical accuracy. MACWO-670 also corrected 11 inverse-pair
+> cardinality mismatches in the catalog (see `tests/test_model_invariants.py`).
+
 ## Context
 
 The harness emits one standing warning:

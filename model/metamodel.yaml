@@ -4839,14 +4839,6 @@ relation_kinds:
   category: value_delivery
   direction: directed
   description: Ценность продаётся в рамках конкретного банковского продукта.
-- id: rel_org_unit_creates_product
-  name: Org Unit создаёт Bank Product
-  from_kind: organizational_unit
-  to_kind: bank_product
-  metamodel_level: strategic_view
-  category: production
-  direction: directed
-  description: Орг. единица производит и развивает банковский продукт.
 - id: rel_org_unit_achieves_goal
   name: Org Unit достигает Goal
   from_kind: organizational_unit
@@ -5135,14 +5127,6 @@ relation_kinds:
   category: association
   direction: directed
   description: Бизнес-сущность описывает предметную область Дата Продукта.
-- id: rel_data_product_contains_data_object
-  name: Data Product содержит Data Object
-  from_kind: data_product
-  to_kind: data_object
-  metamodel_level: business_details
-  category: aggregation
-  direction: directed
-  description: Дата Продукт агрегирует один или несколько объектов данных.
 - id: rel_data_contract_covers_data_object
   name: Data Contract покрывает Data Object
   from_kind: data_contract

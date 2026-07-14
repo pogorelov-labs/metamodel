@@ -1383,8 +1383,8 @@ relation_catalog:
     to_kind: business_domain
     category: composition
     direction: directed
-    source_cardinality: one
-    target_cardinality: many
+    source_cardinality: many
+    target_cardinality: one
     has_inverse: true
     inverse_relation_id: rel_domain_contains_capability
     is_traversable_by_default: true
@@ -1443,8 +1443,8 @@ relation_catalog:
     to_kind: business_role
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_role_belongs_to_org_unit
     is_traversable_by_default: true
@@ -1564,8 +1564,8 @@ relation_catalog:
     to_kind: business_action
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_action_part_of_operation
     is_traversable_by_default: true
@@ -1624,8 +1624,8 @@ relation_catalog:
     to_kind: business_attribute
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_attribute_describes_entity
     is_traversable_by_default: true
@@ -2044,8 +2044,8 @@ relation_catalog:
     to_kind: job_family
     category: aggregation
     direction: directed
-    source_cardinality: one
-    target_cardinality: many
+    source_cardinality: many
+    target_cardinality: one
     has_inverse: true
     inverse_relation_id: rel_job_family_groups_role
     is_traversable_by_default: true
@@ -2104,8 +2104,8 @@ relation_catalog:
     to_kind: data_object
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_data_object_part_of_product
     is_traversable_by_default: true
@@ -2164,8 +2164,8 @@ relation_catalog:
     to_kind: data_attribute
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_data_attribute_belongs_to_object
     is_traversable_by_default: true
@@ -2404,8 +2404,8 @@ relation_catalog:
     to_kind: api
     category: implementation
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_api_exposed_by_system
     is_traversable_by_default: true
@@ -2464,8 +2464,8 @@ relation_catalog:
     to_kind: api_method
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_api_method_belongs_to_api
     is_traversable_by_default: true
@@ -2524,8 +2524,8 @@ relation_catalog:
     to_kind: api_method_parameter
     category: composition
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_parameter_belongs_to_method
     is_traversable_by_default: true
@@ -2824,8 +2824,8 @@ relation_catalog:
     to_kind: component_instance
     category: implementation
     direction: directed
-    source_cardinality: many
-    target_cardinality: one
+    source_cardinality: one
+    target_cardinality: many
     has_inverse: true
     inverse_relation_id: rel_instance_of_component
     is_traversable_by_default: true
